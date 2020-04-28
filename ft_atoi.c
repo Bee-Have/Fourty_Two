@@ -46,7 +46,7 @@ int ft_atoi(char *str)
     res = 0;
     if (!str)
         return (0);
-    if (str[i] == '-')
+    if (str[i] == '-' || str[i] == '+')
         i++;
     if (res >= 2147483647)
     {
