@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 
-int     ft_strlcpy(char *dst, char *src, int size)
+int     ft_strlcpy(char *dst, char *src, unsigned long int size)
 {
     int i;
 
@@ -28,7 +28,7 @@ int     main(void)
     char srcalt[] = {"World"};
 
     printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
-    ft_strlcpy(dst, src, 6);
-    strlcpy(dstalt, srcalt, 6);
+    printf("%d\n", ft_strlcpy(dst, src, 6));
+    printf("%lu\n", strlcpy(dstalt, srcalt, 6));
     printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
 }
