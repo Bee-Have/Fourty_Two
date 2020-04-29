@@ -2,13 +2,13 @@
 #include<stdio.h>
 #include<string.h>
 
-void *ft_memcpy(void *dest, void *src, int n)
+void *ft_memcpy(void *dst, void *src, int n)
 {
     int i;
     char *strdest;
     char *strsrc;
 
-    strdest = (char *)dest;
+    strdest = (char *)dst;
     strsrc = (char *)src;
     i = 0;
     while (i < n)
@@ -16,7 +16,7 @@ void *ft_memcpy(void *dest, void *src, int n)
         strdest[i] = strsrc[i];
         i++;
     }
-    return (dest);
+    return (dst);
 }
 
 int     main(void)

@@ -2,19 +2,19 @@
 #include<stdio.h>
 #include<string.h>
 
-void *ft_memset(void *pointer, int value, int count)
+void *ft_memset(void *b, int c, int len)
 {
     int i;
     char *tab;
 
-    tab = (char *)pointer;
+    tab = (char *)b;
     i = 0;
-    while (i <= count)
+    while (i < len)
     {
-        tab[i] = (char)value;
+        tab[i] = (char)c;
         i++;
     }
-    return (pointer);
+    return (b);
 }
 
 int main(void)
@@ -25,6 +25,6 @@ int main(void)
     ft_memset(pointer, '2', 5);
     printf("%s\n", pointer);
 
-    memset(pointer, 50, 5);
+    memset(pointer, 49, 5);
     printf("%s\n", pointer);
 }

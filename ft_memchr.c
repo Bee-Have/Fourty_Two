@@ -23,7 +23,7 @@ int    main(void)
 {
     char origin[] = {"Hello there general Kenobi"};
 
-    printf("%s\n", (char *)memchr(origin, 'w', 20));
-    printf("%s\n", (char *)ft_memchr(origin, 'w', 20));
+    printf("%s\n", (char *)memchr(origin, 'g', 20));
+    printf("%s\n", (char *)ft_memchr(origin, 'g', 20));
     return (0);
 }
