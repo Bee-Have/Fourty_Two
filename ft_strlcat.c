@@ -5,14 +5,17 @@
 int		ft_strlcat(char *dst, char *src, int size)
 {
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	while (dst[i] != '\0' && i < size)
 		i++;
-	while (src[i] != '\0' && i < size)
+	while (src[j] != '\0' && i < (size - 1))
     {
-        dst[i] = src[i];
+        dst[i] = src[j];
         i++;
+		j++;
     }
     dst[i] = '\0';
     return (i);
@@ -20,14 +23,14 @@ int		ft_strlcat(char *dst, char *src, int size)
 
 int		main(void)
 {
-    char dst[] = {"Hello"};
+    char dst[11] = {"Hello"};
     char src[] = {"World"};
 
-    char dstalt[] = {"Hello"};
+    char dstalt[11] = {"Hello"};
     char srcalt[] = {"World"};
 
     printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
-    printf("%d\n", ft_strlcat(dst, src, 10));
-    printf("%lu\n", strlcqt(dstalt, srcalt, 10));
+    printf("%d\n", ft_strlcat(dst, src, 11));
+    printf("%lu\n", strlcat(dstalt, srcalt, 11));
     printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
 }
