@@ -9,15 +9,25 @@ int		ft_strlcat(char *dst, char *src, int size)
 	i = 0;
 	while (dst[i] != '\0' && i < size)
 		i++;
-	while ()
+	while (src[i] != '\0' && i < size)
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return (i);
 }
 
 int		main(void)
 {
-	char src[] = "Hello";
-	char dst[] = "World";
+    char dst[] = {"Hello"};
+    char src[] = {"World"};
 
-	printf("%s %s\n", dst, src);
-	printf("%lu\n", strlcat(dst, src, 10));
-	printf("%s %s\n", dst, src);
+    char dstalt[] = {"Hello"};
+    char srcalt[] = {"World"};
+
+    printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
+    printf("%d\n", ft_strlcat(dst, src, 10));
+    printf("%lu\n", strlcqt(dstalt, srcalt, 10));
+    printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
 }
