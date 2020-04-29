@@ -2,16 +2,22 @@
 #include<stdio.h>
 #include<string.h>
 
-int     main(void)
+int		ft_strlcat(char *dst, char *src, int size)
 {
-    char dst[6] = {"Hello "};
-    char src[5] = {"World"};
+	int i;
 
-    char dstalt[6] = {"Hello "};
-    char srcalt[5] = {"World"};
+	i = 0;
+	while (dst[i] != '\0' && i < size)
+		i++;
+	while ()
+}
 
-    printf("%s%s , %s%s\n", dst, src, dstalt, srcalt);
-    ft_strlcpy(dst, src, 6);
-    strlcpy(dstalt, srcalt, 5);
-    printf("%s%s , %s%s\n", dst, src, dstalt, srcalt);
+int		main(void)
+{
+	char src[] = "Hello";
+	char dst[] = "World";
+
+	printf("%s %s\n", dst, src);
+	printf("%lu\n", strlcat(dst, src, 10));
+	printf("%s %s\n", dst, src);
 }

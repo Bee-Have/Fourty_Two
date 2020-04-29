@@ -2,14 +2,14 @@
 #include<stdio.h>
 #include<string.h>
 
-int     ft_strlcpy(char *dst, char *src, int size)
+int     ft_strlcpy(char *dst, char *src, unsigned long int size)
 {
     int i;
 
     i = 0;
     if (size < 0)
         return (0);
-    while (src[i] != '\0' && size > 0)
+    while (src[i] != '\0' && size > 1)
     {
         dst[i] = src[i];
         i++;
@@ -21,14 +21,14 @@ int     ft_strlcpy(char *dst, char *src, int size)
 
 int     main(void)
 {
-    char dst[6] = {"Hello "};
-    char src[5] = {"World"};
+    char dst[] = {"Hello"};
+    char src[] = {"World"};
 
-    char dstalt[6] = {"Hello "};
-    char srcalt[5] = {"World"};
+    char dstalt[] = {"Hello"};
+    char srcalt[] = {"World"};
 
-    printf("%s%s , %s%s\n", dst, src, dstalt, srcalt);
-    ft_strlcpy(dst, src, 6);
-    strlcpy(dstalt, srcalt, 5);
-    printf("%s%s , %s%s\n", dst, src, dstalt, srcalt);
+    printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
+    printf("%d\n", ft_strlcpy(dst, src, 6));
+    printf("%lu\n", strlcpy(dstalt, srcalt, 6));
+    printf("%s %s\n%s %s\n\n", dst, src, dstalt, srcalt);
 }
