@@ -1,17 +1,28 @@
 #include <unistd.h>
 
-int	ft_isdigit(char *str)
+int	ft_isdigit(int c)
 {
-	int i;
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
+int 	main(void)
+{
+	int i = 0;
+	char test[] = "8734hf29qw50aa4782d7`18977532";
+
+	printf("%s\n", test);
+	while (test[i] != '\0')
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
+		printf("%d", ft_isalpha(test[i]));
 		i++;
 	}
-	return (1);
+	printf("\n");
+	i = 0;
+	while (test[i] != '\0')
+	{
+		printf("%d", isalpha(test[i]));
+		i++;
+	}
 }
