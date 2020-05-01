@@ -1,8 +1,8 @@
 #include <unistd.h>
 
-int	ft_strlen(char *s)
+int		ft_strlen(char *s)
 {
-	int len;
+	int		len;
 
 	len = 0;
 	while (s[len] != '\0')
