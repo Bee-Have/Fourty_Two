@@ -22,14 +22,14 @@ int 	main(void)
 	printf("%s\n", test);
 	while (test[i] != '\0')
 	{
-		printf("%d", ft_isalpha(test[i]));
+		printf("%d", ft_isalnum(test[i]));
 		i++;
 	}
 	printf("\n");
 	i = 0;
 	while (test[i] != '\0')
 	{
-		printf("%d", isalpha(test[i]));
+		printf("%d", isalnum(test[i]));
 		i++;
 	}
 }

@@ -2,16 +2,16 @@
 #include<stdio.h>
 #include<string.h>
 
-int		ft_strlcat(char *dst, char *src, int size)
+int		ft_strlcat(char *dst, char *src, int dstsize)
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	while (dst[i] != '\0' && i < size)
+	while (dst[i] != '\0' && i < dstsize)
 		i++;
-	while (src[j] != '\0' && i < (size - 1))
+	while (src[j] != '\0' && i < (dstsize - 1))
     {
         dst[i] = src[j];
         i++;
