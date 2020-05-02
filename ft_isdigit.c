@@ -1,4 +1,7 @@
-#include <unistd.h>
+#include<unistd.h>
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
 
 int	ft_isdigit(int c)
 {
@@ -15,14 +18,14 @@ int 	main(void)
 	printf("%s\n", test);
 	while (test[i] != '\0')
 	{
-		printf("%d", ft_isalpha(test[i]));
+		printf("%d", ft_isdigit(test[i]));
 		i++;
 	}
 	printf("\n");
 	i = 0;
 	while (test[i] != '\0')
 	{
-		printf("%d", isalpha(test[i]));
+		printf("%d", isdigit(test[i]));
 		i++;
 	}
 }
