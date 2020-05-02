@@ -3,28 +3,28 @@
 #include<stdlib.h>
 #include<string.h>
 
-void *ft_memmove(void *dest, void *src, int n)
+void *ft_memmove(void *dst, void *src, int len)
 {
     int i;
-    char tempdest[n];
-    char *cpdest;
+    char tempdst[len];
+    char *cpdst;
     char *cpsrc;
 
     i = 0;
-    cpdest = (char *)dest;
+    cpdst = (char *)dst;
     cpsrc = (char *)src;
-    while (i < n)
+    while (i < len)
     {
-        tempdest[i] = cpsrc[i];
+        tempdst[i] = cpsrc[i];
         i++;
     }
     i = 0;
-    while (i < n)
+    while (i < len)
     {
-        cpdest[i] = tempdest[i];
+        cpdst[i] = tempdst[i];
         i++;
     }
-    return (dest);
+    return (dst);
 }
 
 int     main(void)

@@ -13,21 +13,23 @@ char *ft_strnstr(char *haystack, char *needle, int len)
         return (haystack);
     while (haystack[i] != '\0' && i < len)
     {
-        if (haystack[i] == needle[j])
+        while (haystack[i] == needle[j])
         {
             i++;
             j++;
         }
         if (needle[j] == '\0')
             return (&haystack[i - j]);
+		else
+			i++;
     }
     return (NULL);
 }
 
 int     main(void)
 {
-    char hay[] = {"Hello there general Kenibo !"};
-    char nee[] = {"t"};
+    char hay[] = {"Hello there general Kenobi !"};
+    char nee[] = {"xy"};
 
     printf("%s\n", ft_strnstr(hay, nee, 20));
     printf("%s\n", strnstr(hay, nee, 20));
