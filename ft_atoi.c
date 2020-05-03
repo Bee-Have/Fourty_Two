@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,8 +9,6 @@ int		ft_atoi(char *str)
 
 	i = 0;
 	res = 0;
-	if (!str)
-		return (0);
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] != '\0')
