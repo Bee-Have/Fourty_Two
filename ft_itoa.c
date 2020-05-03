@@ -5,7 +5,7 @@
 
 char	*ft_itoa(int nb, char *str, int base)
 {
-	char	*bs[36];
+	char	bs[36];
 	int		nbr;
 	int		i;
 
