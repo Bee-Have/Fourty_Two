@@ -3,63 +3,61 @@
 #include <stdlib.h>
 #include <string.h>
 
-int		ft_countstr(char const *s1, char const *set, int len)
+
+int		ft_findad(const char *s1, const char *set, int bl)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-	while (s1[i] != '\0')
+	if (bl > 0)
 	{
-		if (set[j] != '\0')
+		while (s1[j] != '\0')
+			j++;
+	}
+	while (set[i] != '\0')
+	{
+		if (s1[j] == set[i])
 		{
-			if (s1[i] == set[j])
-			{
-				len++;
-				i++;
-				j = 0;
-			}
-			else if (set[j] != '\0')
+			if (bl == 0)
 				j++;
 			else
-				i++;
+				j--;
+			i = 0;	
 		}
 		else
 			i++;
 	}
-	i--;
-	j = 0;
-	while (i > 0)
-	{
-		if (s1[i] == set[j])
-		{
-			len++;
-			i--;
-			j = 0;
-		}
-		else if (set[j] != '\0')
-			j++;
-		else
-			return (len);
-	}
-	return (len);
+	return (j);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		len;
-	char	cp[] = "tralala";
+	int		i;
+	int		ps;
+	int		pe;
+	char	*cp;
 
-	len = 0;	
-	len = ft_countstr(s1, set, len);
-	printf("%d\n", len);
-	return (&cp);
+	i = 0;
+	ps = ft_findad(s1, set, 0);
+	pe = ft_findad(s1, set, 1);
+	cp = (char *)malloc((ps - pe) + 1);
+	if (!cp)
+		return (NULL);
+	while (ps < pe)
+	{
+		cp[i] = s1[ps];
+		i++;
+		ps++;
+	}
+	cp[i++] = '\0';
+	return (cp);
 }
 
 int		main(void)
 {
-	char	str[] = "AABBBJJJA";
+	char	str[] = "AABBBJJJAAA";
 	char	set[] = "AB";
 
 	printf("%s\n", ft_strtrim(str, set));
