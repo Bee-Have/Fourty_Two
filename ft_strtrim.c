@@ -7,14 +7,12 @@ int		ft_countstr(char const *s1, char const *set, int len)
 {
 	int i;
 	int j;
-	int bl;
 
 	i = 0;
 	j = 0;
-	bl = 0;
 	while (s1[i] != '\0')
 	{
-		if (bl == 0)
+		if (set[j] != '\0')
 		{
 			if (s1[i] == set[j])
 			{
@@ -25,7 +23,7 @@ int		ft_countstr(char const *s1, char const *set, int len)
 			else if (set[j] != '\0')
 				j++;
 			else
-				bl++;
+				i++;
 		}
 		else
 			i++;
@@ -56,7 +54,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = 0;	
 	len = ft_countstr(s1, set, len);
 	printf("%d\n", len);
-	return (cp);
+	return (&cp);
 }
 
 int		main(void)
@@ -64,5 +62,6 @@ int		main(void)
 	char	str[] = "AABBBJJJA";
 	char	set[] = "AB";
 
-	ft_strtrim(str, set);
+	printf("%s\n", ft_strtrim(str, set));
+	return (0);
 }
