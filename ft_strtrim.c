@@ -3,41 +3,65 @@
 #include <stdlib.h>
 #include <string.h>
 
-int		ft_countstr(char const *s1, char const *set, int len, int i)
+int		ft_countstr(char const *s1, char const *set, int len)
 {
-	int		j;
-	
+	int i;
+	int j;
+	int bl;
+
+	i = 0;
 	j = 0;
-	while (set[j] != '\0')
+	bl = 0;
+	while (s1[i] != '\0')
+	{
+		if (bl == 0)
+		{
+			if (s1[i] == set[j])
+			{
+				len++;
+				i++;
+				j = 0;
+			}
+			else if (set[j] != '\0')
+				j++;
+			else
+				bl++;
+		}
+		else
+			i++;
+	}
+	i--;
+	j = 0;
+	while (i > 0)
 	{
 		if (s1[i] == set[j])
 		{
 			len++;
-			return (ft_countstr(s1, set, len, i++));
+			i--;
+			j = 0;
 		}
-		else 
+		else if (set[j] != '\0')
 			j++;
+		else
+			return (len);
 	}
 	return (len);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		j;
 	int		len;
-	char	*cp = "tralala";
+	char	cp[] = "tralala";
 
-	i = 0;
-	j = 0;
-	len = ft_countstr(s1, set, 0, 0);
+	len = 0;	
+	len = ft_countstr(s1, set, len);
 	printf("%d\n", len);
 	return (cp);
 }
 
 int		main(void)
 {
-	char	str[] = "AABBBHHFJJJA";
+	char	str[] = "AABBBJJJA";
 	char	set[] = "AB";
 
 	ft_strtrim(str, set);
