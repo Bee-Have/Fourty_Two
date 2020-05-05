@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-int		ft_findad(const char *s1, const char *set, int bl)
+int		ft_findadr(const char *s1, const char *set, int bl)
 {
 	int		i;
 	int		j;
@@ -15,6 +14,7 @@ int		ft_findad(const char *s1, const char *set, int bl)
 	{
 		while (s1[j] != '\0')
 			j++;
+		j--;
 	}
 	while (set[i] != '\0')
 	{
@@ -24,7 +24,7 @@ int		ft_findad(const char *s1, const char *set, int bl)
 				j++;
 			else
 				j--;
-			i = 0;	
+			i = 0;
 		}
 		else
 			i++;
@@ -42,10 +42,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	ps = ft_findad(s1, set, 0);
 	pe = ft_findad(s1, set, 1);
-	cp = (char *)malloc((ps - pe) + 1);
+	cp = (char *)malloc((pe - ps) + 1);
 	if (!cp)
 		return (NULL);
-	while (ps < pe)
+	while (ps <= pe)
 	{
 		cp[i] = s1[ps];
 		i++;
@@ -53,13 +53,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	cp[i++] = '\0';
 	return (cp);
-}
-
-int		main(void)
-{
-	char	str[] = "AABBBJJJAAA";
-	char	set[] = "AB";
-
-	printf("%s\n", ft_strtrim(str, set));
-	return (0);
 }
