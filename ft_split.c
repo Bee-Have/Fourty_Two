@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int		ft_calclen(char const *str, char c, int maxlen, int i)
+int		ft_calclen(char const *str, char c, int i)
 {
 	int		len;
 
@@ -13,11 +13,7 @@ int		ft_calclen(char const *str, char c, int maxlen, int i)
 		len++;
 		i++;
 	}
-	if (len > maxlen)
-		maxlen = len;
-	if (str[i] != '\0')
-		return (ft_calclen(str, c, maxlen, (i + 1)));
-	return (maxlen);
+	return (len);
 }
 
 int		ft_calcheig(char const *str, char c)
@@ -48,14 +44,16 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	ih = 0;
 	il = 0;
-	l = ft_calclen(s, c, 0, 0) + 1;
+	l = 0;
 	h = ft_calcheig(s, c) + 1;
 	printf("%d, %d, %d\n", i, l, h);
-	res = (char **)malloc(h * l * (sizeof(char)));
+	res = (char **)malloc(h * (sizeof(char *)));
 	if (!res)
 		return (NULL);
 	while (ih < h)
 	{
+		l = ft_calclen(s, c, i);
+		res[ih] = (char *)malloc(l * sizeof(char));
 		while (il < l)
 		{
 			res[ih][il] = s[i];
