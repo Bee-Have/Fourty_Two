@@ -3,26 +3,56 @@
 #include <stdlib.h>
 #include <string.h>
 
-char	*ft_itoa(int nb, char *str, int base)
+static int		ft_countnbr(int n)
 {
-	char	bs[36];
-	int		nbr;
-	int		i;
+	int		c;
 
-	bs = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	i = -1;
-	nbr = nb;
-	while (nbr > 0)
+	c = 0;
+	while(n > 0)
 	{
-		i++;
-		nbr /= base;
+		n = n / 10;
+		c++;
 	}
-	while (nb > 0)
+	printf("%d\n", c);
+	return (c);
+}
+
+char	*ft_itoa(int n)
+{
+	int		ncount;
+	int		nbr;
+	char	*str;
+
+	ncount = ft_countnbr(n) + 1;
+	nbr = n;
+	printf("test\n");
+	str = (char *)malloc(ncount * sizeof(char));
+	if (!str)
+		return (NULL);
+	printf("test1\n");
+	str[ncount] = '\0';
+	ncount--;
+	printf("test1.5\n");
+	while (ncount > 0)
 	{
-		nbr = nb % base;
-		str[i] = bs[nbr];
-		i--;
-		nb = nb / base;
+		printf("test2\n");
+		nbr = n % 10;
+		str[ncount] = nbr;
+		printf("test3\n");
+		printf("%d, %c, ", nbr, str[ncount]);
+		ncount--;
+		printf("test4\n");
+		n = n / 10;
+		nbr = n;
 	}
 	return (str);
+}
+
+int		main(void)
+{
+	int		n = 12345;
+	char	*str;
+
+	str = ft_itoa(n);
+	printf("%s\n", str);
 }
