@@ -39,39 +39,34 @@ int		ft_calcheig(char const *str, char c)
 char	**ft_split(char const *s, char c)
 {
 	int		i;
-	int		maxl;
+	int		ih;
+	int		il;
 	int		l;
 	int		h;
-	int		totlen;
 	char	**res;
 
 	i = 0;
-	maxl = ft_calclen(s, c, 0, 0) + 1;
-	l = maxl;
-	h = ft_calcheig(s, c);
-	totlen = (sizeof(char *) * (h + 1)) + (sizeof(char) * (l + 1) * h);
-	while (s[i] != '\0')
-		i++;
-	printf("%d, %d, %d, %d\n", i, maxl, l, h);
-	res = (char **)malloc(totlen);
+	ih = 0;
+	il = 0;
+	l = ft_calclen(s, c, 0, 0) + 1;
+	h = ft_calcheig(s, c) + 1;
+	printf("%d, %d, %d\n", i, l, h);
+	res = (char **)malloc(h * l * (sizeof(char)));
 	if (!res)
 		return (NULL);
-	while (h >= 0)
+	while (ih < h)
 	{
-		res[h][l] = '\0';
-		i--;
-		printf("%c\n", s[i]);
-		while (l >= 0)
+		while (il < l)
 		{
-			res[h][l] = s[i];
-			printf("%c", res[h][l]);
-			l--;
-			i--;
+			res[ih][il] = s[i];
+			printf("%c", res[ih][il]);
+			i++;
+			il++;
 		}
-		printf("\n");
-		l = maxl;
-		i--;
-		h--;
+		res[ih][il] = '\0';
+		i++;
+		ih++;
+		il++;
 	}
 	return (res);
 }
