@@ -66,5 +66,24 @@ char	**ft_split(char const *s, char c)
 		ih++;
 		il = 0;
 	}
+	res[ih] = NULL;
 	return (res);
+}
+
+int		main(void)
+{
+	char test[] = "Hello there";
+	char sep = ' ';
+	char **res;
+	int i = 0;
+	int j = 0;
+
+	res = ft_split(test, sep);
+	while (res[i] != '\0')
+	{
+		printf("%s\n", res[i]);
+		i++;
+	}
+	j++;
+	return (0);
 }
