@@ -22,7 +22,7 @@ int		ft_calcheig(char const *str, char c)
 	int		h;
 
 	i = 0;
-	h = 0;
+	h = 1;
 	while (str[i] != '\0')
 	{
 		if (str[i] == c)
