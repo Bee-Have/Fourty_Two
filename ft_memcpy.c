@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void	*ft_memcpy(void *dst, void *src, int n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	int		i;
 	char	*strdest;

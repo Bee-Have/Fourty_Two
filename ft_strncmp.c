@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int		ft_strncmp(char *s1, char *s2, int n)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	int		i;
 

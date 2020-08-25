@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void	*ft_memset(void *b, int c, int len)
+void	*ft_memset(void *b, int c, size_t len)
 {
 	int		i;
 	char	*tab;

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-char	*ft_strnstr(char *haystack, char *needle, int len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	int		i;
 	int		j;

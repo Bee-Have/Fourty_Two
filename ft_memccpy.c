@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void	*ft_memccpy(void *dst, void *src, int c, int n)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
 	int		i;
 	char	*cpdest;
