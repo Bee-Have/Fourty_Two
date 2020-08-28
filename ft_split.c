@@ -75,14 +75,3 @@ char	**ft_split(char const *s, char c)
 	result[irow] = '\0';
 	return (result);
 }
-
-int	main(void)
-{
-	char split = ' ';
-	char *chaine = "hello this is duck";
-	char **result;
-
-	result = ft_split(chaine, split);
-	printf("%s\n%s\n%s\n%s\n", result[0], result[1], result[2], result[3]);
-	return (0);
-}
