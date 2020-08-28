@@ -4,22 +4,24 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int		i;
-	int		j;
+	unsigned int	i;
+	unsigned int	j;
+	char	*string;
 
 	i = 0;
 	j = 0;
+	string = (char *)haystack;
 	if (!needle)
-		return (haystack);
-	while (haystack[i] != '\0' && i < len)
+		return (string);
+	while (string[i] != '\0' && i < len)
 	{
-		while (haystack[i] == needle[j])
+		while (string[i] == needle[j])
 		{
 			i++;
 			j++;
 		}
 		if (needle[j] == '\0')
-			return (&haystack[i - j]);
+			return (&string[i - j]);
 		else
 			i++;
 	}

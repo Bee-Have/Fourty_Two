@@ -4,18 +4,20 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	int		oc;
+	int	i;
+	int	occurrence;
+	char	*string;
 
 	i = 0;
-	oc = 0;
-	while (s[i] != '\0')
+	occurrence = 0;
+	string = (char *)s;
+	while (string[i] != '\0')
 	{
-		if (s[i] == c)
-			oc = i;
+		if (string[i] == c)
+			occurrence = i;
 		i++;
 	}
-	if (oc == 0 && s[oc] != c)
+	if (occurrence == 0 && string[occurrence] != c)
 		return (NULL);
-	return (&s[oc]);
+	return (&string[occurrence]);
 }

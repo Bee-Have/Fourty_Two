@@ -40,8 +40,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*cp;
 
 	i = 0;
-	ps = ft_findad(s1, set, 0);
-	pe = ft_findad(s1, set, 1);
+	ps = ft_findadr(s1, set, 0);
+	pe = ft_findadr(s1, set, 1);
 	cp = (char *)malloc((pe - ps) + 1);
 	if (!cp)
 		return (NULL);
