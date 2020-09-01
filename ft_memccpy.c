@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/01 07:31:33 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 07:33:50 by amarini-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {

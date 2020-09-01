@@ -1,7 +1,5 @@
 #include <unistd.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
 
 int		ft_isascii(int c)
 {

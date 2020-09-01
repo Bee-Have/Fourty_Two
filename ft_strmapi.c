@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/01 07:44:12 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 07:44:15 by amarini-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<unistd.h>
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
