@@ -6,17 +6,17 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:45:45 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:45:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/01 08:23:50 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<unistd.h>
-#include<stdio.h>
+#include <unistd.h>
+#include <stdio.h>
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int	nbr;
-	char 	value;
+	int		nbr;
+	char	value;
 
 	nbr = 0;
 	value = nbr;
@@ -31,6 +31,6 @@ void	ft_putnbr_fd(int n, int fd)
 	else if (n < 10)
 	{
 		value = (n % 10) + '0';
-		write (fd, &value, 1);
+		write(fd, &value, 1);
 	}
 }

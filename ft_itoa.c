@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:43:15 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:43:17 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 09:24:18 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 09:37:20 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int		ft_countnbr(int n)
+static	int		ft_countnbr(int n)
 {
-	int		c;
+	int		count;
 
-	c = 0;
-	while(n > 0)
+	count = 0;
+	while (n > 0)
 	{
 		n = n / 10;
-		c++;
+		count++;
 	}
-	return (c);
+	return (count);
 }
 
 char	*ft_itoa(int n)
@@ -33,6 +33,8 @@ char	*ft_itoa(int n)
 	int		nbr;
 	char	*str;
 
+	if (!n)
+		return (NULL);
 	ncount = ft_countnbr(n) + 1;
 	nbr = n;
 	str = (char *)malloc(ncount * sizeof(char));

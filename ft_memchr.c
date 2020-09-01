@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:32:15 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:34:38 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 09:46:20 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 09:48:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	int		i;
-	char	*cps;
+	char	*copy;
 
 	i = 0;
-	cps = (char *)s;
+	if (!s)
+		return (NULL);
+	copy = (char *)s;
 	while (i < n)
 	{
-		if (cps[i] == (char)c)
+		if (copy[i] == (char)c)
 			return (&cps[i]);
 		i++;
 	}

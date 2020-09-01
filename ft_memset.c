@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:29:08 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:33:10 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 10:22:02 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 10:24:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 void	*ft_memset(void *b, int c, size_t len)
 {
 	int		i;
-	char	*tab;
+	char	*array;
 
-	tab = (char *)b;
 	i = 0;
+	if (!b)
+		return (NULL);
+	array = (char *)b;
 	while (i < len)
 	{
-		tab[i] = (char)c;
+		array[i] = (char *)c;
 		i++;
 	}
-	return (b);
+	return (array);
 }

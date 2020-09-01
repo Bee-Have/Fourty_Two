@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:40:08 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:40:10 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 10:44:48 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 10:51:09 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	unsigned int	i;
 	unsigned int	j;
-	char	*string;
+	char			*string;
 
 	i = 0;
 	j = 0;
+	if (!haystack)
+		return (NULL);
 	string = (char *)haystack;
 	if (!needle)
 		return (string);

@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:58 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:43:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/01 08:28:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	calc_row(char const *s, char c)
+int		calc_row(char const *s, char c)
 {
-	int	i;
-	int	row;
+	int		i;
+	int		row;
 
 	row = 0;
 	i = 0;
@@ -30,9 +30,9 @@ int	calc_row(char const *s, char c)
 	return (row);
 }
 
-int	calc_col(char const *s, char c, int strpos)
+int		calc_col(char const *s, char c, int strpos)
 {
-	int	length;
+	int		length;
 
 	length = 0;
 	while (s[strpos] != '\0')
@@ -47,7 +47,7 @@ int	calc_col(char const *s, char c, int strpos)
 
 char	*fill_array(char *result, char const *s, int i, int collumn)
 {
-	int	icol;
+	int		icol;
 
 	icol = 0;
 	while (icol <= collumn)
@@ -62,10 +62,10 @@ char	*fill_array(char *result, char const *s, int i, int collumn)
 
 char	**ft_split(char const *s, char c)
 {
-	int	i;
-	int	irow;
+	int		i;
+	int		irow;
 	char	**result;
-	
+
 	i = 0;
 	irow = 0;
 	if (!s || !c)
@@ -82,7 +82,6 @@ char	**ft_split(char const *s, char c)
 		i = i + (calc_col(s, c, i) + 1);
 		irow++;
 	}
-
 	result[irow] = '\0';
 	return (result);
 }

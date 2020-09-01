@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:38:00 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:38:03 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 10:25:15 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 10:29:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int		i;
 	char	*string;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	string = (char *)s;
 	while (string[i] != '\0')
 	{

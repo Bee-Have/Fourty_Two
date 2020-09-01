@@ -5,11 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:40:23 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:40:33 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 08:57:15 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 09:10:02 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -31,14 +32,11 @@ int		ft_atoi(const char *str)
 	}
 	if (res >= 2147483647)
 	{
-		if (str[0] != '-' && res == 2147483647)
+		if ((str[0] != '-' && res == 2147483647)
+				|| (str[0] == '-' && res == 2147483648))
 			return (res);
-		else if (str[0] == '-' && res == 2147483648)
-			return (-2147483648);
 		if (res >= 2147483648)
-		{
 			return (0);
-		}
 	}
 	if (str[0] == '-')
 		res *= -1;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:31:33 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:33:50 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 09:40:09 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 09:43:42 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
 	int		i;
-	char	*cpdest;
-	char	*cpsrc;
+	char	*destcopy;
+	char	*srccopy;
 
 	i = 0;
-	cpdest = (char *)dst;
-	cpsrc = (char *)src;
+	destcopy = (char *)dst;
+	srccopy = (char *)src;
 	while (i <= n)
 	{
-		cpdest[i] = cpsrc[i];
-		if (cpsrc[i] == (char)c)
+		destcopy[i] = srccopy[i];
+		if (srccopy[i] == (char)c)
 			return (dst);
 		i++;
 	}

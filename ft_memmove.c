@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:31:57 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:34:02 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/01 09:59:52 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/01 10:05:41 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,24 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	int		i;
 	char	tempdst[len];
-	char	*cpdst;
-	char	*cpsrc;
+	char	*dstcopy;
+	char	*srccopy;
 
 	i = 0;
-	cpdst = (char *)dst;
-	cpsrc = (char *)src;
+	if (!dst || !src)
+		return (NULL);
+	dstcopy = (char *)dst;
+	srccopy = (char *)src;
 	while (i < len)
 	{
-		tempdst[i] = cpsrc[i];
+		tempdst[i] = srccopy[i];
 		i++;
 	}
 	i = 0;
 	while (i < len)
 	{
-		cpdst[i] = tempdst[i];
+		dstcopy[i] = tempdst[i];
 		i++;
 	}
-	return (dst);
+	return (dstcopy);
 }
