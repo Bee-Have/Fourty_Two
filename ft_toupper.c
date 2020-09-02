@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:38:21 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:38:23 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/02 09:19:40 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/02 09:20:59 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
 
 int		ft_toupper(int c)
 {

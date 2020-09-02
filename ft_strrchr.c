@@ -5,30 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 07:39:02 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:39:04 by amarini-         ###   ########.fr       */
+/*   Created: 2020/09/02 09:11:40 by amarini-          #+#    #+#             */
+/*   Updated: 2020/09/02 09:15:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
-	int	occurrence;
+	int		i;
+	int		occurence;
 	char	*string;
 
 	i = 0;
-	occurrence = 0;
+	occurence = 0;
+	if (!s || !c)
+		return (NULL);
 	string = (char *)s;
 	while (string[i] != '\0')
 	{
 		if (string[i] == c)
-			occurrence = i;
+			occurence = i;
 		i++;
 	}
-	if (occurrence == 0 && string[occurrence] != c)
+	if (occurence == 0 && string[occurence] != c)
 		return (NULL);
-	return (&string[occurrence]);
+	return (&string[occurence]);
 }

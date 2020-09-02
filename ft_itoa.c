@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:24:18 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 09:37:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/02 09:23:16 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	int		ft_countnbr(int n)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int		ncount;
 	int		nbr;
