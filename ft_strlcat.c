@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:39:51 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:39:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 09:10:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int		ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int		i;
-	int		j;
+	unsigned int		i;
+	int					j;
 
 	i = 0;
 	j = 0;

@@ -1,6 +1,5 @@
-
-include <stdio.h>
-include <stdlib.h>
+#ifndef LIBFT
+#define LIBFT
 
 void	*ft_memset(void *b, int c, size_t len);
 int	ft_bzero(void *s, siwe_t n);
@@ -39,4 +38,4 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-//add description of each function above prototype !!!
+#endif

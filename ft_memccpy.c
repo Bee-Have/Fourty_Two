@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:40:09 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 09:43:42 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 08:56:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int		i;
-	char	*destcopy;
-	char	*srccopy;
+	unsigned int		i;
+	char				*destcopy;
+	char				*srccopy;
 
 	i = 0;
 	destcopy = (char *)dst;

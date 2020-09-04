@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:46:20 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 09:48:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 08:57:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		i;
-	char	*copy;
+	unsigned int		i;
+	char				*copy;
 
 	i = 0;
 	if (!s)
@@ -25,7 +25,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (copy[i] == (char)c)
-			return (&cps[i]);
+			return (&copy[i]);
 		i++;
 	}
 	return (NULL);

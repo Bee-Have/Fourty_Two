@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:49:56 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 09:54:24 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 09:11:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		i;
-	int		result;
-	char	*copy1;
-	char	*copy2;
+	unsigned int		i;
+	int					result;
+	char				*copy1;
+	char				*copy2;
 
 	i = 0;
 	result = 0;
@@ -28,7 +28,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 	copy2 = (char *)s2;
 	if (n <= 0)
 		return (0);
-	while (i < n && copy[1] != '\0' && copy2[i] != '\0')
+	while (i < n && copy1[i] != '\0' && copy2[i] != '\0')
 	{
 		if (copy1[i] != copy2[i])
 		{

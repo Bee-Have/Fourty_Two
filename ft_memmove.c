@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:59:52 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 10:05:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 08:59:02 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		i;
-	char	tempdst[len];
-	char	*dstcopy;
-	char	*srccopy;
+	unsigned int		i;
+	char				tempdst[len];
+	char				*dstcopy;
+	char				*srccopy;
 
 	i = 0;
 	if (!dst || !src)

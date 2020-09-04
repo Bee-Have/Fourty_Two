@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:22:02 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 10:24:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 09:00:54 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	int		i;
-	char	*array;
+	unsigned int		i;
+	char				*array;
 
 	i = 0;
 	if (!b)
@@ -24,7 +24,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	array = (char *)b;
 	while (i < len)
 	{
-		array[i] = (char *)c;
+		array[i] = (char)c;
 		i++;
 	}
 	return (array);

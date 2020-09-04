@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:41:17 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 10:43:44 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 09:10:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		i;
+	unsigned int		i;
 
 	i = 0;
 	if (!s1 || !s2)

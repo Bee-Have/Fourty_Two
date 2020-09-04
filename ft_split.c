@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:58 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 08:28:22 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/03 09:08:43 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ char	**ft_split(char const *s, char c)
 		i = i + (calc_col(s, c, i) + 1);
 		irow++;
 	}
-	result[irow] = '\0';
+	result[irow][0] = '\0';
 	return (result);
 }
