@@ -6,10 +6,12 @@
 #    By: amarini- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/02 09:27:17 by amarini-          #+#    #+#              #
-#    Updated: 2020/09/04 16:55:34 by amarini-         ###   ########.fr        #
+#    Updated: 2020/09/07 11:01:01 by amarini-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 SRCS = ft_atoi.c ft_isprint.c ft_memset.c ft_strdup.c \
 	   ft_strnstr.c ft_bzero.c ft_itoa.c ft_putchar_fd.c \
@@ -28,12 +30,15 @@ $(NAME): $(OBJS)
 	ar rc $@ $^
 	ranlib $@
 
-re : clean all
+convert : $(SRCS)
+	$(CC) $(CFLAGS) -c $^
 
 fclean :
 	/bin/rm -f *.o
 
 clean : fclean
-	/bin/rm $(NAME)
+	/bin/rm -f $(NAME)
+
+re : clean all
 
 .PHONY : fclean clean re all
