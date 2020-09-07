@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 08:57:15 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 09:10:02 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/07 12:53:31 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int		convert_res(const char *str, size_t nbr, int index)
+{
+	if (str[index] == '-')
+		nbr *= -1;
+	return (nbr);
+}
+
 int		ft_atoi(const char *str)
 {
-	int			i;
-	long int	res;
+	int					i;
+	int					index;
+	unsigned long int	res;
 
 	i = 0;
+	index = 0;
 	res = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+			|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		i++;
+	index = i;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] != '\0')
 	{
 		if (str[i] < '0' || str[i] > '9')
-			return (0);
+			return (convert_res(str, res, index));
 		res = (res * 10) + (str[i] - '0');
 		i++;
 	}
-	if (res >= 2147483647)
-	{
-		if ((str[0] != '-' && res == 2147483647)
-				|| (str[0] == '-' && res == 2147483648))
-			return (res);
-		if (res >= 2147483648)
-			return (0);
-	}
-	if (str[0] == '-')
-		res *= -1;
-	return (res);
+	return (convert_res(str, res, index));
 }
