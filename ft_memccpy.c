@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:40:09 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/03 08:56:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/07 16:06:50 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	i = 0;
 	destcopy = (char *)dst;
 	srccopy = (char *)src;
-	while (i <= n)
+	while (i < n)
 	{
 		destcopy[i] = srccopy[i];
 		if (srccopy[i] == (char)c)
-			return (dst);
+			return (&destcopy[i + 1]);
 		i++;
 	}
-	return (dst);
+	return (NULL);
 }
