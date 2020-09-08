@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:39:51 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 13:02:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 15:34:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 	dstcopy = (char *)dst;
 	srccopy = (char *)src;
 	i = calc_len(dstcopy);
-	if (i >= dstsize)
-		return (calc_len(srccopy));
 	maxlen = calc_len(dstcopy) + calc_len(srccopy);
+	if (i > dstsize)
+		return (calc_len(srccopy) + dstsize);
 	while (i < (dstsize - 1) && srccopy[j] != '\0')
 	{
 		dstcopy[i] = srccopy[j];

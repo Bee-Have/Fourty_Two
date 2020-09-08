@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 09:11:40 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/02 09:15:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 16:13:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ char	*ft_strrchr(const char *s, int c)
 
 	i = 0;
 	occurence = 0;
-	if (!s || !c)
-		return (NULL);
 	string = (char *)s;
 	while (string[i] != '\0')
 	{
@@ -30,6 +28,8 @@ char	*ft_strrchr(const char *s, int c)
 			occurence = i;
 		i++;
 	}
+	if (string[i] == c)
+		occurence = i;
 	if (occurence == 0 && string[occurence] != c)
 		return (NULL);
 	return (&string[occurence]);

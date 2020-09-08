@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:44:48 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 10:51:09 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 16:06:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return (string);
 	while (string[i] != '\0' && i < len)
 	{
-		while (string[i] == needle[j])
+		while (string[i] == needle[j] && i < len)
 		{
 			i++;
 			j++;
 		}
 		if (needle[j] == '\0')
 			return (&string[i - j]);
-		else
-			i++;
+		j = 0;
+		i++;
 	}
 	return (NULL);
 }

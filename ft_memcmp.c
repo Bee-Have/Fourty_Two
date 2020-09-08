@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:49:56 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 09:47:30 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 15:55:23 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 		return (0);
 	while (i < n && copy1[i] != '\0' && copy2[i] != '\0')
 	{
-		if (compare(copy1[i], copy2[i]) == 1)
+		if ((unsigned char)compare(copy1[i], (unsigned char)copy2[i]) == 1)
 			return (copy1[i] - copy2[i]);
 		i++;
 	}
