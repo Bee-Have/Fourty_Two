@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:25:15 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 10:29:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 09:50:41 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ char	*ft_strchr(const char *s, int c)
 			return (&string[i]);
 		i++;
 	}
+	if (string[i] == c)
+		return (&string[i]);
 	return (NULL);
 }
