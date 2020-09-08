@@ -6,14 +6,14 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:30:02 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 10:34:27 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 10:19:06 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-int		ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	int		i;
 

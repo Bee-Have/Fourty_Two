@@ -6,28 +6,46 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:39:51 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/03 09:10:13 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 13:02:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-int		ft_strlcat(char *dst, const char *src, size_t dstsize)
+int			calc_len(char *str)
 {
-	unsigned int		i;
-	int					j;
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	maxlen;
+	char			*dstcopy;
+	char			*srccopy;
 
 	i = 0;
 	j = 0;
-	while (dst[i] != '\0' && i < dstsize)
-		i++;
-	while (src[j] != '\0' && i < (dstsize - 1))
+	maxlen = 0;
+	dstcopy = (char *)dst;
+	srccopy = (char *)src;
+	i = calc_len(dstcopy);
+	if (i >= dstsize)
+		return (calc_len(srccopy));
+	maxlen = calc_len(dstcopy) + calc_len(srccopy);
+	while (i < (dstsize - 1) && srccopy[j] != '\0')
 	{
-		dst[i] = src[j];
+		dstcopy[i] = srccopy[j];
 		i++;
 		j++;
 	}
-	dst[i] = '\0';
-	return (i);
+	dstcopy[i] = '\0';
+	return (maxlen);
 }

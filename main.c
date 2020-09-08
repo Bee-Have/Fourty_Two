@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 08:38:04 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 09:09:46 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/08 11:37:09 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 
 int		main(void)
 {
-	char	*string1 = "abcdefghij";
-	char	*string2 = "abcdefgxyz";
-
-	printf ("good=%d\nmine=%d\n", memcmp(string1, string2, 7), 
-			ft_memcmp(string1, string2, 7));
+	char	dest1[26] = "hello there";
+	char	*dest2 = "hello there";
+	char	*src = "princesse b*tch";
+	
+	printf("good=%lu %s\nmine=%lu %s\n", strlcat(dest1, src, 26), dest1, 
+			ft_strlcat(dest2, src, 26), dest2);
 
 	return (0);
 }
