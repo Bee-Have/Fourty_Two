@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 08:38:04 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 16:45:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/09 10:02:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 	int		test;
 	char	*res2;
 
-	test = 9;
+	test = -2147483648;
 	res2 = ft_itoa(test);
 	printf("mine=%s\n", res2);
 

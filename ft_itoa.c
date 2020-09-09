@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:24:18 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 16:55:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/09 10:05:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static	int		ft_countnbr(int n)
+static	int			ft_countnbr(int n, int nbr)
 {
 	int		count;
 
 	count = 0;
-	while (n > 0)
+	while (nbr > 0 || nbr < 0)
 	{
-		n = n / 10;
+		nbr = nbr / 10;
 		count++;
 	}
+	if (n < 0)
+		count++;
+	if (n == 0)
+		return (1);
 	return (count);
 }
 
-char			*ft_itoa(int n)
+unsigned int		check_negative(int n)
 {
-	int		ncount;
-	int		nbr;
-	char	*str;
+	if (n < 0)
+		return (n * -1);
+	return (n);
+}
+
+char				*ft_itoa(int n)
+{
+	int					ncount;
+	unsigned int		nbr;
+	char				*str;
 
 	ncount = 0;
-	ncount = ft_countnbr(n) + 1;
-	nbr = n;
+	nbr = check_negative(n);
+	ncount = ft_countnbr(n, nbr);
 	str = (char *)malloc(ncount * sizeof(char));
 	if (!str)
 		return (NULL);
 	str[ncount] = '\0';
 	ncount--;
-	printf("%d\n", ncount);
-	while (ncount > 0)
+	while (ncount > 0 && ncount >= 1 && nbr >= 10)
 	{
-		nbr = n % 10;
+		nbr = check_negative(n) % 10;
 		str[ncount] = nbr + '0';
 		ncount--;
-		printf("%d\n", ncount);
 		n = n / 10;
-		nbr = n;
+		nbr = check_negative(n);
 	}
-	if (ncount >= 0)
+	if (ncount <= 1)
 		str[ncount] = nbr + '0';
+	if (n < 0)
+		str[ncount - 1] = '-';
 	return (str);
 }
