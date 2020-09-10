@@ -6,13 +6,14 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:41:27 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 07:41:29 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/09 11:37:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {
@@ -22,7 +23,7 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	if (!s1)
 		return (NULL);
-	cp = (char *)malloc(sizeof(s1));
+	cp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!cp)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -30,5 +31,6 @@ char	*ft_strdup(const char *s1)
 		cp[i] = s1[i];
 		i++;
 	}
+	cp[i] = '\0';
 	return (cp);
 }

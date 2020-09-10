@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:58 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/03 09:08:43 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/09 16:52:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,25 @@ int		calc_row(char const *s, char c)
 {
 	int		i;
 	int		row;
+	int		sep;
 
-	row = 0;
 	i = 0;
+	row = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		sep = 0;
+		while (s[i] == c && s[i] != '\0')
+		{
+			sep++;
+			i++;
+		}
+		if (sep > 0)
 			row++;
-		i++;
+		if (s[i] != '\0')
+			i++;
 	}
+	if (s[0] != c || s[i] != c)
+		row++;
 	return (row);
 }
 
@@ -45,18 +55,33 @@ int		calc_col(char const *s, char c, int strpos)
 	return (length);
 }
 
+int		calc_sep(char const *s, char c, int strpos)
+{
+	int		length;
+
+	length = 0;
+	while (s[strpos] != '\0')
+	{
+		if (s[strpos] != c)
+			return (length);
+		strpos++;
+		length++;
+	}
+	return (length);
+}
+
 char	*fill_array(char *result, char const *s, int i, int collumn)
 {
 	int		icol;
 
 	icol = 0;
-	while (icol <= collumn)
+	while (icol < collumn)
 	{
 		result[icol] = s[i];
 		icol++;
 		i++;
 	}
-	result[icol] = '\0';
+	result[collumn] = '\0';
 	return (result);
 }
 
@@ -73,15 +98,18 @@ char	**ft_split(char const *s, char c)
 	result = (char **)malloc((calc_row(s, c) + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
-	while (irow <= calc_row(s, c))
+	result[calc_row(s, c)] = NULL;
+	while (s[i] == c)
+		i++;
+	while (irow < calc_row(s, c))
 	{
 		result[irow] = (char *)malloc((calc_col(s, c, i) + 1) * sizeof(char));
 		if (!result[irow])
 			return (NULL);
 		result[irow] = fill_array(result[irow], s, i, calc_col(s, c, i));
-		i = i + (calc_col(s, c, i) + 1);
+		i += calc_col(s, c, i);
+		i += calc_sep(s, c, i);
 		irow++;
 	}
-	result[irow][0] = '\0';
 	return (result);
 }

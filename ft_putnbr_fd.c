@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:45:45 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 08:23:50 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/09 10:24:04 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,29 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int		nbr;
-	char	value;
+	unsigned int		nbr;
+	unsigned int		ncopy;
+	char				value;
 
 	nbr = 0;
-	value = nbr;
-	if (n >= 10)
+	value = nbr + '0';
+	ncopy = n;
+	if (n < 0)
 	{
-		nbr = n % 10;
-		n = n / 10;
+		write(fd, "-", 1);
+		ncopy = n * -1;
+	}
+	if (ncopy >= 10)
+	{
+		nbr = ncopy % 10;
+		ncopy = ncopy / 10;
 		value = nbr + '0';
-		ft_putnbr_fd(n, fd);
+		ft_putnbr_fd(ncopy, fd);
 		write(fd, &value, 1);
 	}
-	else if (n < 10)
+	else if (ncopy < 10 && ncopy >= 0)
 	{
-		value = (n % 10) + '0';
+		value = (ncopy % 10) + '0';
 		write(fd, &value, 1);
 	}
 }
