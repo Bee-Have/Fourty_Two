@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 08:38:04 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/09 16:38:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/10 12:14:26 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,17 @@
 
 int		main(void)
 {
-	char	**result;
-	char	*str1;
-	char	sep = ' ';
-	int		i;
-	int		j;
+	char	*result;
+	char	*str;
+	char	*set;
 
-	i = 0;
-
-	result = ft_split(str1, sep);
-	while (result[i] != NULL)
-	{
-		j = 0;
-		while (result[i][j] != '\0')
-		{
-			printf("%c", result[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	str = ft_strdup(str);
+	set = ft_strdup(set);
+	str = "  \n  \t  lorem \n ipsum \t dolor \n sit \t amet  \t \n ";
+	set = "\t \n";
+	printf("%s\n", str);
+	result = ft_strtrim(str, set);
+	printf("%s\n", result);
 
 	return (0);
 }

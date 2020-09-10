@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:58 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/09 16:52:28 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/10 09:50:42 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int		calc_row(char const *s, char c)
 
 	i = 0;
 	row = 0;
+	if (s[i] == c)
+		while (s[i] == c)
+			i++;
 	while (s[i] != '\0')
 	{
 		sep = 0;
@@ -35,7 +38,7 @@ int		calc_row(char const *s, char c)
 		if (s[i] != '\0')
 			i++;
 	}
-	if (s[0] != c || s[i] != c)
+	if (s[0] != c || s[i - 1] != c)
 		row++;
 	return (row);
 }

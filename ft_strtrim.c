@@ -6,62 +6,97 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:38 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/09 16:56:21 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/10 12:12:33 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
-int		ft_findadr(const char *s1, const char *set, int bl)
+int		calc_prefix(char const *str, char const *set)
 {
-	int		i;
-	int		j;
+	int		length;
+	int		istr;
+	int		iset;
+	int		diff;
 
-	i = 0;
-	j = 0;
-	if (bl > 0)
+	length = 0;
+	istr = 0;
+	while (str[istr] != '\0')
 	{
-		while (s1[j] != '\0')
-			j++;
-		j--;
-	}
-	while (set[i] != '\0')
-	{
-		if (s1[j] == set[i])
+		iset = 0;
+		diff = 1;
+		while (set[iset] != '\0')
 		{
-			if (bl == 0)
-				j++;
-			else
-				j--;
-			i = 0;
+			if (str[istr] == set[iset])
+			{
+				length++;
+				diff = 0;
+			}
+			iset++;
 		}
-		else
-			i++;
+		if (diff == 1)
+			return (length);
+		istr++;
 	}
-	return (j);
+	return (length);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+int		calc_sufix(char const *str, char const *set, int maxlen)
 {
-	int		i;
-	int		ps;
-	int		pe;
-	char	*cp;
+	int		length;
+	int		iset;
+	int		diff;
 
-	i = 0;
-	ps = ft_findadr(s1, set, 0);
-	pe = ft_findadr(s1, set, 1);
-	cp = (char *)malloc((pe - ps) + 1);
-	if (!cp)
-		return (NULL);
-	while (ps <= pe)
+	length = 0;
+	maxlen -= 1;
+	while (maxlen > 0)
 	{
-		cp[i] = s1[ps];
-		i++;
-		ps++;
+		iset = 0;
+		diff = 1;
+		while (set[iset] != '\0')
+		{
+			if (str[maxlen] == set[iset])
+			{
+				length++;
+				diff = 0;
+			}
+			iset++;
+		}
+		if (diff == 1)
+			return (length);
+		maxlen--;
 	}
-	cp[i++] = '\0';
-	return (cp);
+	return (length);
+}
+
+char	*ft_strtrim(char const *s1m, char const *set)
+{
+	char	*result;
+	int		length;
+	int		ires;
+	int		is;
+
+	length = 0;
+	ires = 0;
+	is = 0;
+	length = ft_strlen(s1m);
+	length -= (calc_prefix(s1m, set) + calc_sufix(s1m, set, ft_strlen(s1m)));
+	result = (char *)malloc((length + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	result[length] = '\0';
+	while (ires < length)
+	{
+		while (calc_prefix(s1m, set) > is)
+			is++;
+		while ((ft_strlen(s1m) - calc_sufix(s1m, set, ft_strlen(s1m))) < is)
+			is++;
+		result[ires] = s1m[is];
+		ires++;
+		is++;
+	}
+	return (result);
 }
