@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:38 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/10 12:12:33 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/11 10:03:25 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,18 @@ int		calc_sufix(char const *str, char const *set, int maxlen)
 	return (length);
 }
 
+int		calc_len(char const *str, char const *set)
+{
+	int		length;
+
+	length = 0;
+	length = ft_strlen(str);
+	length -= (calc_prefix(str, set) + calc_sufix(str, set, length));
+	if (length <= 0)
+		return (0);
+	return (length);
+}
+
 char	*ft_strtrim(char const *s1m, char const *set)
 {
 	char	*result;
@@ -82,17 +94,15 @@ char	*ft_strtrim(char const *s1m, char const *set)
 	length = 0;
 	ires = 0;
 	is = 0;
-	length = ft_strlen(s1m);
-	length -= (calc_prefix(s1m, set) + calc_sufix(s1m, set, ft_strlen(s1m)));
+	length = calc_len(s1m, set);
 	result = (char *)malloc((length + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	result[length] = '\0';
 	while (ires < length)
 	{
-		while (calc_prefix(s1m, set) > is)
-			is++;
-		while ((ft_strlen(s1m) - calc_sufix(s1m, set, ft_strlen(s1m))) < is)
+		while (calc_prefix(s1m, set) > is
+				|| (ft_strlen(s1m) - calc_sufix(s1m, set, ft_strlen(s1m))) < is)
 			is++;
 		result[ires] = s1m[is];
 		ires++;
