@@ -6,22 +6,13 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:39:51 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 15:34:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/11 11:17:36 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
-
-int			calc_len(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
@@ -36,10 +27,10 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 	maxlen = 0;
 	dstcopy = (char *)dst;
 	srccopy = (char *)src;
-	i = calc_len(dstcopy);
-	maxlen = calc_len(dstcopy) + calc_len(srccopy);
+	i = ft_strlen(dstcopy);
+	maxlen = ft_strlen(dstcopy) + ft_strlen(srccopy);
 	if (i > dstsize)
-		return (calc_len(srccopy) + dstsize);
+		return (ft_strlen(srccopy) + dstsize);
 	while (i < (dstsize - 1) && srccopy[j] != '\0')
 	{
 		dstcopy[i] = srccopy[j];

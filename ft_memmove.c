@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:59:52 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/03 08:59:02 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/11 12:31:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned int		i;
-	char				tempdst[len];
-	char				*dstcopy;
-	char				*srccopy;
+	unsigned char		tempdst[len];
+	unsigned char		*dstcopy;
+	unsigned char		*srccopy;
 
 	i = 0;
-	if (!dst || !src)
-		return (NULL);
-	dstcopy = (char *)dst;
-	srccopy = (char *)src;
+	if (!dst && ! src)
+		return (src);
+	dstcopy = (unsigned char *)dst;
+	srccopy = (unsigned char *)src;
 	while (i < len)
 	{
 		tempdst[i] = srccopy[i];
@@ -36,5 +36,5 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		dstcopy[i] = tempdst[i];
 		i++;
 	}
-	return (dstcopy);
+	return (dst);
 }

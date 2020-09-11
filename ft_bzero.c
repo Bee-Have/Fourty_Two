@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:11:14 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/07 13:52:02 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/11 11:57:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned int		i;
-	int					*tab;
+	char				*tab;
 
 	i = 0;
-	tab = (int *)s;
-	if (n <= 0)
+	tab = (char *)s;
+	if (n == 0)
 		return ;
-	while (i <= n)
+	while (i < n)
 	{
-		tab[i] = (char)'\0';
+		tab[i] = '\0';
 		i++;
 	}
 }
