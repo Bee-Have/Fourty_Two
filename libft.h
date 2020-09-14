@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 10:41:19 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 10:18:43 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 16:41:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,11 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+typedef struct	s_list
+{
+	void	*content;
+	struct	s_list	*next;
+}			t_list;
 
 #endif

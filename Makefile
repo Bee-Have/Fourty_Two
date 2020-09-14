@@ -6,7 +6,7 @@
 #    By: amarini- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/02 09:27:17 by amarini-          #+#    #+#              #
-#    Updated: 2020/09/07 11:01:01 by amarini-         ###   ########.fr        #
+#    Updated: 2020/09/14 16:37:53 by amarini-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,12 @@ $(NAME): $(OBJS)
 convert : $(SRCS)
 	$(CC) $(CFLAGS) -c $^
 
-fclean :
+fclean:
 	/bin/rm -f *.o
 
-clean : fclean
+clean: fclean
 	/bin/rm -f $(NAME)
 
-re : clean all
+re: clean all
 
 .PHONY : fclean clean re all
