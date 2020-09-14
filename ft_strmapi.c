@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:35:07 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 10:40:30 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 15:32:33 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	while (s[i] != '\0')
 		i++;
-	str = (char *)malloc(i++ * sizeof(char));
+	str = (char *)malloc((i + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
+	str[i] = '\0';
 	i = 0;
 	while (s[i] != '\0')
 	{

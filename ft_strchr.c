@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:25:15 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 09:50:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:13:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_strchr(const char *s, int c)
 	char	*string;
 
 	i = 0;
-	if (!s)
-		return (NULL);
 	string = (char *)s;
 	while (string[i] != '\0')
 	{

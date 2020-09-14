@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:38 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/11 10:03:25 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 14:48:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ char	*ft_strtrim(char const *s1m, char const *set)
 	length = 0;
 	ires = 0;
 	is = 0;
+	if (!s1m || !set)
+		return (NULL);
 	length = calc_len(s1m, set);
 	result = (char *)malloc((length + 1) * sizeof(char));
 	if (!result)

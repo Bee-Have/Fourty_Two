@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:45:21 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/01 08:22:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 15:53:11 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_putendl_fd(char *s, int fd)
 	int	length;
 
 	length = 0;
+	if (!s || !fd)
+		return ;
 	while (s[length] != '\0')
 		length++;
 	write(fd, s, length);

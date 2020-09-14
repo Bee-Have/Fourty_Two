@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 10:30:02 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/08 15:47:16 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:22:49 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	i = 0;
 	len = 0;
+	if (!dst && !src)
+		return (len);
 	while (src[len] != '\0')
 		len++;
 	if (dstsize <= 0)

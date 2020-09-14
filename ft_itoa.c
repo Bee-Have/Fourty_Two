@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:24:18 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/09 10:05:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 15:29:32 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char				*ft_itoa(int n)
 	ncount = 0;
 	nbr = check_negative(n);
 	ncount = ft_countnbr(n, nbr);
-	str = (char *)malloc(ncount * sizeof(char));
+	str = (char *)malloc((ncount + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	str[ncount] = '\0';

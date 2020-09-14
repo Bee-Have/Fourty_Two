@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 08:38:04 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/10 12:14:26 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/14 15:26:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@
 
 int		main(void)
 {
-	char	*result;
-	char	*str;
-	char	*set;
+	int		i;
+	char	**result;
+	char	*s1 = "split  ||this|for|me|||||!|";
+	char	s2 = '|';
 
-	str = ft_strdup(str);
-	set = ft_strdup(set);
-	str = "  \n  \t  lorem \n ipsum \t dolor \n sit \t amet  \t \n ";
-	set = "\t \n";
-	printf("%s\n", str);
-	result = ft_strtrim(str, set);
-	printf("%s\n", result);
+	i = 0;	
+	printf("%s		%c\n", s1, s2);
+	result = ft_split(s1, s2);
+	while (result[i] != NULL)
+	{
+		printf("%s\n", result[i]);
+		i++;
+	}
 
 	return (0);
 }
