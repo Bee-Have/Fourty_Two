@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:10:26 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/15 10:19:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/15 12:02:16 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	
-	return (lst);	
+	t_list	*current;
+	t_list	*tmp;
+
+	tmp = NULL;
+	current = NULL;
+	current = lst;
+	while (current != NULL)
+	{
+		tmp = current;
+		current = current->next;
+	}
+	return (tmp);
 }

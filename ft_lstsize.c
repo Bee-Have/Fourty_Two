@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:09:10 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/15 10:19:43 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/15 11:40:14 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,17 @@
 #include <stdlib.h>
 #include "libft.h"
 
-int		ft_lstdize(t_list *lst)
+int		ft_lstsize(t_list *lst)
 {
-	
-	return (0);	
+	int		i;
+	t_list	*current;
+
+	i = 1;
+	current = lst;
+	while (current->next != NULL)
+	{
+		i++;
+		current = current->next;
+	}
+	return (i);
 }

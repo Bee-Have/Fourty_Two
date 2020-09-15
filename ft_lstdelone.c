@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:12:43 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/15 10:13:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/15 12:37:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include <stdlib.h>
 #include "libft.h"
 
-void	ft_lstddelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	
+	del(lst->content);
+	free(lst);
 }
