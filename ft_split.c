@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:58 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/17 11:23:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/17 12:45:55 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,28 @@ int		calc_row(char const *s, char c)
 		if (s[i] != '\0')
 			i++;
 	}
-	if (s[0] != c || s[i - 1] != c)
+	if (s[i - 1] != c)
 		row++;
 	return (row);
 }
 
-int		calc_col(char const *s, char c, int strpos)
+int		calc_cs(char const *s, char c, int strpos, int which)
 {
 	int		length;
 
 	length = 0;
 	while (s[strpos] != '\0')
 	{
-		if (s[strpos] == c)
-			return (length);
-		strpos++;
-		length++;
-	}
-	return (length);
-}
-
-int		calc_sep(char const *s, char c, int strpos)
-{
-	int		length;
-
-	length = 0;
-	while (s[strpos] != '\0')
-	{
-		if (s[strpos] != c)
-			return (length);
+		if (which == 0)
+		{
+			if (s[strpos] == c)
+				return (length);
+		}
+		if (which == 1)
+		{
+			if (s[strpos] != c)
+				return (length);
+		}
 		strpos++;
 		length++;
 	}
@@ -89,6 +82,21 @@ char	*fill_array(char *result, char const *s, int i, int collumn)
 	return (result);
 }
 
+char	**free_everything(char **result)
+{
+	int		irow;
+
+	irow = 0;
+	while (result[irow] != NULL)
+	{
+		free(result[irow]);
+		result[irow] = NULL;
+		irow++;
+	}
+	free(result);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -107,12 +115,11 @@ char	**ft_split(char const *s, char c)
 		i++;
 	while (irow < calc_row(s, c))
 	{
-		result[irow] = (char *)malloc((calc_col(s, c, i) + 1) * sizeof(char));
+		result[irow] = (char *)malloc((calc_cs(s, c, i, 0) + 1) * sizeof(char));
 		if (!result[irow])
-			return (NULL);
-		result[irow] = fill_array(result[irow], s, i, calc_col(s, c, i));
-		i += calc_col(s, c, i);
-		i += calc_sep(s, c, i);
+			return (free_everything(result));
+		result[irow] = fill_array(result[irow], s, i, calc_cs(s, c, i, 0));
+		i += calc_cs(s, c, i, 0) + calc_cs(s, c, (i + calc_cs(s, c, i, 0)), 1);
 		irow++;
 	}
 	return (result);
