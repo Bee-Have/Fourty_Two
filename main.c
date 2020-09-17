@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 11:02:41 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/15 13:00:56 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/17 10:46:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,39 @@
 #include <stdlib.h>
 #include "libft.h"
 
+void	lstdelone_f(void *d)
+{
+	free(d);
+}
+
+void	*lstmap_f(void *that)
+{
+	(void)that;
+	return ("OK !");
+}
+
 int		main(void)
 {
-	//ye im being very lazy i know
-	t_list current = NULL;
-	t_list	*first = NULL;
-	t_list	*s1 = NULL;
-	t_list	*s2 = NULL;
-	t_list	*s3 = NULL;
-	t_list	*s4 = NULL;
-	t_list	*s5 = NULL;
-	t_list	*end = NULL;
+	char	**expected = ((char*[6]){"split", "this", "for", "me", "!", NULL});
+	char	**result;
+	char	*src = "      split        this for   me  !         ";
+	int		i;
+	int		j;
 
-	first = ft_lstnew("first");
-	s1 = ft_lstnew("second");
-	s2 = ft_lstnew("third");
-	s3 = ft_lstnew("fourth");
-	s4 = ft_lstnew("fifth");
-	s5 = ft_lstnew("sixth");
-	end = ft_lstnew("last");
-	first->next = s1;
-	s1->next = s2;
-	s2->next = s3;
-	s3->next = s4;
-	s4->next = s5;
-	s5->next = end;
-	end->next = NULL;
-	current = first;
-	while (current->next != NULL)
+	i = 0;
+	j = 0;
+	printf("src=%s\n", src);
+	result = ft_split(src, ' ');
+	while (expected[i] != NULL)
 	{
-		printf("%s\n", current->content);
-		current = current->next;
+		printf("|%s|", expected[i]);
+		i++;
 	}
-	ft_lstiter(first, ft_strjoin(void *, " nyan"))
-	current = first;
-	while (current->next != NULL)
+	printf("\n");
+	while (result[j] != NULL)
 	{
-		printf("%s\n", current->content);
-		current = current->next;
+		printf("|%s|", result[j]);
+		j++;
 	}
 	return (0);
 }

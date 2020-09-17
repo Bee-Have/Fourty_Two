@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:15:49 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/15 13:01:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/16 13:56:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*current;
-
-	current = lst;
-	while (current->next != NULL)
+	if (!lst)
+		return ;
+	while (lst->next != NULL)
 	{
-		current->content = f(current->content);
-		current = current->next;
-	
+		f(lst->content);
+		lst = lst->next;
+	}
+	f(lst->content);
 }

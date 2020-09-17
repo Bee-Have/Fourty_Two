@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:14:10 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/15 12:47:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/16 13:56:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	current = (*lst)->next;
 	del((*lst)->content);
 	free(*lst);
-	while (current->next != NULL)
+	*lst = NULL;
+	while (current != NULL)
 	{
 		tmp = current->next;
 		del(current->content);
 		free(current);
+		current = NULL;
 		current = tmp;
 	}
 }

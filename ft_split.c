@@ -6,13 +6,14 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:58 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/14 14:52:33 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/17 11:23:57 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
 int		calc_row(char const *s, char c)
 {
