@@ -6,7 +6,7 @@
 #    By: amarini- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/02 09:27:17 by amarini-          #+#    #+#              #
-#    Updated: 2020/09/16 13:34:14 by amarini-         ###   ########.fr        #
+#    Updated: 2020/09/21 10:16:21 by amarini-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,18 @@ OBJBONUS = $(BONUS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJBONUS)
+$(NAME): $(OBJS)
 	ar rc $@ $^
 	ranlib $@
 
 convert: $(SRCS) $(BONUS)
 	$(CC) $(CFLAGS) -c $^
 
-bonus: all
+bonus: allbonus
+
+allbonus: $(OBJBONUS)
+	ar rc $(NAME) $^
+	ranlib $(NAME)
 
 fclean:
 	/bin/rm -f *.o
@@ -47,4 +51,4 @@ clean: fclean
 
 re: clean all
 
-.PHONY : fclean clean re all bonus
+.PHONY : fclean clean re all allbonus bonus
