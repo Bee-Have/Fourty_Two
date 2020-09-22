@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:16:18 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/21 16:51:43 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/21 16:54:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		main(void)
 	char	*result;
 
 	result = "000000000000";
-	fd = open("foo.txt", O_RDWR | O_CREAT);
+	fd = open("foo.txt", O_RDWR);
 	printf("fd=%d\n", fd);
 	wrt = write(fd, "hello there\n", BUFFER_SIZE);
 	printf("result=%d\n", get_next_line(fd, &result));
