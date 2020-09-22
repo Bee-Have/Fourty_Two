@@ -6,12 +6,13 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 11:03:00 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/22 11:08:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/22 11:19:40 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 char	*check_str(char *str)
 {

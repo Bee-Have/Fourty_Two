@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:16:18 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/22 11:08:38 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/22 12:02:14 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ int		get_next_line(int fd, char **line)
 int		main(void)
 {
 	int		fd;
-	//int		other;
 	char	*result;
 
 	result = "000000000000";
-	fd = open("/dev/pts/2", O_RDONLY | O_NONBLOCK);
+	fd = open("a.out", O_RDONLY | O_NONBLOCK);
 	if (fd)
 	{
 		printf("fd=%d\n", fd);
-		//other = get_next_line(0, &result);
 		printf("result=%d\n", get_next_line(fd, &result));
 		close(fd);
 	}
