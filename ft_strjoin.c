@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:00 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/14 14:47:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/22 16:26:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ char	*fill_str(char const *src, char *dst, int index)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
 	int		j;
 	char	*str;
 
-	i = 0;
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);

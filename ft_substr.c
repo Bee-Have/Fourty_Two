@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:41:45 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/17 10:15:42 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/22 16:27:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 char	*return_empty(void)
 {
 	char	*result;
-	int		i;
 
-	i = 0;
 	result = (char *)malloc(1 * sizeof(char));
 	if (!result)
 		return (NULL);
