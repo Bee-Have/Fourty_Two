@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 12:16:18 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/22 10:37:14 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/22 11:08:38 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-
-char	*check_str(char *str)
-{
-	int		i;
-	int		size;
-	char	*result;
-
-	i = 0;
-	size = 0;
-	while (str[size] != '\0')
-	{
-		if (str[size] == '\n')
-		{
-			result = (char *)malloc((size + 1) * sizeof(char));
-			while (i < size)
-			{
-				result[i] = str[i];
-				i++;
-			}
-			result[i] = '\0';
-			return (result);
-		}
-		size++;
-	}
-	return (str);
-}
+#include "get_next_line.h"
 
 int		get_next_line(int fd, char **line)
 {
