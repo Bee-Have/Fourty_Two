@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 08:57:15 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/14 13:26:38 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/23 10:16:40 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ int		convert_res(const char *str, unsigned long int nbr, int index)
 {
 	unsigned long int	max;
 
-	max = 4294967295;
-	if (nbr > max && nbr > 0)
-		nbr = -1;
+	max = 9223372036854775807;
+	if (str[index] == '-' && nbr > max)
+		return (0);
+	else if (nbr > max)
+		return (-1);
 	if (str[index] == '-')
 		nbr *= -1;
 	if (nbr == 1)
@@ -32,10 +34,9 @@ int		ft_atoi(const char *str)
 {
 	int					i;
 	int					index;
-	long int			res;
+	unsigned long int	res;
 
 	i = 0;
-	index = 0;
 	res = 0;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
 			|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
