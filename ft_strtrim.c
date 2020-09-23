@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:38 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/14 14:48:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/23 16:54:29 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		calc_prefix(char const *str, char const *set)
 		diff = 1;
 		while (set[iset] != '\0')
 		{
-			if (str[istr] == set[iset])
+			if (str[istr] == set[iset] && set[iset - 1] != set[iset])
 			{
 				length++;
 				diff = 0;
@@ -38,7 +38,9 @@ int		calc_prefix(char const *str, char const *set)
 			iset++;
 		}
 		if (diff == 1)
+		{
 			return (length);
+		}
 		istr++;
 	}
 	return (length);
@@ -58,7 +60,7 @@ int		calc_sufix(char const *str, char const *set, int maxlen)
 		diff = 1;
 		while (set[iset] != '\0')
 		{
-			if (str[maxlen] == set[iset])
+			if (str[maxlen] == set[iset] && set[iset - 1] != set[iset])
 			{
 				length++;
 				diff = 0;
@@ -66,15 +68,21 @@ int		calc_sufix(char const *str, char const *set, int maxlen)
 			iset++;
 		}
 		if (diff == 1)
+		{
+			printf("sufix=%d\n", length);
 			return (length);
+		}
 		maxlen--;
 	}
+	printf("sufix=%d\n", length);
 	return (length);
 }
 
 int		calc_len(char const *str, char const *set)
 {
 	int		length;
+
+	//gérer les occurences de set
 
 	length = 0;
 	length = ft_strlen(str);
@@ -91,12 +99,13 @@ char	*ft_strtrim(char const *s1m, char const *set)
 	int		ires;
 	int		is;
 
-	length = 0;
 	ires = 0;
 	is = 0;
 	if (!s1m || !set)
 		return (NULL);
 	length = calc_len(s1m, set);
+	if (length == 0)
+		return ((char *)s1m);
 	result = (char *)malloc((length + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
