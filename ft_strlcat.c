@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:39:51 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/11 11:17:36 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/24 14:57:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,25 @@
 #include <stdio.h>
 #include "libft.h"
 
-size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	maxlen;
-	char			*dstcopy;
-	char			*srccopy;
+	int		idst;
+	int		isrc;
+	int		maxlen;
 
-	i = 0;
-	j = 0;
-	maxlen = 0;
-	dstcopy = (char *)dst;
-	srccopy = (char *)src;
-	i = ft_strlen(dstcopy);
-	maxlen = ft_strlen(dstcopy) + ft_strlen(srccopy);
-	if (i > dstsize)
-		return (ft_strlen(srccopy) + dstsize);
-	while (i < (dstsize - 1) && srccopy[j] != '\0')
+	if ((int)dstsize < ft_strlen(dst))
+		return (ft_strlen(src) + dstsize);
+	maxlen = ft_strlen(dst) + ft_strlen(src);
+	isrc = 0;
+	idst = ft_strlen(dst);
+	while (src[isrc] != '\0' && idst < ((int)dstsize - 1))
 	{
-		dstcopy[i] = srccopy[j];
-		i++;
-		j++;
+		dst[idst] = src[isrc];
+		idst++;
+		isrc++;
 	}
-	dstcopy[i] = '\0';
+	dst[idst] = '\0';
+	if (idst > maxlen)
+		return (idst);
 	return (maxlen);
 }

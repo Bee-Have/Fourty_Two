@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:41:45 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/22 16:27:35 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:40:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*return_empty(void)
 	result = (char *)malloc(1 * sizeof(char));
 	if (!result)
 		return (NULL);
-	result[1] = '\0';
+	result[0] = '\0';
 	return (result);
 }
 
