@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:21:26 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/24 16:03:34 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/24 16:16:34 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@
 
 int		main(void)
 {
-	char	*haystack = "The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents.";
-	char	needle[1];
-	//char	*res;
-	char	*myres;
-	//int		len;
-
-	needle[0] = '\0';
-	//len = ft_strlen(haystack);
-	//res = strnstr(NULL, needle, 13);
-	myres = ft_strnstr(haystack, needle, 13);
-	printf("mine=%s\n", myres);
-	//printf("good=%s\n", res);
+	char	*string = "      split         this for   me  !          ";
+	char	sep = ' ';
+	char	**result;
+	int		i;
+	
+	i = 0;
+	result = ft_split(string, sep);
+	if (result == NULL)
+		return (0);
+	while (result[i] != NULL)
+	{
+		printf("%s\n", result[i]);
+		i++;
+	}
 
 	return (0);
 }
