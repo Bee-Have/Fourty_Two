@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:42:58 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/25 11:46:46 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/25 16:31:37 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,16 @@ int		calc_word(char const *s, char sep, int strpos)
 	while (s[strpos] != '\0')
 	{
 		if (s[strpos] == sep)
+		{
+			if (length == 0)
+				return (1);
 			return (length);
+		}
 		strpos++;
 		length++;
 	}
+	if (length == 0)
+		return (1);
 	return (length);
 }
 
@@ -60,7 +66,6 @@ char	*fill_array(char *result, char const *s, int i, char sep)
 		icol++;
 		i++;
 	}
-	result[i] = '\0';
 	return (result);
 }
 
@@ -99,6 +104,7 @@ char	**ft_split(char const *s, char c)
 		result[irow] = (char *)malloc((calc_word(s, c, i) + 1) * sizeof(char));
 		if (!result[irow])
 			return (free_everything(result));
+		result[irow][calc_word(s, c, i)] = '\0';
 		result[irow] = fill_array(result[irow], s, i, c);
 		i += calc_word(s, c, i);
 		irow++;
