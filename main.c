@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:21:26 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/24 16:16:34 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:44:05 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		main(void)
 {
-	char	*string = "      split         this for   me  !          ";
+	char	*string = "   lorem         ipsum   dolor    sit      amet,    consectetur    adipiscing       elit.    Sed    non    risus. Suspendisse            "; 
 	char	sep = ' ';
 	char	**result;
 	int		i;
