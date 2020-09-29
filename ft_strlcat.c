@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 07:39:51 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/24 14:57:37 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/29 12:08:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	int		maxlen;
 
 	if ((int)dstsize < ft_strlen(dst))
+	{
 		return (ft_strlen(src) + dstsize);
+	}
 	maxlen = ft_strlen(dst) + ft_strlen(src);
 	isrc = 0;
 	idst = ft_strlen(dst);
