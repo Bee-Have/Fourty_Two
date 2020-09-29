@@ -6,7 +6,7 @@
 /*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:21:26 by amarini-          #+#    #+#             */
-/*   Updated: 2020/09/29 09:50:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/09/29 13:23:48 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,9 @@
 #include "libft.h"
 
 
-int		main(int ac, char **av)
+int		main(void)
 {
-	int		res;
-	int		myres;
-
-	if (ac < 2)
-		return (1);
-	res = atoi((const char *)av[1]);
-	myres = ft_atoi((const char *)av[1]);
-
-	printf("good=%d\n", res);
-	printf("mine=%d\n", myres);
+	printf("[%s]\n", ft_substr("test", 1, 6));
 
 	return (0);
 }
