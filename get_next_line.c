@@ -22,13 +22,15 @@ char	*find_newline(char *str, char **line)
 	int		i;
 	int		j;
 
-	result = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	i  = 0;
+	result = NULL;
+	result = empty_string(result, BUFFER_SIZE);
+	i = 0;
 	j = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
 		{
+			i++;
 			while (str[i] != '\0')
 			{
 				result[j] = str[i];
@@ -36,13 +38,11 @@ char	*find_newline(char *str, char **line)
 				j++;
 			}
 			*line = strdup_index(str, (i - j));
-			result[j] = '\0';
 			return (result);
 		}
 		i++;
 	}
 	*line = strdup_index(str, i);
-	result[j] = '\0';
 	return (result);
 }
 
@@ -52,17 +52,16 @@ int		get_next_line(int fd, char **line)
 	char		*tmp;
 	int			result;
 
+	tmp = NULL;
 	if (!leftover)
+		leftover = empty_string(leftover, BUFFER_SIZE);
+	if (leftover[0] != '\0')
 	{
-		leftover = (char *)malloc ((BUFFER_SIZE + 1) * sizeof(char));
-		if (!leftover)
-			return (-1);
+		leftover = find_newline(leftover, line);
+		return (1);
 	}
-	tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!tmp)
-		return (-1);
+	tmp = empty_string(tmp, BUFFER_SIZE);
 	result = read(fd, tmp, BUFFER_SIZE);
-	tmp[BUFFER_SIZE] = '\0';
 	if (result == -1)
 	{
 		free(tmp);

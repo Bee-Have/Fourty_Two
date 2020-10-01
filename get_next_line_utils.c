@@ -21,11 +21,27 @@ char	*strdup_index(char *str, int index)
 
 	i = 0;
 	result = (char *)malloc((index + 1) * sizeof(char));
-	while (i <= index)
+	while (i < index)
 	{
 		result[i] = str[i];
 		i++;
 	}
 	result[i] = '\0';
-	return  (result);
+	return (result);
+}
+
+char	*empty_string(char *str, int size)
+{
+	int		i;
+
+	str = (char *)malloc((size + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i <= size)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
 }

@@ -30,10 +30,11 @@ int		main(void)
 		printf("fd=%d\n", fd);
 		while (this != 0 && this != -1)
 		{
+			this = get_next_line(fd, &result);
+			printf("%s\n", result);
 			
 		}
-		printf("result=%d\n", get_next_line(fd, &result));
-		printf("line=%s\n", result);
+		printf("%d\n", this);
 		close(fd);
 	}
 	return (0);
