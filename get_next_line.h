@@ -14,6 +14,6 @@
 #define GET_NEXT_LINE_H
 
 int		get_next_line(int fd, char **line);
-char	*check_str(char *str);
+char	*strdup_index(char *str, int index);
 
 #endif

@@ -21,13 +21,19 @@ int		main(void)
 {
 	int		fd;
 	char	*result;
+	int		this;
 
-	result = "000000000000";
-	fd = open("a.out", O_RDONLY | O_NONBLOCK);
+	this = 1;
+	fd = open("foo.txt", O_RDONLY | O_NONBLOCK);
 	if (fd)
 	{
 		printf("fd=%d\n", fd);
+		while (this != 0 && this != -1)
+		{
+			
+		}
 		printf("result=%d\n", get_next_line(fd, &result));
+		printf("line=%s\n", result);
 		close(fd);
 	}
 	return (0);

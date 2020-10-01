@@ -14,28 +14,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char	*check_str(char *str)
+char	*strdup_index(char *str, int index)
 {
-	int		i;
-	int		size;
 	char	*result;
+	int		i;
 
 	i = 0;
-	size = 0;
-	while (str[size] != '\0')
+	result = (char *)malloc((index + 1) * sizeof(char));
+	while (i <= index)
 	{
-		if (str[size] == '\n')
-		{
-			result = (char *)malloc((size + 1) * sizeof(char));
-			while (i < size)
-			{
-				result[i] = str[i];
-				i++;
-			}
-			result[i] = '\0';
-			return (result);
-		}
-		size++;
+		result[i] = str[i];
+		i++;
 	}
-	return (str);
+	result[i] = '\0';
+	return  (result);
 }
