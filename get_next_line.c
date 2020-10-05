@@ -16,80 +16,111 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-int		new_line(char *str)
+int		find_newline(char *str)
 {
 	int		i;
-
-	i = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
-			return (1);
+			return (i);
 		i++;
 	}
 	return (0);
 }
 
-char	*fill_line_leftover(char *str, char **line)
+char	*fill_str(int index, char *src, char *dst, char *leftover)
 {
-	char	*result;
 	int		i;
+	int		ibis;
 	int		j;
 
-	result = NULL;
-	result = empty_string(result, BUFFER_SIZE);
 	i = 0;
+	ibis = 0;
 	j = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\n')
-		{
-			i++;
-			while (str[i] != '\0')
-			{
-				result[j] = str[i];
-				i++;
-				j++;
-			}
-			*line = strdup_index(str, (i - j));
-			return (result);
-		}
+	while (dst[i] != '\0')
 		i++;
+	while (ibis < index)
+	{
+		dst[i] = src[ibis];
+		i++;
+		ibis++;
 	}
-	*line = strdup_index(str, i);
-	return (result);
+	while (src[i] != '\0')
+	{
+		leftover[j] = src[ibis];
+		ibis++;
+		j++;
+	}
+	leftover[j] = '\0';
+	return (dst);
 }
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*leftover = NULL;
-	char		*tmp;
-	int			result;
+	static char		*leftover = NULL;
+	char			*tmp;
+	int				result;
+	int				index;
 
-	tmp = NULL;
+	result = 1;
+	index = 0;
 	if (!leftover)
-		leftover = empty_string(leftover, BUFFER_SIZE);
-	if (leftover[0] != '\0')
 	{
-		leftover = fill_line(leftover, line);
-		return (1);
+		leftover = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+		result = 1;
 	}
-	tmp = empty_string(tmp, BUFFER_SIZE);
-	result = read(fd, tmp, BUFFER_SIZE);
-	if (result == -1)
+	else
 	{
+		index = find_newline(leftover);
+		if (index > 0)
+		{
+			//put leftover until '\n' in **line
+			// leftover = leftover after '\n'
+			*line = fill_str(index, leftover, *line, leftover);
+			return (1);
+		}
+		while (result > 0)
+		{
+			//read fd
+			result = read(fd, tmp, BUFFER_SIZE);
+			index = find_newline(tmp);
+			if (index > 0)
+			{
+				//**line = strjoin(leftover, tmp(until '\n')
+				//leftover = tmp after '\n'
+				*line = fill_str(ft_strlen(leftover), leftover, *line, leftover);
+				*line = fill_str(index, tmp, *line, leftover);
+				return (1);
+			}
+		}
+	}
+	while (result > 0)
+	{
+		result = read(fd, tmp, BUFFER_SIZE);
+		index = find_newline(tmp);
+		if (index > 0)
+		{
+			//**line = tmp until '\n'
+			//leftover = tmp after '\n'
+			*line = fill_str(index, tmp, *line, leftover);
+			return (1);
+		}
+		else
+			//leftover = tmp
+	}
+	if (result = 0
+	{
+		//if (leftover[0] != '\0')
+			//**line = leftover
 		free(tmp);
-		free(leftover);
-		return (-1);
-	}
-	if (result == 0)
-	{
-		*line = tmp;
-		leftover = NULL;
 		free(leftover);
 		return (0);
 	}
-	leftover = fill_line(tmp, line);
-	free(tmp);
-	return (1);
+	if (/*read = -1*/)
+	{
+		free(leftover);
+		free(tmp);
+		return (-1);
+	}
+	return (-1);
 }
