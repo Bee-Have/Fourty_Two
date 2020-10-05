@@ -45,3 +45,40 @@ char	*empty_string(char *str, int size)
 	}
 	return (str);
 }
+
+int		ft_strlen(char str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*join_line(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	int		length;
+	char	*result;
+
+	i = 0;
+	j = 0;
+	length = ft_strlen(s1) + ft_strlen(s2);
+	result = (char *)malloc((length + 1) * sizeof(char));
+	if (!result)
+	result[length] = '\0';
+	while (s1[i] != '\0')
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	while (i < length)
+	{
+		result[i] = s2[j];
+		i++;
+		j++;
+	}
+	return (result);
+}

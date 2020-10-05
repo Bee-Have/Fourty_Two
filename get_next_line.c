@@ -16,7 +16,21 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-char	*find_newline(char *str, char **line)
+int		new_line(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*fill_line_leftover(char *str, char **line)
 {
 	char	*result;
 	int		i;
@@ -57,7 +71,7 @@ int		get_next_line(int fd, char **line)
 		leftover = empty_string(leftover, BUFFER_SIZE);
 	if (leftover[0] != '\0')
 	{
-		leftover = find_newline(leftover, line);
+		leftover = fill_line(leftover, line);
 		return (1);
 	}
 	tmp = empty_string(tmp, BUFFER_SIZE);
@@ -75,7 +89,7 @@ int		get_next_line(int fd, char **line)
 		free(leftover);
 		return (0);
 	}
-	leftover = find_newline(tmp, line);
+	leftover = fill_line(tmp, line);
 	free(tmp);
 	return (1);
 }
