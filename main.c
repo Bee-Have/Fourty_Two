@@ -31,9 +31,10 @@ int		main(void)
 		while (this != 0 && this != -1)
 		{
 			this = get_next_line(fd, &result);
-			printf("%s\n", result);
-			
+			printf("[%s]\n", result);
 		}
+		if (this == -1)
+			printf("-1\n");
 		printf("%d\n", this);
 		close(fd);
 	}

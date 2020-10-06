@@ -14,7 +14,10 @@
 # define GET_NEXT_LINE_H
 
 int		get_next_line(int fd, char **line);
-char	*strdup_index(char *str, int index);
-char	*empty_string(char *str, int size);
+int		ft_strlen(char *str);
+int		check_newline(char *str, int read);
+char	*fill_leftover(char const *src, char *dst, int *index);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char *str, unsigned int start, size_t len);
 
 #endif
