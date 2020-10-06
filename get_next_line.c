@@ -43,6 +43,8 @@ int		get_next_line(int fd, char **line)
 
 	index = 0;
 	result = 1;
+	if (fd < 0 || !line)
+		return (-1);
 	tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!tmp)
 		return (-1);

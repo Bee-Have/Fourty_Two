@@ -24,7 +24,7 @@ int		main(void)
 	int		this;
 
 	this = 1;
-	fd = open("foo.txt", O_RDONLY | O_NONBLOCK);
+	fd = -1;/*open("foo.txt", O_RDONLY | O_NONBLOCK);*/
 	if (fd)
 	{
 		printf("fd=%d\n", fd);
