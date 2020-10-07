@@ -43,6 +43,7 @@ int		read_fd(int fd, char **leftover, int *index, int *result)
 	if (!tmp)
 		return (-1);
 	*result = read(fd, tmp, BUFFER_SIZE);
+	printf("res=[%d]\n", *result);
 	tmp[*result] = '\0';
 	*leftover = ft_strjoin(*leftover, tmp);
 	*index = check_newline(*leftover, *result);
