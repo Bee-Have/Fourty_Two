@@ -19,18 +19,17 @@ int		main(void)
 	int		this;
 
 	this = 1;
-	fd = -1;/*open("foo.txt", O_RDONLY | O_NONBLOCK);*/
+	fd = open("foo.txt", O_RDONLY);
 	if (fd)
 	{
-		printf("fd=%d\n", fd);
 		while (this != 0 && this != -1)
 		{
 			this = get_next_line(fd, &result);
-			printf("[%s]\n", result);
+			printf("line=[%s]\n", result);
 		}
 		if (this == -1)
 			printf("-1\n");
-		printf("%d\n", this);
+		printf("result=%d\n", this);
 		close(fd);
 	}
 	return (0);
