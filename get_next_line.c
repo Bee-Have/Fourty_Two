@@ -44,6 +44,7 @@ int		read_fd(int fd, char **leftover, int *index, int *result)
 		return (-1);
 	*result = read(fd, tmp, BUFFER_SIZE);
 	tmp[*result] = '\0';
+	//printf("tmp=[%s]\n", tmp);
 	*leftover = ft_strjoin(*leftover, tmp);
 	*index = check_newline(*leftover, *result);
 	free(tmp);
@@ -65,7 +66,9 @@ int		get_next_line(int fd, char **line)
 	while (result > 0 && index == 0)
 		read_fd(fd, &leftover, &index, &result);
 	*line = ft_substr(leftover, 0, index);
-	leftover = ft_substr(leftover, index, ft_strlen(leftover) - (index + 1));
+	//leftover = ft_substr(leftover, index, ft_strlen(leftover) - index);
+	leftover = ft_substr(leftover, index, ft_strlen(leftover));
+	
 	if (result == 0 && ft_strlen(leftover) == 0)
 	{
 		free(leftover);
