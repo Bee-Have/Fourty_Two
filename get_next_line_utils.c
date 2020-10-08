@@ -26,7 +26,7 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*fill_leftover(char const *src, char *dst, int *index)
+char	*fill_leftover(char const *src, char *dst, int index)
 {
 	int		i;
 
@@ -35,8 +35,8 @@ char	*fill_leftover(char const *src, char *dst, int *index)
 		return (dst);
 	while (src[i] != '\0')
 	{
-		dst[*index] = src[i];
-		*index += 1;
+		dst[index] = src[i];
+		index++;
 		i++;
 	}
 	return (dst);
@@ -54,8 +54,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!result)
 		return (NULL);
 	result[maxlen] = '\0';
-	result = fill_leftover(s1, result, &i);
-	result = fill_leftover(s2, result, &i);
+	result = fill_leftover(s1, result, i);
+	i = ft_strlen((char *)s1);
+	result = fill_leftover(s2, result, i);
 	return (result);
 }
 

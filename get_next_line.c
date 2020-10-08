@@ -43,7 +43,6 @@ int		read_fd(int fd, char **leftover, int *index, int *result)
 	if (!tmp)
 		return (-1);
 	*result = read(fd, tmp, BUFFER_SIZE);
-	printf("res=[%d]\n", *result);
 	tmp[*result] = '\0';
 	*leftover = ft_strjoin(*leftover, tmp);
 	*index = check_newline(*leftover, *result);
@@ -67,8 +66,11 @@ int		get_next_line(int fd, char **line)
 		read_fd(fd, &leftover, &index, &result);
 	*line = ft_substr(leftover, 0, index);
 	leftover = ft_substr(leftover, index, ft_strlen(leftover) - (index + 1));
-	if (result == 0 && leftover[0] == '\0')
+	if (result == 0 && ft_strlen(leftover) == 0)
+	{
+		free(leftover);
 		return (0);
+	}
 	if (result == -1)
 		return (-1);
 	return (1);
