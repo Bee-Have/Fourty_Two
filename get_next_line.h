@@ -28,6 +28,6 @@ int		ft_strlen(char *str);
 int		check_newline(char *str, int read);
 char	*fill_leftover(char const *src, char *dst, int index, int maxlen);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char *str, unsigned int start, size_t len);
+char	*ft_substr(char *str, unsigned int start, int len);
 
 #endif

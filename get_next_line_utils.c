@@ -61,21 +61,19 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-char	*ft_substr(char *str, unsigned int start, size_t len)
+char	*ft_substr(char *str, unsigned int start, int len)
 {
 	int		i;
 	char	*result;
 
 	i = 0;
-	if ((int)len > ft_strlen(str) || (int)len <= 0)
-		len = 0;
-	if (len == 1 && str[start] == '\n')
+	if (len <= 0 || (len == 1 && str[start] == '\n'))
 		len = 0;
 	result = (char *)malloc((len + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	result[len] = '\0';
-	while (str[start] != '\0' && i < (int)len)
+	while (str[start] != '\0' && i < len)
 	{
 		result[i] = str[start];
 		i++;
