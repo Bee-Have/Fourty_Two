@@ -12,25 +12,37 @@
 
 #include "get_next_line.h"
 
+void	fill_fd(int fd, char *str)
+{
+	int		i;
+
+	i = 1;
+	i = write(fd, str, ft_strlen(str));
+	i = write(fd, "\n", 1);
+}
+
 int		main(void)
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
 	char	*result;
-	int		this;
+	int		read;
 
-	this = 1;
-	fd = open("foo.txt", O_RDONLY);
-	if (fd)
+	read = 1;
+	fd1 = open("text3.txt", O_RDONLY);
+	fd2 = open("result.txt", O_WRONLY);
+	if (fd1 && fd2)
 	{
-		while (this != 0 && this != -1)
+		while (read != 0 && read != -1)
 		{
-			this = get_next_line(fd, &result);
-			printf("line=[%s]\n", result);
+			read = get_next_line(fd1, &result);
+			fill_fd(fd2, result);
+			//printf("line=[%s]\n", result);
 		}
-		if (this == -1)
+		if (read == -1)
 			printf("-1\n");
-		printf("result=%d\n", this);
-		close(fd);
+		//printf("result=%d\n", read);
+		close(fd1);
 	}
 	return (0);
 }

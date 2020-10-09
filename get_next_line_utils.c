@@ -26,19 +26,20 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*fill_leftover(char const *src, char *dst, int index)
+char	*fill_leftover(char const *src, char *dst, int index, int maxlen)
 {
 	int		i;
 
 	i = 0;
 	if (!src)
 		return (dst);
-	while (src[i] != '\0')
+	while (index < maxlen && src[i] != '\0')
 	{
 		dst[index] = src[i];
 		index++;
 		i++;
 	}
+	dst[index] = '\0';
 	return (dst);
 }
 
@@ -54,9 +55,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!result)
 		return (NULL);
 	result[maxlen] = '\0';
-	result = fill_leftover(s1, result, i);
-	i = ft_strlen((char *)s1);
-	result = fill_leftover(s2, result, i);
+	result = fill_leftover(s1, result, i, ft_strlen((char *)s1));
+	i = ft_strlen(result);
+	result = fill_leftover(s2, result, i, maxlen);
 	return (result);
 }
 
@@ -70,8 +71,6 @@ char	*ft_substr(char *str, unsigned int start, size_t len)
 		len = 0;
 	if (len == 1 && str[start] == '\n')
 		len = 0;
-	if (str[start] == '\n')
-		start++;
 	result = (char *)malloc((len + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
