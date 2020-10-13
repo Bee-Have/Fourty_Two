@@ -12,22 +12,15 @@
 
 #include "get_next_line.h"
 
-int		check_newline(char *str, int read)
+int		find_newline(char *str, int read)
 {
 	int		i;
 
 	i = 0;
-	if (!str)
-		return (-1);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
-		{
-			if (i > 1)
-				return (i);
-			else
-				return (1);
-		}
+			return (i);
 		i++;
 	}
 	if (read == 0)
@@ -35,45 +28,34 @@ int		check_newline(char *str, int read)
 	return (0);
 }
 
-int		read_fd(int fd, char **leftover, int *index, int *result)
+int		read_fd(int fd, int *index, char **leftover)
 {
+	int		result;
 	char	*tmp;
 
+	result = 1;
 	tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!tmp)
-		return (-1);
-	*result = read(fd, tmp, BUFFER_SIZE);
-	tmp[*result] = '\0';
-	*leftover = ft_strjoin(*leftover, tmp);
-	*index = check_newline(*leftover, *result);
-	free(tmp);
-	return (*result);
+	while (result > 0 && index == 0)
+	{
+		result = read(fd, tmp, BUFFER_SIZE);
+		tmp[result] = '\0';
+		*leftover = ft_strjoin(leftover, tmp);
+		index = find_newline(leftover, result);
+	}
 }
 
 int		get_next_line(int fd, char **line)
 {
-	static char		*leftover = NULL;
+	static char		leftover = NULL;
 	int				result;
 	int				index;
 
 	index = 0;
-	result = 1;
-	if (fd < 0 || !line)
-		return (-1);
-	if (leftover)
-		index = check_newline(leftover, result);
-	while (result > 0 && index == 0)
-		read_fd(fd, &leftover, &index, &result);
-	*line = ft_substr(leftover, 0, index);
-	if (leftover[index] == '\n' && leftover[index + 1] != '\n')
-		index = index + 1;
-	leftover = ft_substr(leftover, index, ft_strlen(leftover) - index);
-	if (result == 0 && ft_strlen(leftover) == 0)
+	if (!leftover)
 	{
-		free(leftover);
-		return (0);
+		leftover = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+		if (!leftover)
+			return (-1);
 	}
-	if (result == -1)
-		return (-1);
-	return (1);
+	result = read_fd(fd, &index, &leftover);
 }

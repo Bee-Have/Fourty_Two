@@ -19,65 +19,34 @@ int		ft_strlen(char *str)
 	int		i;
 
 	i = 0;
-	if (!str)
-		return (0);
 	while (str[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*fill_leftover(char const *src, char *dst, int index, int maxlen)
+void	fill_str(char **dst, char *src)
 {
 	int		i;
 
 	i = 0;
-	if (!src)
-		return (dst);
-	while (index < maxlen && src[i] != '\0')
+	while (src[i] != '\0')
 	{
-		dst[index] = src[i];
-		index++;
+		dst[i] = src[i];
 		i++;
 	}
-	dst[index] = '\0';
-	return (dst);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *dst, char *src)
 {
-	int		i;
 	int		maxlen;
 	char	*result;
 
-	i = 0;
-	maxlen = ft_strlen((char *)s1) + ft_strlen((char *)s2);
+	maxlen = ft_strlen(dst) + ft_strlen(src);
 	result = (char *)malloc((maxlen + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	result[maxlen] = '\0';
-	result = fill_leftover(s1, result, i, ft_strlen((char *)s1));
-	i = ft_strlen(result);
-	result = fill_leftover(s2, result, i, maxlen);
-	return (result);
-}
-
-char	*ft_substr(char *str, unsigned int start, int len)
-{
-	int		i;
-	char	*result;
-
-	i = 0;
-	if (len <= 0 || (len == 1 && str[start] == '\n'))
-		len = 0;
-	result = (char *)malloc((len + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	result[len] = '\0';
-	while (str[start] != '\0' && i < len)
-	{
-		result[i] = str[start];
-		i++;
-		start++;
-	}
+	fill_str(&result, dst);
+	fill_str(&result, src);
 	return (result);
 }

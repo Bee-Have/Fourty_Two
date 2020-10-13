@@ -22,12 +22,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-int		read_fd(int fd, char **leftover, int *index, int *result);
 int		get_next_line(int fd, char **line);
-int		ft_strlen(char *str);
-int		check_newline(char *str, int read);
-char	*fill_leftover(char const *src, char *dst, int index, int maxlen);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char *str, unsigned int start, int len);
 
 #endif
