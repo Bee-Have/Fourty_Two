@@ -38,6 +38,7 @@ int		read_fd(int fd, int *index, char **leftover)
 	while (result > 0 && index == 0)
 	{
 		result = read(fd, tmp, BUFFER_SIZE);
+		printf("read=[%d]", result);
 		tmp[result] = '\0';
 		printf("tmp=[%s]\n", tmp);
 		*leftover = ft_strjoin(*leftover, tmp);
@@ -60,11 +61,15 @@ int		get_next_line(int fd, char **line)
 		leftover = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 		if (!leftover)
 			return (-1);
+		leftover[BUFFER_SIZE] = '\0';
+		printf("creating leftover\n");
 	}
 	else
+	{
+		printf("nope leftover already exists\n");
 		index = find_newline(leftover, result);
-	if (index == 0)
-		result = read_fd(fd, &index, &leftover);
+	}
+	result = read_fd(fd, &index, &leftover);
 	printf("leftover=[%s]\n", leftover);
 	*line = ft_substr(leftover, 0, index);
 	leftover = ft_substr(leftover, index + 1, ft_strlen(leftover) - index + 1);
