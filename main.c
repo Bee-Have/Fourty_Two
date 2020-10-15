@@ -29,7 +29,7 @@ int		main(void)
 	int		read;
 
 	read = 1;
-	fd1 = open("text2.txt", O_RDONLY);
+	fd1 = open("text3.txt", O_RDONLY);
 	fd2 = open("result.txt", O_WRONLY);
 	if (fd1 && fd2)
 	{
@@ -37,7 +37,7 @@ int		main(void)
 		{
 			read = get_next_line(fd1, &result);
 			fill_fd(fd2, result);
-			printf("line=[%s]\n", result);
+			//printf("line=[%s]\n", result);
 			//printf("result=%d\n", read);
 		}
 		if (read == -1)

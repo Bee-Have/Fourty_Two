@@ -39,13 +39,10 @@ int		read_fd(int fd, int *index, char **leftover)
 	{
 		result = read(fd, tmp, BUFFER_SIZE);
 		tmp[result] = '\0';
-		printf("tmp=[%s]\n", tmp);
 		*leftover = ft_strjoin(*leftover, tmp);
-		//printf("join=[%s]\n", *leftover);
 		*index = find_newline(*leftover, result);
 	}
 	free(tmp);
-	//printf("leftover=[%s]\n", *leftover);
 	return (result);
 }
 
@@ -61,9 +58,12 @@ int		get_next_line(int fd, char **line)
 		index = find_newline(leftover, 1);
 	if (index == 0)
 		result = read_fd(fd, &index, &leftover);
+	/*while (result > 0 && index == 0)
+		result = read_fd(fd, &index, &leftover);*/
 	*line = ft_substr(leftover, 0, index, 1);
-	leftover = ft_substr(leftover, index + 1, ft_strlen(leftover) - index + 1, 0);
-	if (result == 0 && ft_strlen(leftover) == 0)
+	index++;
+	leftover = ft_substr(leftover, index, ft_strlen(leftover) - index, 0);
+	if (result == 0 && index == 0)
 	{
 		free(leftover);
 		return (0);

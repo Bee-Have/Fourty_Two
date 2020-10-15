@@ -26,32 +26,18 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-/*void	ft_bzero(char **str, int max)
+char	*ft_strncpy(char *dst, char *src, int idst)
 {
 	int		i;
 
 	i = 0;
-	while (i < max)
+	while (src[i] != '\0')
 	{
-		*str[i] = '\0';
-		i++;
-	}
-	return ;
-}*/
-
-char	*fill_str(char **dst, char *src, int idst, int maxlen)
-{
-	int		i;
-
-	i = 0;
-	while (src[i] != '\0' && idst <= maxlen)
-	{
-		(*dst)[idst] = src[i];
-		//printf("dst=[%c]\n", (*dst)[idst]);
+		dst[idst] = src[i];
 		i++;
 		idst++;
 	}
-	return (*dst);
+	return (dst);
 }
 
 char	*ft_strjoin(char *dst, char *src)
@@ -62,17 +48,19 @@ char	*ft_strjoin(char *dst, char *src)
 
 	i = 0;
 	if (!dst || ft_strlen(dst) == 0)
-		return (src);
-	maxlen = ft_strlen(dst) + ft_strlen(src);
-	printf("maxlen=[%d]\n", maxlen);
+		maxlen = ft_strlen(src);
+	else
+		maxlen = ft_strlen(dst) + ft_strlen(src);
 	result = (char *)malloc((maxlen + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	result[maxlen] = '\0';
-	//ft_bzero(&result, maxlen);
-	result = fill_str(&result, dst, i, ft_strlen(dst));
-	i = ft_strlen(dst);
-	result = fill_str(&result, src, i, maxlen);
+	if (dst || ft_strlen(dst) != 0)
+	{
+		result = ft_strncpy(result, dst, i);
+		i = ft_strlen(dst);
+	}
+	result = ft_strncpy(result, src, i);
 	free(dst);
 	return (result);
 }

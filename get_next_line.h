@@ -26,7 +26,7 @@ int		ft_strlen(char *str);
 int		find_newline(char *str, int read);
 int		read_fd(int fd, int *index, char **leftover);
 int		get_next_line(int fd, char **line);
-char	*fill_str(char *dst, char *src, int idst, int maxlen);
+char	*ft_strncpy(char *dst, char *src, int idst);
 char	*ft_strjoin(char const *dst, char const *src);
 char	*ft_substr(char *str, int start, int len, int line);
 
