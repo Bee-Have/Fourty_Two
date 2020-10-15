@@ -56,6 +56,8 @@ int		get_next_line(int fd, char **line)
 
 	index = 0;
 	result = 0;
+	if (fd < 0 || !*line)
+		return (-1);
 	if (leftover)
 		index = find_newline(leftover, 0);
 	if (index == 0)
