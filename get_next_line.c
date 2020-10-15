@@ -41,7 +41,7 @@ int		read_fd(int fd, int *index, char **leftover)
 		tmp[result] = '\0';
 		printf("tmp=[%s]\n", tmp);
 		*leftover = ft_strjoin(*leftover, tmp);
-		printf("join=[%s]\n", *leftover);
+		//printf("join=[%s]\n", *leftover);
 		*index = find_newline(*leftover, result);
 	}
 	free(tmp);
