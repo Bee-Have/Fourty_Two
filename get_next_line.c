@@ -35,13 +35,15 @@ int		read_fd(int fd, int *index, char **leftover)
 
 	result = 1;
 	tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	while (result > 0 && *index == 0)
-	{
-		result = read(fd, tmp, BUFFER_SIZE);
-		tmp[result] = '\0';
-		*leftover = ft_strjoin(*leftover, tmp);
-		*index = find_newline(*leftover, result);
-	}
+	if (!tmp)
+		return (-1);
+	//while (result > 0 && *index == 0)
+	//{
+	result = read(fd, tmp, BUFFER_SIZE);
+	tmp[result] = '\0';
+	*leftover = ft_strjoin(*leftover, tmp);
+	*index = find_newline(*leftover, result);
+	//}
 	free(tmp);
 	return (result);
 }
@@ -58,8 +60,8 @@ int		get_next_line(int fd, char **line)
 		index = find_newline(leftover, 1);
 	if (index == 0)
 		result = read_fd(fd, &index, &leftover);
-	/*while (result > 0 && index == 0)
-		result = read_fd(fd, &index, &leftover);*/
+	while (result > 0 && index == 0)
+		result = read_fd(fd, &index, &leftover);
 	*line = ft_substr(leftover, 0, index, 1);
 	index++;
 	leftover = ft_substr(leftover, index, ft_strlen(leftover) - index, 0);
