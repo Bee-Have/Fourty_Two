@@ -31,7 +31,7 @@ int		main(void)
 	read = 1;
 	fd1 = open("foo.txt", O_RDONLY);
 	fd2 = open("result.txt", O_WRONLY);
-	if (fd1 && fd2)
+	if (fd1 >= 0 && fd2)
 	{
 		while (read != 0 && read != -1)
 		{
@@ -44,6 +44,7 @@ int		main(void)
 		if (read == -1)
 			printf("-1\n");
 		close(fd1);
+		close(fd2);
 	}
 	return (0);
 }

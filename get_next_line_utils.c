@@ -72,7 +72,7 @@ char	*ft_substr(char *str, int start, int len, int line)
 
 	i = 0;
 	if (start > ft_strlen(str))
-		return (NULL);
+		return (str);
 	if (str[start] == '\n' && line == 1)
 		start++;
 	result = (char *)malloc((len + 1) * sizeof(char));
