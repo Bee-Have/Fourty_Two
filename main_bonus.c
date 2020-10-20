@@ -30,6 +30,10 @@ int		main(void)
 
 	i = 0;
 	read = 1;
+	fd = (int *)malloc(6 * sizeof(int));
+	if (!fd)
+		return (0);
+	fd[6] = '\0';
 	fd[0] = open("result.txt", O_WRONLY);
 	fd[1] = open("foo.txt", O_RDONLY);
 	fd[2] = open("text1.txt", O_RDONLY);
@@ -42,7 +46,7 @@ int		main(void)
 		{
 			read = get_next_line(fd[1], &result);
 			fill_fd(fd[i], result);
-			printf("line(%d)=[%s]\n", result, fd[i]);
+			printf("line(%d)=[%s]\n", fd[i], result);
 			free(result);
 		}
 		i = 1;
