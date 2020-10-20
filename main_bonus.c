@@ -12,13 +12,16 @@
 
 #include "get_next_line.h"
 
-void	fill_fd(int fd, char *str)
+void	fill_fd(int fd, char *str, int read)
 {
 	int		i;
 
-	i = 1;
-	i = write(fd, str, ft_strlen(str));
-	i = write(fd, "\n", 1);
+	if (read != 0)
+	{
+		i = 1;
+		i = write(fd, str, ft_strlen(str));
+		i = write(fd, "\n", 1);
+	}
 }
 
 int		main(void)
@@ -27,10 +30,18 @@ int		main(void)
 	int		*fd;
 	int		*res;
 	char	*result;
-	int		read;
+	int		read[6];
+	int		end;
 
 	i = 0;
-	read = 1;
+	end = 0;
+	while (i < 5)
+	{
+		read[i] = 1;
+		i++;
+	}
+	read[5] = -5;
+	i = 0;
 	res = (int *)malloc(6 * sizeof(int));
 	fd = (int *)malloc(6 * sizeof(int));
 	if (!fd || !res)
@@ -47,22 +58,33 @@ int		main(void)
 	res[3] = open("result3.txt", O_WRONLY);
 	res[4] = open("result4.txt", O_WRONLY);
 	res[5] = -1;
-	while (read != 0 && read != -1)
+	while (end < 5)
 		{
-		while (fd[i] != -1)
+		while (i < 5)
 		{
-			read = get_next_line(fd[1], &result);
-			fill_fd(res[i], result);
-			printf("line(%d)=[%s]\n", fd[i], result);
-			free(result);
+			if (read[i] > 0)
+			{
+				read[i] = get_next_line(fd[i], &result);
+				fill_fd(res[i], result, read[i]);
+				printf("fd{%d}->[%d]=[%s]\n", fd[i], read[i], result);
+				system ("leaks a.out | grep 'leaked'");
+				free(result);
+				result = NULL;
+			}
+			
+			else if (read[i] == 0)
+			{
+				read[i] = -2;
+				end++;
+			}
+			i++;
 		}
 		i = 0;
 	}
-	fd = 0;
-	if (read == -1)
-		printf("FAIL BITCH\n");
-	while (fd[i] != '\0')
+	i = 0;
+	while (i >= 5)
 	{
+		close(res[i]);
 		close(fd[i]);
 		i++;
 	}
