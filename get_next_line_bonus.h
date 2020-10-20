@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -21,21 +21,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <limits.h>
 
-typedef struct s_list
-{
-	int				file;
-	char			*line;
-	struct s_list	*next;
-}					t_list;
 int		ft_strlen(char *str);
 int		find_newline(char *str, int read);
-int		read_fd(int fd, int *index, t_list **leftover);
+int		read_fd(int fd, int *index, char ***leftover, char **line);
 int		get_next_line(int fd, char **line);
 char	*ft_strncpy(char *dst, char *src, int idst);
 char	*ft_strjoin(char const *dst, char const *src);
 char	*ft_substr(char *str, int start, int len, int line);
-void	setup_leftover(t_list **leftover, int fd);
-
 
 #endif

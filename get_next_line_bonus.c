@@ -18,7 +18,7 @@ int		find_newline(char *str, int read)
 
 	i = 0;
 	if (!str)
-		return (-1);
+		return (0);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
@@ -30,7 +30,7 @@ int		find_newline(char *str, int read)
 	return (-1);
 }
 
-int		read_fd(int fd, int *index, t_list **leftover)
+int		read_fd(int fd, int *index, char ***leftover, char **line)
 {
 	int		result;
 	char	*tmp;
@@ -43,68 +43,71 @@ int		read_fd(int fd, int *index, t_list **leftover)
 	{
 		result = read(fd, tmp, BUFFER_SIZE);
 		tmp[result] = '\0';
-		(*leftover)->line = ft_strjoin((*leftover)->line, tmp);
-		*index = find_newline((*leftover)->line, result);
+		(*leftover)[fd] = ft_strjoin((*leftover)[fd], tmp);
+		*index = find_newline((*leftover)[fd], result);
 	}
 	free(tmp);
+	if (*index != -1)
+		*line = ft_substr((*leftover)[fd], 0, *index, 1);
 	return (result);
 }
 
-void	setup_leftover(t_list **leftover, int fd)
+void	free_leftover(char ***leftover)
 {
-	t_list	*head;
+	int		i;
 
-	if (!leftover)
+	i = 0;
+	while (i < OPEN_MAX)
 	{
-		head = NULL;
-		head = (t_list *)malloc(sizeof(t_list));
-		if (!head)
-			return /*(NULL)*/;
-		head->file = fd;
-		head->next = NULL;
-		return /*(head->line)*/;
+		free((*leftover)[i]);
+		i++;
 	}
-	head = *leftover;
-	while (head->next != NULL)
+	free(*leftover);
+}
+
+void	empty_leftover(char ***leftover)
+{
+	int		i;
+
+	i = 0;
+	(*leftover)[OPEN_MAX] = NULL;
+	while (i < OPEN_MAX)
 	{
-		if (head->file == fd)
-			return /*(head->line)*/;
-		head = head->next;
+		(*leftover)[i] = (char *)malloc(1 * sizeof(char));
+		if (!(*leftover)[i])
+		{
+			free_leftover(leftover);
+			return ;
+		}
+		(*leftover)[i][0] = '\0';
+		i++;
 	}
-	head = (t_list *)malloc(sizeof(t_list));
-	if (!head)
-		return /*(NULL)*/;//a changer
-	head->file = fd;
-	head->next = NULL;
-	return /*(head->line)*/;
 }
 
 int		get_next_line(int fd, char **line)
 {
-	static t_list		*leftover = NULL;
-	int					result;
-	int					newline;
+	static char		**leftover = NULL;
+	int				result;
+	int				index;
 
 	result = 1;
-	newline = -1;
-	setup_leftover(&leftover, fd);
-	if (leftover && leftover->line != '\0')
-		newline = find_newline(leftover->line, 0);
-	if (newline == -1)
-		result = read_fd(fd, &newline, &leftover);
-	if (newline == -1)
-		*line = ft_substr(leftover->line, 0, ft_strlen(leftover->line), 1);
-	else
-		*line = ft_substr(leftover->line, 0, newline, 1);
-	newline++;
-	leftover->line = ft_substr(leftover->line,
-		newline, ft_strlen(leftover->line) - newline, 0);
-	if (result == 0 && ft_strlen(leftover->line) == 0)
+	if (!leftover)
 	{
-		free(leftover);
-		return (0);
+		if (!(leftover = (char **)malloc((OPEN_MAX + 1) * sizeof(char *))))
+			return (-1);
+		empty_leftover(&leftover);
 	}
-	if (result == -1)
-		return (-1);
+	index = find_newline(leftover[fd], 0);
+	if (index == -1)
+		result = read_fd(fd, &index, &leftover, line);
+	if (index == -1)
+		*line = ft_substr(leftover[fd], 0, ft_strlen(leftover[fd]), 1);
+	leftover[fd] = ft_substr(leftover[fd], index + 1,
+		ft_strlen(leftover[fd]) - (index + 1), 0);
+	if (result == -1 || (result == 0 && ft_strlen(leftover[fd]) == 0))
+	{
+		free_leftover(&leftover);
+		return (result);
+	}
 	return (1);
 }
