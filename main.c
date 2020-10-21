@@ -12,15 +12,25 @@
 
 #include "get_next_line.h"
 
+//cette fonction écrit le resultat de *line dans un autre fichier
+//ont compareras après le fichier origial et celui-ci
 void	fill_fd(int fd, char *str)
 {
+	//i ici sert à garder le retour de write()
+	//write() retourne le nombre de characters qu'il a lue
 	int		i;
 
+	//la valeur initial de i importe peu
+	//ont ne ce sert jamais du retour de write
 	i = 1;
+	//ont écrit sur un nombre de character donnés
+	//ont écrit la chaine passé en paramettre
 	i = write(fd, str, ft_strlen(str));
+	//*line n'ayant plus de \n, il faut donc les rajoutés manuellement
 	i = write(fd, "\n", 1);
 }
 
+//classique main
 int		main(void)
 {
 	//le file descriptor qui seras lue 
