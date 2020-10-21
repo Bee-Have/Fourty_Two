@@ -47,7 +47,7 @@ int		read_fd(int fd, int *index, char **leftover, char **line)
 		*index = find_newline(*leftover, result);
 	}
 	free(tmp);
-	if (*index == -1)
+	if (*index == -1 && result > 0)
 		*line = ft_substr(*leftover, 0, ft_strlen(*leftover), 1);
 	else if (*index != -1)
 		*line = ft_substr(*leftover, 0, *index, 1);

@@ -85,5 +85,7 @@ char	*ft_substr(char *str, int start, int len, int line)
 		i++;
 		start++;
 	}
+	if (line == 0)
+		free(str);
 	return (result);
 }
