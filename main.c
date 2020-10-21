@@ -29,8 +29,8 @@ int		main(void)
 	int		read;
 
 	read = 1;
-	fd1 = 0;//open("foo.txt", O_RDONLY);
-	fd2 = open("result.txt", O_WRONLY);
+	fd1 = open("foo.txt", O_RDONLY);
+	fd2 = open("result0.txt", O_WRONLY);
 	if (fd1 >= 0 && fd2)
 	{
 		while (read != 0 && read != -1)
