@@ -12,12 +12,16 @@
 
 #include "get_next_line.h"
 
+//fonction qui remplis un autre fichier avec le retour de gnl
 void	fill_fd(int fd, char *str)
 {
+	//la fonction write ayant un retour, j'ai besoin d'une valeur de base
+	//write() renvoie le nombre de character qu'il a écrit
 	int		i;
 
-	i = 1;
+	//ont écrit dans le fichier la ligne lue par gnl
 	i = write(fd, str, ft_strlen(str));
+	//les lignes donnés n'ayant pas de \n, ont imprime un \n manuellement
 	i = write(fd, "\n", 1);
 }
 
