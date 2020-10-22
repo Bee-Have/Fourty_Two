@@ -30,27 +30,23 @@ int		find_newline(char *str, int read)
 	return (-1);
 }
 
-int		read_fd(int fd, int *index, char **leftover, char **line)
+int		read_fd(int fd, int *index, char **leftover)
 {
 	int		result;
 	char	*tmp;
 
 	result = 1;
-	tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!tmp)
-		return (-1);
 	while (result > 0 && *index == -1)
 	{
+		tmp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+		if (!tmp)
+			return (-1);
 		result = read(fd, tmp, BUFFER_SIZE);
 		tmp[result] = '\0';
 		*leftover = ft_strjoin(*leftover, tmp);
 		*index = find_newline(*leftover, result);
+		free(tmp);
 	}
-	free(tmp);
-	if (*index == -1 && result > 0)
-		*line = ft_substr(*leftover, 0, ft_strlen(*leftover), 1);
-	else if (*index != -1)
-		*line = ft_substr(*leftover, 0, *index, 1);
 	return (result);
 }
 
@@ -81,7 +77,11 @@ int		get_next_line(int fd, char **line)
 	else if (leftover[fd][0] != '\0')
 		index = find_newline(leftover[fd], 0);
 	if (index == -1)
-		result = read_fd(fd, &index, &leftover[fd], line);
+		result = read_fd(fd, &index, &leftover[fd]);
+	if (index == -1)
+		*line = ft_substr(leftover[fd], 0, ft_strlen(leftover[fd]), 1);
+	else
+		*line = ft_substr(leftover[fd], 0, index, 1);
 	leftover[fd] = ft_substr(leftover[fd], index + 1,
 		ft_strlen(leftover[fd]) - (index + 1), 0);
 	if (result == -1 || (result == 0 && ft_strlen(leftover[fd]) == 0))

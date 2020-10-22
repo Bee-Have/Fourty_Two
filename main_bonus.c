@@ -56,16 +56,19 @@ int		main(void)
 	res[3] = open("result3.txt", O_WRONLY);
 	res[4] = open("result4.txt", O_WRONLY);
 	res[5] = -1;
-	while (read[0] > 0 && read[1] > 0 && read[2] > 0 && read[3] > 0 && read[4] > 0)
+	while (read[0] == 1 || read[1] == 1 || read[2] == 1 || read[3] == 1 || read[4] == 1)
 	{
 		while (i < 5)
 		{
-			read[i] = get_next_line(fd[i], &result);
-			fill_fd(res[i], result);
-			printf("fd{%d}->[%d]=[%s]\n", fd[i], read[i], result);
-			//system ("leaks a.out | grep 'leaked'");
-			free(result);
-			result = NULL;
+			if (read[i] > 0)
+			{
+				read[i] = get_next_line(fd[i], &result);
+				fill_fd(res[i], result);
+				printf("fd{%d}->[%d]=[%s]\n", fd[i], read[i], result);
+				//system ("leaks a.out | grep 'leaked'");
+				free(result);
+				result = NULL;
+			}
 			i++;
 		}
 		i = 0;

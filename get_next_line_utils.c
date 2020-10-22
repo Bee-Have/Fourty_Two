@@ -129,7 +129,7 @@ char	*ft_substr(char *str, int start, int len, int line)
 	result = (char *)malloc((len + 1) * sizeof(char));
 	//si l'allocation échoue, ont arrête tout
 	if (!result)
-			return (NULL);
+		return (NULL);
 	//sinon ont définie la fin de la chaine à la taille fournie
 	result[len] = '\0';
 	//ici ont copie la partie de la chaine d'origine dans la chaine finale
