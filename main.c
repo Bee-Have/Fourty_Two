@@ -12,19 +12,25 @@
 
 #include "get_next_line.h"
 
-//fonction qui remplis un autre fichier avec le retour de gnl
+//cette fonction écrit le resultat de *line dans un autre fichier
+//ont compareras après le fichier origial et celui-ci
 void	fill_fd(int fd, char *str)
 {
-	//la fonction write ayant un retour, j'ai besoin d'une valeur de base
-	//write() renvoie le nombre de character qu'il a écrit
+	//i ici sert à garder le retour de write()
+	//write() retourne le nombre de characters qu'il a lue
 	int		i;
 
-	//ont écrit dans le fichier la ligne lue par gnl
+	//la valeur initial de i importe peu
+	//ont ne ce sert jamais du retour de write
+	i = 1;
+	//ont écrit sur un nombre de character donnés
+	//ont écrit la chaine passé en paramettre
 	i = write(fd, str, ft_strlen(str));
-	//les lignes donnés n'ayant pas de \n, ont imprime un \n manuellement
+	//*line n'ayant plus de \n, il faut donc les rajoutés manuellement
 	i = write(fd, "\n", 1);
 }
 
+//classique main
 int		main(void)
 {
 	//le file descriptor qui seras lue 

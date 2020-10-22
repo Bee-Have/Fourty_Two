@@ -12,140 +12,156 @@
 
 #include "get_next_line.h"
 
-//ici ont cherche dans notre static si l'ont à un \n
+//cette fonction vas chercher un \n dans la static
 int		find_newline(char *str, int read)
 {
-	//int servant a parcourir la static
+	//i sert à parcourir la static
 	int		i;
 
-	//ont innitialise à 0 pour commencer au début de la chaine
+	//comme ont parcour la static, ont commence par l'index 0
 	i = 0;
-	//si la static n'existe pas, ont à donc un problème
-	//problème = -1
+	//si la static est NULL alors ont à un problème
 	if (!str)
 		return (-1);
+	//ont parcour la static jusqu'au \0
 	while (str[i] != '\0')
 	{
+		//si ont rencontre un \n
 		if (str[i] == '\n')
+		{
+			//alors ont retourne sa position dans la static
 			return (i);
+		}
+		//sinon ont continue à parcourir la static
 		i++;
 	}
+	//si ont à lus 0 characters
+	//et que la static est vide
+	//alors ont return 0
 	if (read == 0 && ft_strlen(str) == 0)
 		return (i);
+	//sinon ont renvoie la valeur original de l'index : -1
 	return (-1);
 }
 
-//ici ont vas lire le fichier
-//ont liras BUFFER_SIZE character du fichier
+//cette fonction lis le fichier fournis
 int		read_fd(int fd, int *index, char **leftover)
 {
-	//ont déclare le résultat de ce qu'ont vas lire
+	//comme dans gnl, ont déclare un résultat pour le retour de read()
+	//ceci permet de vérifier que l'ont a bien lue
+	//ainsi que combien de characters ont été lus
 	int		result;
-	//buffer vas récolter les characters lus par read()
+	//sert à récupérer ce qui à été lus par read()
+	//sont contenue est par la suite transféré à la static
 	char	*buffer;
 
-	//ont met result à 1 pour etre sur d'avoir au moins un appel
-	//ainsi même si read à renvoyé 0, ont pourras vérifier si l'ont a bien tout lue
+	//comme gnl, result doit être supèrieur à0
 	result = 1;
-	//pendant que l'ont lit quelque chose
-	//et que l'ont a pas touvé de \n
+	//si ont à bien lue des characters du fichier
+	//et que l'ont à pas encore trouvé de \n
 	while (result > 0 && *index == -1)
 	{
-		//ont malloc le buffer a BUFFER_SIZE
-		//read ne lisant QUE BUFFER_SIZE character, ont ne dépasseras jamais cette valeure
+		//ont alloue un espace de BUFFER_SIZE pour notre buffer
+		//read() liras max BUFFER_SIZE character dans le fichier
 		buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-		//si le malloc n'as pas marcher ont renvoie NULL
+		//si notre allocation de mémoire échoue alors ont s'arrête
 		if (!buffer)
 			return (-1);
-		//ont read BUFFER_SIZE character sur le fichier envoyer
+		//ont lis sur le fichier en mettant tous les characters lus dans buffer
 		result = read(fd, buffer, BUFFER_SIZE);
-		//comme ont peut lire moins que BUFFER_SIZE
-		//result étant le nombre de characters lue, ont met le \0 après
+		//result est le nombre de characters lus
+		//ont s'assure de ne renvoyer que des characters qui seront lus
 		buffer[result] = '\0';
-		//ont rajoute ce qui à été lue a la static
+		//la static vas ajouter à sont contenue ce qui à été lus
 		*leftover = ft_strjoin(*leftover, buffer);
-		//ont vérifie qu'il n'y a pas de \n dans ce qui a été lue
+		//ont vérifier que l'ont à pas lus de \n
 		*index = find_newline(*leftover, result);
-		//enfin ont free buffer pour ne pas re-écrire dessus et ainsi ne pas avoir de problèmes
+		//ont libère l'espace aloué à notre buffer pour recommencer
 		free(buffer);
 	}
-	//ont retourne le nombre de character lus juste avant d'avoir trouvé un \n
+	//ont ne sort que l'orsqu'ont à trouvé un \n
+	//ou que l'ont à finis de lire
+	//ont renvoie le nombre de characters qui ont été lus en dernier
 	return (result);
 }
 
-//!!!!!!!!!!!!PROGRAMME COMMENCE ICI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!PROGRAMME COMMENCE ICI!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//**line != line[][] | **line = la variable original envoyé
 int		get_next_line(int fd, char **line)
 {
-	//déclaration de la chaine de character static
+	//déclaration de la static, ici à NULL
+	//static signifie que l'ont ne déclare qu'une seule fois la variable
+	//quand la fonction est rappeler, cette ligne est ignoré
 	static char		*leftover = NULL;
-	//le retour de ce qui à été lue
-	//le nombre de charactères lus
+	//les resultat de read()
+	//le nombre de character lus par read()
 	int				result;
-	//position dans leftover du \n
+	//la position du \n dand leftover
 	int				index;
 
-	//si index = 1 alors ont a trouvé un \n
-	//si index = 0 alors ont a pas trouvé \n et ont est donc a la fin du fichier
+	//si index=0, quand le read() renveras 0, ont ne sauras pas si c'est
+	//un retour de read ou la variable original
+	//read ne peut pas renvoyer -1 donc index est une valeur sur
+	//(peut étre un tout autre nombre qui ne peut pas étre un retour de read())
 	index = -1;
-	//result > 0 pour lui permettre de lire dès le début
-	//ceci permet de tester la lecture même si le retour précédant était 0
+	//result=1 permet de vérifier que l'ont à bien tout lue
+	//si read=0 alors ont à finit de lire
 	result = 1;
-	//si leftover existe
-	//si leftover n'est pas vide (si le premier character n'est pas \0)
+	//si la static existe
+	//si la static n'est PAS vide
 	if (leftover && leftover[0] != '\0')
 	{
-		//cherche si il existe un \n dans leftover
+		//ont vérifie si la static contient déja un \n
 		index = find_newline(leftover, 0);
 	}
-	//si l'ont a pas trouvé de \n ou que leftover n'existe pas
+	//si la static ne contient pas de \n
+	//ou que notre static est vide ou NULL
 	if (index == -1)
 	{
-		//fonction permettant de lire le fichier envoyé
+		//ont appel notre fonction qui vas lire notre fd
 		result = read_fd(fd, &index, &leftover);
 	}
-	//une fois que l'ont a lue, si l'index est toujours a -1
-	//dans le cas ou ont a finis de lire le fichier
-	//ont veux copier tout leftover dans line puisque l'index est -1
+	//si aprés avoir lus notre index est toujours vide
+	//(ce cas n'arrive que en fin de fichier car l'EOF n'est pas un \n)
 	if (index == -1)
 	{
-		//ont remplis line avec TOUT le contenue de leftover
-		//puisque l'ont a pas trouvé de \n dans leftover
-		//ont sait aussi que l'ont a tout lue puisque read est au dessus
+		//ont met TOUT le contenue de la static dans *line
+		//il n'y as plus rien a lire, la static contient la dernière ligne
 		*line = ft_substr(leftover, 0, ft_strlen(leftover), 1);
 	}
-	//si ont a trouvé un \n dans leftover après ou avant avoir lue
-	//ont peut passer ici directement après le premier check
+	//si la static contient un \n
+	//index est donc l'address du \n
 	else
 	{
-		//ont met tout JUSQU'AU \n
-		//ce qui ce trouve après le \n dans leftover seras ignoré
-		//1 signifie que l'ont envoie line (c'est un boolean oui oui)
+		//ont met la static JUSQU'AU \n dans *line
+		//le reste de la static ne nous intéresse pas ici
 		*line = ft_substr(leftover, 0, index, 1);
 	}
-	//ont ajoute un a index car ont veux aller a l'index après le \n
+	//index étant l'addresse du \n, ont incrément index
+	//cela nous permet de passer au character d'après
 	index++;
-	//ont enleve tout ce qui a été mis dans ligne
-	//donc tout à partir de index et jusqu'à la fin de la statique
-	//(tout ce qui à été lue après le \n touvé)
+	//la static est donc égale à tout ce qui n'as pas été mis dans *line
+	//la static est égale à TOUT ce qui est APRÈS le \n
 	leftover = ft_substr(leftover, index, ft_strlen(leftover) - index, 0);
-	//si le retour de read est 0 et que la static est vide
-	//ont peut avoir finis de lire le fichier mais pas avoir finis de trouver les \n
-	if (result == 0 && ft_strlen(leftover) == 0)
+	//SI un malloc a échoué ou read{} a eu un probléme
+	//OU read() n'as rien lu (read à donc lue tout le texte)
+	//ET que la static est vide (*line à déja tout récupérer)
+	//dans le cas ou BUFFER_SIZE est grand, ont vas lire très vite
+	//il faut donc s'assurer que l'ont à bien tout renvoyer avant de return 0
+	if (result == -1 || (result == 0 && ft_strlen(leftover) == 0))
 	{
-		//comme ont à finis de lire le fichier, gnl ne seras pas rappeler
-		//notre statique est donc innutile, ont libère l'espace aloué
+		//alors ont ne ferras plus d'appel de gnl
+		//notre static ne seras donc plus utiliser
+		//ont libère donc l'espace mémoire qui lui était aloué
 		free(leftover);
-		//le retour (0) ferme officielement la fonction et renvoie 0
-		//ont signifie que l'ont a finis de lire le fichier
-		return (0);
+		//ont retourne par la suite result
+		//SOIT result=-1 : un problème est survenue
+		//SOIT result = 0 : ont à finis de lire
+		return (result);
 	}
-	//si le retour de read est -1, alors il y as eu un problème
-	if (result == -1)
-	{
-		//comme il y as eu un problème, ont return -1 pour le signifier
-		return (-1);
-	}
-	//si tout c'est bien passer, ont retourne 1
-	//1 impliquant qu'ont a bien lue une ligne du fichier
+	//si l'ont à bien lut
+	//que l'ont à pas d'erreures
+	//et que l'ont as pas atteint la fin du fichier
+	//alors ont renvoie 1 (ont a bien lue une ligne)
 	return (1);
 }
