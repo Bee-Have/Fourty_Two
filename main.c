@@ -2,18 +2,8 @@
 
 int		main()
 {
-	unsigned int		i = 429496;
-	//int		j = 987654321;
-	char	c = 'a';
-	//char	d = 'b';
-	char	*str = "hello world";
-	//char	*str2 = "no thanks";
+	int	str = 50;
 
-	//printf("%05X\n", i);
-	printf("%00i\n", i);
-	printf("%c\n", c);
-	printf("%s\n", str);
-	printf("%%");
-
+	printf("%-3i\n", str);
 	return (0);
 }
