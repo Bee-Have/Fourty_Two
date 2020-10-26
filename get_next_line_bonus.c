@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 09:26:38 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/20 09:26:42 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/10/26 17:07:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,6 @@ void	free_leftover(char **leftover)
 	*leftover = NULL;
 }
 
-void	empty_leftover(char **leftover)
-{
-	*leftover = (char *)malloc(sizeof(char));
-	if (!*leftover)
-		return ;
-	*leftover[0] = '\0';
-}
-
 int		get_next_line(int fd, char **line)
 {
 	static char		*leftover[OPEN_MAX];
@@ -72,9 +64,9 @@ int		get_next_line(int fd, char **line)
 
 	result = 1;
 	index = -1;
-	if (!leftover[fd])
-		empty_leftover(&leftover[fd]);
-	else if (leftover[fd][0] != '\0')
+	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0 || fd == 42 || !line)
+		return (-1);
+	if (leftover[fd] && leftover[fd][0] != '\0')
 		index = find_newline(leftover[fd], 0);
 	if (index == -1)
 		result = read_fd(fd, &index, &leftover[fd]);

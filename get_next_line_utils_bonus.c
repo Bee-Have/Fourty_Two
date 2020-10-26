@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarini- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 09:26:57 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/20 09:27:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/10/26 17:01:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ char	*ft_substr(char *str, int start, int len, int line)
 	i = 0;
 	if (start > ft_strlen(str))
 		return (str);
+	if (line == 0 && start == 0)
+	{
+		start = ft_strlen(str) - 1;
+		len = 0;
+	}
 	if (str[start] == '\n' && line == 1)
 		start++;
-	result = (char *)malloc((len + 1) * sizeof(char));
-	if (!result)
+	if (!(result = (char *)malloc((len + 1) * sizeof(char))))
 		return (NULL);
 	result[len] = '\0';
 	while (str[start] != '\0' && i < len)
