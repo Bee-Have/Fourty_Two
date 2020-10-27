@@ -2,10 +2,10 @@
 
 int		main()
 {
-	unsigned int	str = 11;
+	char	*str = "Hello World";
 
-	printf("%.*u\n", 5, str);
-	printf("%.*u\n", -5, str);
-	printf("%.*u\n", 0, str);
+	printf("%0*s\n", 5, str);
+	printf("%0*s\n", -5, str);
+	printf("%0*s\n", 0, str);
 	return (0);
 }
