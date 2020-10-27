@@ -2,8 +2,10 @@
 
 int		main()
 {
-	int	str = 50;
+	unsigned int	str = 11;
 
-	printf("%-3i\n", str);
+	printf("%.*u\n", 5, str);
+	printf("%.*u\n", -5, str);
+	printf("%.*u\n", 0, str);
 	return (0);
 }
