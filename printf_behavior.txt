@@ -5,7 +5,7 @@ start by setting a char** of all args
 We printf buffer at the end of everything
 Buffer takes all the results put together before printing
 
-Character :
+Character : 
 - get char
 - create new string result
 - If . || 0 || (0 && .) =
