@@ -25,7 +25,7 @@ Character :
 - Return buffer
 
 
-String :
+String : 
 - Get string
 - Create new string result
 - If 0 || (. && 0)= 
