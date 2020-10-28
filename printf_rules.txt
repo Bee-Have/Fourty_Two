@@ -119,6 +119,7 @@ x  X :
 % : 
 	⁃	if “%” nothing happens
 	⁃	if “%%” a % is printed
+	-	until the next % everything is counted as a string
 
 numbers :
 	⁃	if * && number = argument ignored
