@@ -1,9 +1,6 @@
 Printf behavior
 
-start by setting a char** of all args
-
-We printf buffer at the end of everything
-Buffer takes all the results put together before printing
+when everything is done : putstr of buffer
 
 Character : 
 - get char
