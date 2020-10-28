@@ -4,7 +4,7 @@ int		main()
 {
 	int	str = 11;
 
-	printf("%%d %0--*d\n", 9, str);
+	printf("%yhello %0--*d\n", 9, str);
 	printf("%0--*d\n", 9, str);
 	printf("%0--*d\n", 9, str);
 	return (0);
