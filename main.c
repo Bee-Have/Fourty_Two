@@ -2,10 +2,12 @@
 
 int		main()
 {
+	unsigned int	test;
 	int	str = 11;
 
-	printf("%yhello %0--*d\n", 9, str);
-	printf("%0--*d\n", 9, str);
-	printf("%0--*d\n", 9, str);
+	test = &str; 
+	printf("%p\n", &str);
+	printf("%X\n", test);
+	printf("%d\n", str);
 	return (0);
 }

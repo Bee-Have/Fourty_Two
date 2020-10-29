@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 16:34:24 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/28 17:11:14 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/10/29 14:13:24 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,3 +15,4 @@
 #include <stdarg.h>
 
 int		ft_printf(const char *str, ...);
+char	*ft_itoa(int n);

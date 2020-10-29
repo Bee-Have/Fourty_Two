@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:51:24 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/28 17:47:48 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/10/29 13:58:52 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,50 +40,89 @@ char	*ft_strcpy(char *str)
 	return (result);
 }
 
-void	ft_putstr(char *str)
+char	*ft_strjoin(char *dst, char src)
 {
-	int		length;
+	char	*result;
+	int		i;
+	int		len;
 
-	length = ft_strlen(str);
-	write(1, str, length);
+	if (!dst)
+		return (src);
+	i = 0;
+	len = ft_strlen(dst) + ft_strlen(src);
+	result = (char *)malloc((len + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	result[len] = '\0';
+	while (dst[i] != '\0')
+	{
+		result[i] = dst[i];
+		i++;
+	}
+	while (i < len)
+	{
+		result[i] = src[i - ft_strlen(dst)];
+		i++;
+	}
+	return (result);
+}
+
+int		sort_flags(va_list args, char spec, char *flags)
+{
+	int		(add_flags)(char *, char *) = {};
+	int		result;
+	char	*print;
+
+	result = 0;
+	if (spec == 'd' || spec == 'i')
+	{
+		print = 
+	}
+	return (result);
 }
 
 int		ft_printf(const char *str, ...)
 {
 	va_list		args;
-	char		result;
-	char		*convert;
-	char		*flags;
+	char		*specs[2];
+	char		found_args;
 	int			i;
 	int			j;
+	int			i_spec;
+	int			length;
 
-	va_start(args, str);
-	result = NULL;
-	convert = ft_strcpy("cspdiuxX%");
-	flags = ft_strcpy("-0.*");
 	i = 0;
 	j = 0;
+	i_spec = 0;
+	length = 0;
+	va_start(args, str);
+	specs[0] = ft_strcpy("-0.*");
+	specs[1] = ft_strcpy("cspdiuxxX%");
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
 		{
-			while (flags[j] != '\0')
+			i++;
+			while (specs[i_spec] && specs[i_spec][j] != '0')
 			{
-				if (str[i] == flags[j])
+				if (str[i] == specs[i_spec][j])
 				{
-
+					if (specs[i_spec] == 0)
+						found_args = ft_strjoin(found_args, specs[j]);
+					else
+					{
+						length = sort_flags(args, str[i], found_args);
+						break;
+					}
 					i++;
+					j = 0;
 				}
-			}
-			j = 0;
-			while (convert[j] != '\0' && convert[j] != str[i])
 				j++;
-			if (convert[j] == str[i])
-			{
-				
 			}
+			i++;
+			j = 0;
+			i_spec++;
 		}
 	}
-	ft_putstr(result);
-	return (ft_strlen(result));
+	return (length);
 }
