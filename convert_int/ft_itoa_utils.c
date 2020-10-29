@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_itoa_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 16:34:24 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:28:12 by amarini-         ###   ########.fr       */
+/*   Created: 2020/10/29 15:33:52 by amarini-          #+#    #+#             */
+/*   Updated: 2020/10/29 16:13:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "convert_int.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdarg.h>
-# include "convert_int/convert_int.h"
-# include "flags/flags.h"
+int		ft_countnbr(int n, int nbr, int base)
+{
+	int		count;
 
-int		ft_printf(const char *str, ...);
+	if (n == 0)
+		return (1);
+	count = 0;
+	while (nbr > 0)
+	{
+		nbr = nbr / base;
+		count++;
+	}
+	if (nbr < 0)
+		count++;
+	return (count);
+}
 
-#endif
+int		ft_check_negative(int n)
+{
+	if (n < 0)
+		return (n * -1);
+	return (n);
+}

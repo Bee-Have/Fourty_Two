@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   flags.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 16:34:24 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:28:12 by amarini-         ###   ########.fr       */
+/*   Created: 2020/10/29 16:26:41 by amarini-          #+#    #+#             */
+/*   Updated: 2020/10/29 16:38:27 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FLAGS_H
+# define FLAGS_H
 
 # include <unistd.h>
 # include <stdio.h>
-# include <stdarg.h>
-# include "convert_int/convert_int.h"
-# include "flags/flags.h"
+# include <stdlib.h>
 
-int		ft_printf(const char *str, ...);
+char	*flags_int(char *result, char *flags);
 
 #endif

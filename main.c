@@ -1,13 +1,15 @@
-#include <stdio.h>
+#include "ft_printf.h"
+#include "convert_int/convert_int.h"
 
 int		main()
 {
-	unsigned int	test;
-	int	str = 11;
+	int		test = 110;
+	//int	str;
 
-	test = &str; 
-	printf("%p\n", &str);
-	printf("%X\n", test);
-	printf("%d\n", str);
+	printf("%s\n", ft_itoa_base(test, 16));
+	//test = &str; 
+	//printf("%p\n", &str);
+	//printf("%X\n", test);
+	//printf("%d\n", str);
 	return (0);
 }
