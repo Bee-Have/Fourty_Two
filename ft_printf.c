@@ -6,70 +6,15 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:51:24 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:40:29 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/10/29 17:40:03 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_strlen(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strcpy(char *str)
-{
-	int		i;
-	char	*result;
-
-	i = 0;
-	result = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	result[ft_strlen(str)] = '\0';
-	while (str[i] != '\0')
-	{
-		result[i] = str[i];
-		i++;
-	}
-	return (result);
-}
-
-char	*ft_strjoin(char *dst, char src)
-{
-	char	*result;
-	int		i;
-	int		len;
-
-	if (!dst)
-		return (src);
-	i = 0;
-	len = ft_strlen(dst) + ft_strlen(src);
-	result = (char *)malloc((len + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	result[len] = '\0';
-	while (dst[i] != '\0')
-	{
-		result[i] = dst[i];
-		i++;
-	}
-	while (i < len)
-	{
-		result[i] = src[i - ft_strlen(dst)];
-		i++;
-	}
-	return (result);
-}
-
 int		sort_flags(va_list args, char spec, char *flags, int padding)
 {
-	int		(add_flags)(char *, char *) = {};
+	int		(add_flags)(char **, va_list) = {};
 	int		result;
 	char	*print;
 	int		i;
@@ -85,28 +30,29 @@ int		sort_flags(va_list args, char spec, char *flags, int padding)
 	i = 0;
 	if (spec == 'd' || spec == 'i')
 	{
-		result = ft_itoa(va_arg(args, int));
-		result = flags_int(result, flags);
+		print = ft_itoa(va_arg(args, int));
+		print = flags_int(print, flags, padding);
 	}
 	else if (spec == 'x' || spec == 'X')
 	{
-		result = ft_itoa_base(va_arg(args, unsigned int), 16);
+		print = ft_itoa_base(va_arg(args, unsigned int), 16);
 		if (spec == 'X')
 		{
-			while (result[i] != '\0')
+			while (print[i] != '\0')
 			{
-				if (res[i] >= 'a' && res[i] <= 'z')
-					res[i] -= 32;
+				if (print[i] >= 'a' && print[i] <= 'z')
+					print[i] -= 32;
 				i++;
 			}
 		}
-		result = flags_int(result, flags);
+		print = flags_int(print, flags, padding);
 	}
 	else if (spec == 'p')
 	{
-		result = ft_itoa_base(va_arg(args, unsigned int), 16);
-		result = ft_strjoin("0x", result);
+		print = ft_itoa_base(va_arg(args, unsigned int), 16);
+		print = ft_strjoin("0x", print);
 	}
+	result = ft_strlen(print);
 	return (result);
 }
 
@@ -141,7 +87,11 @@ int		ft_printf(const char *str, ...)
 				if (str[i] == specs[i_spec][j])
 				{
 					if (specs[i_spec] == 0)
-						found_args = ft_strjoin(found_args, specs[j]);
+					{
+						//this is no good,
+						//specs will be added entirely and not only the char
+						found_args = ft_strjoin(found_args, (char)specs[j]);
+					}
 					else
 					{
 						length = sort_flags(args, str[i], found_args, padding);

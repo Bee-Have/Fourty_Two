@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:26:41 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:38:27 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/10/29 17:32:18 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-char	*flags_int(char *result, char *flags);
+char	*flags_int(char *result, char *flags, int padding);
 
 #endif

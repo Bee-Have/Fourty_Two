@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:28:39 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:37:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/10/29 17:38:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 char	*flags_int(char *result, char *flags)
 {
-	
+	//here things happen
+	return (result);
 }
