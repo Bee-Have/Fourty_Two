@@ -6,7 +6,7 @@ int		main()
 	int		test = 110;
 	//int	str;
 
-	printf("%s\n", ft_itoa_base(test, 16));
+	printf("%12 \n");
 	//test = &str; 
 	//printf("%p\n", &str);
 	//printf("%X\n", test);

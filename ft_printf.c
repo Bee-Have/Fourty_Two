@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:51:24 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 17:40:03 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/05 12:11:48 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		sort_flags(va_list args, char spec, char *flags, int padding)
 {
-	int		(add_flags)(char **, va_list) = {};
-	int		result;
+	char	*(add_flags[])(va_list) = {spec_di, spec_xX, spec_p, spec_c, spec_s};
 	char	*print;
+	int		result;
 	int		i;
 
 	result = 0;
@@ -30,7 +30,8 @@ int		sort_flags(va_list args, char spec, char *flags, int padding)
 	i = 0;
 	if (spec == 'd' || spec == 'i')
 	{
-		print = ft_itoa(va_arg(args, int));
+		//print = ft_itoa(va_arg(args, int));
+		print = add_flags[0](args);
 		print = flags_int(print, flags, padding);
 	}
 	else if (spec == 'x' || spec == 'X')
