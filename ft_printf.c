@@ -5,108 +5,106 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 15:51:24 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/05 12:11:48 by amarini-         ###   ########.fr       */
+/*   Created: 2020/11/09 12:42:34 by amarini-          #+#    #+#             */
+/*   Updated: 2020/11/09 13:54:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		sort_flags(va_list args, char spec, char *flags, int padding)
+char	*found_args = "";
+char	*specs = "cspdixX%";
+int		padding = 0;
+
+int		sort_behavior(va_list args, char *spec)
 {
-	char	*(add_flags[])(va_list) = {spec_di, spec_xX, spec_p, spec_c, spec_s};
+	char	*(add_args[])(va_list) = {};
 	char	*print;
 	int		result;
 	int		i;
 
-	result = 0;
 	i = 0;
-	while (flags[i] != '\0')
+	while (specs[i] != '\0')
 	{
-		if (flags[i] == '*')
-			padding = va_arg(args, int);
+		if (specs[i] == spec[0])
+		{
+			print = add_flags[i](args);
+			break;
+		}
 		i++;
 	}
-	i = 0;
-	if (spec == 'd' || spec == 'i')
-	{
-		//print = ft_itoa(va_arg(args, int));
-		print = add_flags[0](args);
-		print = flags_int(print, flags, padding);
-	}
-	else if (spec == 'x' || spec == 'X')
-	{
-		print = ft_itoa_base(va_arg(args, unsigned int), 16);
-		if (spec == 'X')
-		{
-			while (print[i] != '\0')
-			{
-				if (print[i] >= 'a' && print[i] <= 'z')
-					print[i] -= 32;
-				i++;
-			}
-		}
-		print = flags_int(print, flags, padding);
-	}
-	else if (spec == 'p')
-	{
-		print = ft_itoa_base(va_arg(args, unsigned int), 16);
-		print = ft_strjoin("0x", print);
-	}
+	if (spec[0] == 'x' || spec[0] == 'X' || spec[0] == 'd' 
+		|| spec[0] == 'i' || spec[0] == 'p')
+		print = flags_int(print, found_args, padding);
+	else if (spec[0] == 'c' || spec[0] == 's')
+		print = flags_char(print, found_args, padding);
+	if (!print || print[0] == '\0')
+		print = no_spec(spec);
 	result = ft_strlen(print);
+	ft_putstr(print);
 	return (result);
 }
 
-int		ft_printf(const char *str, ...)
+int		check_flag(va_list args, char *str)
 {
-	va_list		args;
-	char		*specs[2];
-	char		found_args;
-	int			i;
-	int			j;
-	int			i_spec;
-	int			padding;
-	int			length;
+	char	*flags = "-0c*";
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-	i_spec = 0;
-	length = 0;
-	padding = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		padding = (padding * 10) + (str[i] - '0');
+		i++;
+	}
+	while (str[i] != '\0')
+	{
+		while (flags[j] != '\0')
+		{
+			if (str[i] == flags[j])
+			{
+				found_args = ft_join_char(found_args, str[i]);
+				break;
+			}
+			j++;
+		}
+		i++;
+	}
+	j = 0;
+	while (found_args[j] != '\0')
+	{
+		if (found_args[j] == '*')
+			padding = va_arg(args, int);
+		j++;
+	}
+	return (i);
+}
+
+int		ft_printf(char *str, ...)
+{
+	va_list		args;
+	int			result;
+	int			i;
+
 	va_start(args, str);
-	specs[0] = ft_strcpy("-0.*");
-	specs[1] = ft_strcpy("cspdiuxxX%");
+	i = 0;
+	result = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
 		{
 			i++;
-			while (specs[i_spec] && specs[i_spec][j] != '0')
-			{
-				if (str[i] > '0' && str[i] <= '9')
-					padding = (padding * 10) + (str[i] - '0');
-				if (str[i] == specs[i_spec][j])
-				{
-					if (specs[i_spec] == 0)
-					{
-						//this is no good,
-						//specs will be added entirely and not only the char
-						found_args = ft_strjoin(found_args, (char)specs[j]);
-					}
-					else
-					{
-						length = sort_flags(args, str[i], found_args, padding);
-						break;
-					}
-					i++;
-					j = 0;
-				}
-				j++;
-			}
+			i = check_flags(args, str[i]);
+			result += sort_behavior(args, str[i]);
 			i++;
-			j = 0;
-			i_spec++;
 		}
+		else
+		{
+			ft_putchar(str[i]);
+			result++;
+		}
+		i++;
 	}
-	return (length);
+	return (result); 
 }
