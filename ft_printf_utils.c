@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 17:15:19 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/09 13:53:36 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/09 13:57:33 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strcpy(char *str)
+/*char	*ft_strcpy(char *str)
 {
 	int		i;
 	char	*result;
@@ -38,9 +38,9 @@ char	*ft_strcpy(char *str)
 		i++;
 	}
 	return (result);
-}
+}*/
 
-char	*ft_strjoin(char *dst, char *src)
+/*char	*ft_strjoin(char *dst, char *src)
 {
 	char	*result;
 	int		j;
@@ -67,7 +67,7 @@ char	*ft_strjoin(char *dst, char *src)
 		i++;
 	}
 	return (result);
-}
+}*/
 
 void	ft_putchar(char c)
 {

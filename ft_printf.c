@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:42:34 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/09 13:54:13 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/09 14:16:54 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		padding = 0;
 
 int		sort_behavior(va_list args, char *spec)
 {
-	char	*(add_args[])(va_list) = {};
+	char	*(*read_spec)(va_list) = {};
 	char	*print;
 	int		result;
 	int		i;
@@ -28,7 +28,7 @@ int		sort_behavior(va_list args, char *spec)
 	{
 		if (specs[i] == spec[0])
 		{
-			print = add_flags[i](args);
+			print = read_spec[i](args);
 			break;
 		}
 		i++;
