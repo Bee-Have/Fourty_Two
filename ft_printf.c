@@ -6,19 +6,20 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:42:34 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/09 14:16:54 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/10 10:29:32 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 char	*found_args = "";
-char	*specs = "cspdixX%";
+char	*specs = "cspdiuxX%";
 int		padding = 0;
 
 int		sort_behavior(va_list args, char *spec)
 {
-	char	*(*read_spec)(va_list) = {};
+	char	*(*read_spec[])(va_list) = {spec_c, spec_s, spec_p, spec_di,
+									spec_di, spec_u, spec_xX, spec_percentage};
 	char	*print;
 	int		result;
 	int		i;
@@ -81,7 +82,7 @@ int		check_flag(va_list args, char *str)
 	return (i);
 }
 
-int		ft_printf(char *str, ...)
+int		ft_printf(const char *str, ...)
 {
 	va_list		args;
 	int			result;

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 17:15:19 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/09 13:57:33 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/10 10:18:41 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,7 @@ int		ft_strlen(char *str)
 	return (result);
 }*/
 
-/*char	*ft_strjoin(char *dst, char *src)
-{
-	char	*result;
-	int		j;
-	int		i;
-	int		len;
 
-	if (!dst)
-		return (src);
-	i = 0;
-	j = 0;
-	len = ft_strlen(dst) + ft_strlen(src);
-	result = (char *)malloc((len + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	result[len] = '\0';
-	while (dst[i] != '\0')
-	{
-		result[i] = dst[i];
-		i++;
-	}
-	while (i < len)
-	{
-		result[i] = src[i - ft_strlen(dst)];
-		i++;
-	}
-	return (result);
-}*/
 
 void	ft_putchar(char c)
 {
