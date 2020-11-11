@@ -4,15 +4,15 @@
 int		main()
 {
 	int		test = 110;
-	void	*add;
+	//void	*add;
 	//int	str;
 
-	add = &test;
+	//add = &test;
 	//printf("%12 \n");
 	//test = &str; 
-	printf("%p\n", &test);
-	printf("0x%s\n", ft_itoa_base((int)&test, 16));
-	//printf("%X\n", test);
+	//printf("%p\n", &test);
+	//printf("0x%s\n", ft_itoa_base((int)&test, 16));
+	printf("%0*d\n", -5, test);
 	//printf("%d\n", str);
 	return (0);
 }

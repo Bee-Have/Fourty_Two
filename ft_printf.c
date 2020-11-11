@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:42:34 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/10 10:29:32 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:13:06 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int		sort_behavior(va_list args, char *spec)
 	return (result);
 }
 
-int		check_flag(va_list args, char *str)
+int		register_flags(va_list args, char *str)
 {
-	char	*flags = "-0c*";
+	char	*flags = "0-c*";
 	int		i;
 	int		j;
 
@@ -96,7 +96,7 @@ int		ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			i = check_flags(args, str[i]);
+			i = register_flags(args, str[i]);
 			result += sort_behavior(args, str[i]);
 			i++;
 		}

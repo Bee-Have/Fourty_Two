@@ -18,8 +18,7 @@ Character :
         - Flag stays
 - Else = 
     - put number of char-1 of spaces then char in result
-- ft_strjoin = buffer && result
-- Return buffer
+- Return result
 
 
 String : 
