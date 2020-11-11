@@ -1,18 +1,10 @@
 #include "ft_printf.h"
-#include "specs/convert_int/convert_int.h"
 
 int		main()
 {
-	int		test = 110;
-	//void	*add;
-	//int	str;
+	char c = 'A';
 
-	//add = &test;
-	//printf("%12 \n");
-	//test = &str; 
-	//printf("%p\n", &test);
-	//printf("0x%s\n", ft_itoa_base((int)&test, 16));
-	printf("%0*d\n", -5, test);
-	//printf("%d\n", str);
+	printf("%c\n", c);
+	ft_printf("%c\n", c);
 	return (0);
 }

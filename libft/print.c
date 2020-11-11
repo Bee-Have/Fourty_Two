@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specs_utils.c                                      :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 10:19:06 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:47:01 by amarini-         ###   ########.fr       */
+/*   Created: 2020/11/11 12:34:01 by amarini-          #+#    #+#             */
+/*   Updated: 2020/11/11 14:21:25 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "specifications.h"
+#include "libft.h"
 
-char	*ft_strjoin(char *dst, char *src)
+void	ft_putchar(char c)
 {
-	char	*result;
-	int		i;
-	int		len;
+	write(1, &c, 1);
+}
 
-	if (!dst)
-		return (src);
+void	ft_putstr(char *str)
+{
+	int		i;
+
 	i = 0;
-	len = ft_strlen(dst) + ft_strlen(src);
-	result = (char *)malloc((len + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	result[len] = '\0';
-	while (dst[i] != '\0')
+	while (str[i] != '\0')
 	{
-		result[i] = dst[i];
+		ft_putchar(str[i]);
 		i++;
 	}
-	while (i < len)
-	{
-		result[i] = src[i - ft_strlen(dst)];
-		i++;
-	}
-	return (result);
 }

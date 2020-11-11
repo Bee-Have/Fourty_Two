@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:42:34 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:13:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/11 13:50:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*found_args = "";
 char	*specs = "cspdiuxX%";
 int		padding = 0;
 
-int		sort_behavior(va_list args, char *spec)
+int		sort_behavior(va_list args, char spec)
 {
 	char	*(*read_spec[])(va_list) = {spec_c, spec_s, spec_p, spec_di,
 									spec_di, spec_u, spec_xX, spec_percentage};
@@ -27,20 +27,20 @@ int		sort_behavior(va_list args, char *spec)
 	i = 0;
 	while (specs[i] != '\0')
 	{
-		if (specs[i] == spec[0])
+		if (specs[i] == spec)
 		{
 			print = read_spec[i](args);
 			break;
 		}
 		i++;
 	}
-	if (spec[0] == 'x' || spec[0] == 'X' || spec[0] == 'd' 
-		|| spec[0] == 'i' || spec[0] == 'p')
+	if (spec == 'x' || spec == 'X' || spec == 'd' 
+		|| spec == 'i' || spec == 'p')
 		print = flags_int(print, found_args, padding);
-	else if (spec[0] == 'c' || spec[0] == 's')
+	else if (spec == 'c' || spec == 's')
 		print = flags_char(print, found_args, padding);
-	if (!print || print[0] == '\0')
-		print = no_spec(spec);
+	//if (!print || print[0] == '\0')
+	//	print = no_spec(spec);
 	result = ft_strlen(print);
 	ft_putstr(print);
 	return (result);
@@ -65,7 +65,7 @@ int		register_flags(va_list args, char *str)
 		{
 			if (str[i] == flags[j])
 			{
-				found_args = ft_join_char(found_args, str[i]);
+				found_args = ft_strjoin_char(found_args, str[i]);
 				break;
 			}
 			j++;
@@ -96,7 +96,7 @@ int		ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			i = register_flags(args, str[i]);
+			i = register_flags(args, ft_substr(str, i, ft_strlen((char *)str) - i));
 			result += sort_behavior(args, str[i]);
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:26:41 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:10:56 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:44:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include "../libft/libft.h"
 
 char	*flags_int(char *str, char *flags, int padding);
 char	*flags_char(char *str, char *flags, int padding);

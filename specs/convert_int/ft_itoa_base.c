@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 14:15:33 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:13:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/11 13:40:05 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ char	*ft_itoa_base(int n, int base)
 		result[ncount] = base_info[nbr];
 	if (n < 0)
 		result[ncount - 1] = '-';
-		return (result);
+	return (result);
 }

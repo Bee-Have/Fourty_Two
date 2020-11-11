@@ -6,60 +6,11 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 17:15:19 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/10 10:18:41 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:35:43 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		ft_strlen(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-/*char	*ft_strcpy(char *str)
-{
-	int		i;
-	char	*result;
-
-	i = 0;
-	result = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	result[ft_strlen(str)] = '\0';
-	while (str[i] != '\0')
-	{
-		result[i] = str[i];
-		i++;
-	}
-	return (result);
-}*/
-
-
-
-void	ft_putchar(char c)
-{
-	write(1, c, 1);
-}
-
-void	ft_putstr(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-
-//the functions after this are for the tests i am conducting
 
 char	*ft_strjoin_char(char *str, char c)
 {

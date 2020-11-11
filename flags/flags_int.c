@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:28:39 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:16:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:18:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*flags_int(char *str, char *flags, int padding)
 	}
 	i = 0;
 	spaces = calc_spaces(str, padding);
-	result = (char *)malloc((space + ft_strlen(str) + 1) * sizeof(char));
+	result = (char *)malloc((spaces + ft_strlen(str) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	result[spaces + ft_strlen(str)] = '\0';

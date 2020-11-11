@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specifications.h                                   :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/09 14:17:51 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:43:56 by amarini-         ###   ########.fr       */
+/*   Created: 2020/11/11 12:32:37 by amarini-          #+#    #+#             */
+/*   Updated: 2020/11/11 13:34:13 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPECIFICATIONS_H
-# define SPECIFICATIONS_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <stdarg.h>
-# include "convert_int/convert_int.h"
-# include "../libft/libft.h"
 
-char	*spec_c(va_list args);
-char	*spec_s(va_list args);
-char	*spec_p(va_list args);
-char	*spec_di(va_list args);
-char	*spec_u(va_list args);
-char	*spec_xX(va_list args);
-char	*spec_percentage(va_list args);
-char	*ft_strjoin(char *dst, char *src);
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
