@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 16:28:39 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:18:13 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/13 19:18:51 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*flags_int(char *str, char *flags, int padding)
 	}
 	i = 0;
 	spaces = calc_spaces(str, padding);
+	printf("spaces=[%d]\n", spaces);
 	result = (char *)malloc((spaces + ft_strlen(str) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
@@ -47,5 +48,6 @@ char	*flags_int(char *str, char *flags, int padding)
 	}
 	if (padding < 0)
 		result = fill_pre_sufix(str, fill, spaces, i - ft_strlen(str));
+	free(str);
 	return (result);
 }

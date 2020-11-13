@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 17:15:19 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:35:43 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/13 14:04:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*ft_strjoin_char(char *str, char c)
 		i++;
 	}
 	result[i] = c;
+	if (str[i] != '\0')
+		free(str);
 	return (result);
 }
 

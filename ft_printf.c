@@ -6,14 +6,14 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:42:34 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 13:50:30 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/13 19:16:27 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 char	*found_args = "";
-char	*specs = "cspdiuxX%";
+char	*allspecs = "cspdiuxX%";
 int		padding = 0;
 
 int		sort_behavior(va_list args, char spec)
@@ -25,9 +25,10 @@ int		sort_behavior(va_list args, char spec)
 	int		i;
 
 	i = 0;
-	while (specs[i] != '\0')
+	print = NULL;
+	while (allspecs[i] != '\0')
 	{
-		if (specs[i] == spec)
+		if (spec == allspecs[i])
 		{
 			print = read_spec[i](args);
 			break;
@@ -39,22 +40,25 @@ int		sort_behavior(va_list args, char spec)
 		print = flags_int(print, found_args, padding);
 	else if (spec == 'c' || spec == 's')
 		print = flags_char(print, found_args, padding);
-	//if (!print || print[0] == '\0')
-	//	print = no_spec(spec);
-	result = ft_strlen(print);
-	ft_putstr(print);
+	if (!print || print[0] == '\0')   
+		return (0);
+	else
+	{
+		result = ft_strlen(print);
+		ft_putstr(print);
+	}
 	return (result);
 }
 
 int		register_flags(va_list args, char *str)
 {
-	char	*flags = "0-c*";
+	char	*flags = "0-.*";
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] >= '1' && str[i] <= '9')
 	{
 		padding = (padding * 10) + (str[i] - '0');
 		i++;
@@ -79,7 +83,8 @@ int		register_flags(va_list args, char *str)
 			padding = va_arg(args, int);
 		j++;
 	}
-	return (i);
+	free(str);
+	return (ft_strlen(found_args));
 }
 
 int		ft_printf(const char *str, ...)
@@ -96,9 +101,8 @@ int		ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			i = register_flags(args, ft_substr(str, i, ft_strlen((char *)str) - i));
+			i += register_flags(args, ft_substr(str, i, ft_strlen((char *)str) - i));
 			result += sort_behavior(args, str[i]);
-			i++;
 		}
 		else
 		{

@@ -2,9 +2,14 @@
 
 int		main()
 {
-	char c = 'A';
+	//int		res;
+	//int		myres;
+	//char	c = 'A';
+	//char	*str = "hello";
+	int		nbr = 11;
 
-	printf("%c\n", c);
-	ft_printf("%c\n", c);
+	printf("original=[%0*d]\n", 3, nbr);
+	ft_printf("mine=[%0*d]\n", 3, nbr);
+	//printf("original=[%d]\nmine=[%d]\n", res, myres);
 	return (0);
 }

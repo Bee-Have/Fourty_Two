@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:05:19 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:07:49 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/13 14:09:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ char	*flags_char(char *str, char *flags, int padding)
 	}
 	if (padding < 0)
 		result = fill_pre_sufix(str, ' ', spaces, i - ft_strlen(str));
+	free(str);
 	return (result);
 }
