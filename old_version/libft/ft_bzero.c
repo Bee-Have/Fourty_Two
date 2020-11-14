@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 16:26:41 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 12:44:28 by amarini-         ###   ########.fr       */
+/*   Created: 2020/11/13 22:04:28 by amarini-          #+#    #+#             */
+/*   Updated: 2020/11/13 22:05:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLAGS_H
-# define FLAGS_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "../libft/libft.h"
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned int	i;
+	char			*tab;
 
-char	*flags_int(char *str, char *flags, int padding);
-char	*flags_char(char *str, char *flags, int padding);
-int		calc_spaces(char *str, int padding);
-char	*fill_pre_sufix(char *str, char fill, int spaces, int i);
-
-#endif
+	i = 0;
+	tab = (char *)s;
+	if (n == 0)
+		return ;
+	while (i < n)
+	{
+		tab[i] = '\0';
+		i++;
+	}
+}

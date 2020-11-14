@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_int.h                                      :+:      :+:    :+:   */
+/*   flags_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 15:22:42 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:27:23 by amarini-         ###   ########.fr       */
+/*   Created: 2020/11/10 11:07:40 by amarini-          #+#    #+#             */
+/*   Updated: 2020/11/13 21:25:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONVERT_INT_H
-# define CONVERT_INT_H
+#include "flags.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
+int		calc_spaces(char *str, int padding)
+{
+	int		result;
+	int		strlen;
 
-char	*ft_itoa(int n);
-char	*ft_itoa_base(int n, int base);
-int		ft_countnbr(int n, int nbr, int base);
-int		ft_check_negative(int n);
+	strlen = ft_strlen(str);
+	if (padding < 0)
+		padding *= -1;
+	if (padding < strlen)
+		result = strlen - padding;
+	else
+		result = padding - strlen;
+	return (result);
+}
 
-#endif
+char	*fill_pre_sufix(char *str, char fill, int *spaces, int i)
+{
+	while (i < *spaces)
+	{
+		str[i] = fill;
+		i++;
+	}
+	*spaces = 0;
+	return (str);
+}

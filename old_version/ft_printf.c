@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 12:42:34 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/13 19:16:27 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/13 22:31:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int		sort_behavior(va_list args, char spec)
 		print = flags_int(print, found_args, padding);
 	else if (spec == 'c' || spec == 's')
 		print = flags_char(print, found_args, padding);
-	if (!print || print[0] == '\0')   
-		return (0);
-	else
+	if (!print || print[0] == '\0')
 	{
-		result = ft_strlen(print);
-		ft_putstr(print);
+		free(print);
+		return (0);
 	}
+	result = ft_strlen(print);
+	ft_putstr(print);
 	return (result);
 }
 
@@ -58,11 +58,6 @@ int		register_flags(va_list args, char *str)
 
 	i = 0;
 	j = 0;
-	while (str[i] >= '1' && str[i] <= '9')
-	{
-		padding = (padding * 10) + (str[i] - '0');
-		i++;
-	}
 	while (str[i] != '\0')
 	{
 		while (flags[j] != '\0')
@@ -74,6 +69,11 @@ int		register_flags(va_list args, char *str)
 			}
 			j++;
 		}
+		i++;
+	}
+	while (str[i] >= '1' && str[i] <= '9')
+	{
+		padding = (padding * 10) + (str[i] - '0');
 		i++;
 	}
 	j = 0;
@@ -103,6 +103,7 @@ int		ft_printf(const char *str, ...)
 			i++;
 			i += register_flags(args, ft_substr(str, i, ft_strlen((char *)str) - i));
 			result += sort_behavior(args, str[i]);
+			ft_bzero(found_args, ft_strlen(found_args));
 		}
 		else
 		{

@@ -6,11 +6,22 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 17:15:19 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/13 14:04:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/13 22:09:18 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*make_empty()
+{
+	char	*str;
+
+	str = (char *)malloc(sizeof(char));
+	if (!str)
+		return (NULL);
+	str[0] = '\0';
+	return (str);
+}
 
 char	*ft_strjoin_char(char *str, char c)
 {
@@ -18,6 +29,8 @@ char	*ft_strjoin_char(char *str, char c)
 	int		i;
 
 	i = 0;
+	if (!str)
+		str = make_empty();
 	result = (char *)malloc((ft_strlen(str) + 2) * sizeof(char));
 	if (!result)
 		return (NULL);
@@ -28,7 +41,7 @@ char	*ft_strjoin_char(char *str, char c)
 		i++;
 	}
 	result[i] = c;
-	if (str[i] != '\0')
+	if (str[0] == '\0')
 		free(str);
 	return (result);
 }

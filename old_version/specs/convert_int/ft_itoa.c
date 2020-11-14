@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 14:15:33 by amarini-          #+#    #+#             */
-/*   Updated: 2020/11/11 13:40:05 by amarini-         ###   ########.fr       */
+/*   Created: 2020/10/29 14:00:04 by amarini-          #+#    #+#             */
+/*   Updated: 2020/11/13 21:17:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert_int.h"
 
-char	*ft_itoa_base(int n, int base)
+char	*ft_itoa(int n)
 {
-	char	*base_info;
 	int		ncount;
 	int		nbr;
 	char	*result;
 
-	base_info = "0123456789abcdef";
 	nbr = ft_check_negative(n);
-	ncount = ft_countnbr(n, nbr, base);
+	ncount = ft_countnbr(nbr, 10);
 	result = (char *)malloc((ncount + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	result[ncount] = '\0';
 	ncount--;
-	while (ncount > 0 && nbr >= base)
+	while (ncount > 0 && nbr >= 10)
 	{
-		nbr = ft_check_negative(n) % base;
-		result[ncount] = base_info[nbr];
+		nbr = ft_check_negative(n) % 10;
+		result[ncount] = nbr + '0';
 		ncount--;
-		n = n / base;
+		n = n / 10;
 		nbr = ft_check_negative(n);
 	}
 	if (ncount <= 1)
-		result[ncount] = base_info[nbr];
+		result[ncount] = nbr + '0';
 	if (n < 0)
 		result[ncount - 1] = '-';
 	return (result);

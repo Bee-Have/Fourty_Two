@@ -6,18 +6,16 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 15:33:52 by amarini-          #+#    #+#             */
-/*   Updated: 2020/10/29 16:13:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2020/11/13 21:16:29 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert_int.h"
 
-int		ft_countnbr(int n, int nbr, int base)
+int		ft_countnbr(int nbr, int base)
 {
 	int		count;
 
-	if (n == 0)
-		return (1);
 	count = 0;
 	while (nbr > 0)
 	{
