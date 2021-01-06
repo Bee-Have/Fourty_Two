@@ -1,0 +1,18 @@
+get str
+itterate through str until '%'
+	if '%' = 
+		- putstr of found char
+		- empty found char
+		- send str[index] to function
+			if '%'[++] (!= converts) || (!= flags) =
+				- STOP
+			else =
+				- init struct
+			- register flags to struct
+			- define convert
+				- put convert into string
+			- add flags
+			- padding to string
+			- print string
+	if '!%' = 
+		- add char to str
