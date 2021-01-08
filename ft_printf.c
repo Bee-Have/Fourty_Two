@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/07 18:06:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/08 18:15:27 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int		ft_printf(const char *str, ...)
 {
 	va_list args;
 	char	*rest;
+	int		result;
 	int		i;
 	int		j;
 	
 	va_start(args, str);
+	result = 0;
 	rest = (char *)malloc((ft_strlen((char *)str) + 1) * sizeof(char));
 	if (!rest)
 		return (0);
@@ -34,28 +36,35 @@ int		ft_printf(const char *str, ...)
 			rest = empty_str(rest);
 			j = 0;
 			i++;
-			str_data_managment(str_trim((char *)str, i), args);
+			result += str_data_managment((char *)str, &i, args);
 		}
 		else
 		{
 			rest[j] = str[i];
 			j++;
+			result++;
 		}
 		i++;
 	}
 	free(rest);
+	return (result);
 }
 
-void	str_data_managment(char *str, va_list args)
+int	str_data_managment(char *str, int *i, va_list args)
 {
 	t_list	*list;
-	int		i;
+	int		result;
 
-	i = 0;
+	result = 0;
 	list = init_struct();
-	list->padding = padding_register(str, &i);
-	list = flags_register(list, str, args, &i);
-	return ;
+	list->padding = padding_register(str, i);
+	flags_register(&list, str, args, i);
+	list->print = convert_arg(str, args, *i);
+	ft_putstr(list->print);
+	result = list->padding + list->length;
+	free(list->print);
+	free(list);
+	return (result);
 }
 
 t_list	*init_struct(void)

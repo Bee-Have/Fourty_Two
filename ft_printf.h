@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/07 17:40:27 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/08 18:11:10 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-int		ft_printf(const char *str, ...);
-void	str_data_managment(char *str, va_list args);
+int				ft_printf(const char *str, ...);
+int			str_data_managment(char *str, int *i, va_list args);
 
 typedef	struct	s_list
 {
@@ -29,16 +29,29 @@ typedef	struct	s_list
 	char	pad_char;
 	char	*print;
 }				t_list;
-t_list	*init_struct(void);
-int	padding_register(char *str, int *i);
-t_list	*flags_register(t_list *list, char *str, va_list args, int *i);
+t_list			*init_struct(void);
+int				padding_register(char *str, int *i);
+void			flags_register(t_list **list, char *str, va_list args, int *i);
+char			*convert_arg(char *str, va_list args, int index);
 
-int		ft_strlen(char *str);
-char	*empty_str(char *str);
-char	*str_cpy(char *content);
-char	*str_trim(char *str, int start);
+int				ft_strlen(char *str);
+char			*empty_str(char *str);
+char			*str_cpy(char *content);
+char			*str_trim(char *str, int start);
+char			*ft_strjoin(char *dst, char *src);
 
-void	ft_write(char c);
-void	ft_putstr(char *str);
+char			*char_to_string(char c);
+char			*address_to_string(unsigned int nbr);
+char			*int_to_string(unsigned int nbr);
+char			*hexa_to_string(unsigned int nbr);
+
+char			*ft_itoa_base(unsigned int n, int base);
+char			*ft_itoa(int n);
+int				ft_countnbr(long int nbr, int base);
+unsigned int	ft_check_negative(long int n);
+char			*ft_toupper(char *str);
+
+void			ft_write(char c);
+void			ft_putstr(char *str);
 
 #endif
