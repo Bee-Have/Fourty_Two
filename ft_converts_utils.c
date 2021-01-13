@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:20:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/08 17:59:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/13 11:54:29 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char				*ft_itoa_base(unsigned int n, int base)
 		n_copy = n_copy / base;
 		nbr = n_copy;
 	}
-	if (n > 0 && ncount >= 1)
+	if (n > 0 && ncount >= 0)
 		result[ncount] = base_info[nbr];
 	if (n < 0)
 		result[ncount] = '-';
@@ -101,10 +101,13 @@ unsigned int		ft_check_negative(long int n)
 char	*ft_toupper(char *str)
 {
 	int		i;
+	
+	i = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] >= 'a' && str[i] <= 'z')
 			str[i] -= 32;
 		i++;
 	}
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:49:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/08 17:43:04 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/13 12:50:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*empty_str(char *str)
+char	*fill_str(char *str, char fill, int length)
 {
-	int		length;
 	int		i;
 
 	length = ft_strlen(str);
 	i = 0;
+	str[length] = '\0';
 	while (i < length)
 	{
-		str[i] = '\0';
+		str[i] = fill;
 		i++;
 	}
 	return (str);
