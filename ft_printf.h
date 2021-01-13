@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/13 12:57:00 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:41:15 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,21 @@ typedef	struct	s_list
 	char	*print;
 }				t_list;
 t_list			*init_struct(void);
+
 int				padding_register(char *str, int *i);
 void			flags_register(t_list **list, char *str, va_list args, int *i);
 char			*convert_arg(char *str, va_list args, int index);
+void			flags_managment(t_list **list);
+
 
 int				ft_strlen(char *str);
 char			*fill_str(char *str, char fill, int length);
 char			*str_cpy(char *content);
-char			*str_trim(char *str, int start);
 char			*ft_strjoin(char *dst, char *src);
+
+char			*str_trim(char *str, int length);
+char			*make_extention(char fill, int length);
+int				calculate_padding(int padding, int length);
 
 char			*char_to_string(char c);
 char			*address_to_string(unsigned int nbr);

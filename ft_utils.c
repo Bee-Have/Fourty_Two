@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:49:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/13 12:50:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:21:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*fill_str(char *str, char fill, int length)
 {
 	int		i;
 
-	length = ft_strlen(str);
 	i = 0;
 	str[length] = '\0';
 	while (i < length)
@@ -57,28 +56,6 @@ char	*str_cpy(char *content)
 	return (result);
 }
 
-char	*str_trim(char *str, int start)
-{
-	char	*result;
-	int		length;
-	int		i;
-
-	i = 0;
-	length = 0;
-	while (str[length] != '\0')
-		length++;
-	length = length - start;
-	result = (char *)malloc((length + 1) * sizeof(char));
-	result[length] = '\0';
-	while (str[start] != '\0')
-	{
-		result[i] = str[start];
-		i++;
-		start++;
-	}
-	return (result);
-}
-
 char	*ft_strjoin(char *dst, char *src)
 {
 	char	*result;
@@ -103,5 +80,7 @@ char	*ft_strjoin(char *dst, char *src)
 		result[i] = src[i - ft_strlen(dst)];
 		i++;
 	}
+	free(dst);
+	free(src);
 	return (result);
 }

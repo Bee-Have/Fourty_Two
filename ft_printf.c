@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/13 13:01:17 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:13:26 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ int	str_data_managment(char *str, int *i, va_list args)
 	list = init_struct();
 	list->padding = padding_register(str, i);
 	flags_register(&list, str, args, i);
+	(*i)--;
 	list->convert = str[(*i)];
 	list->print = convert_arg(str, args, *i);
 	if (list->length == 0)
 		list->length = ft_strlen(list->print);
+	flags_managment(&list);
 	ft_putstr(list->print);
 	result = list->padding + list->length;
 	free(list->print);
