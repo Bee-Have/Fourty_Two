@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/13 15:55:21 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/14 15:18:38 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 	{
 		if (str[(*i)] == '-')
 			(*list)->neg_padding = 1;
+		else if (str[(*i)] == '*')
+			(*list)->padding = va_arg(args, int);
 		else if (str[(*i)] == '0')
 		{
 			(*list)->pad_char = '0';
@@ -50,9 +52,9 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 			}
 			if (str[(*i)] == '*')
 				(*list)->length = va_arg(args, int);
+			if ((*list)->length < 0)
+				(*list)->length = 0;
 		}
-		else if (str[(*i)] == '*')
-			(*list)->padding = va_arg(args, int);
 		else
 			break ;
 		(*i)++;
@@ -87,25 +89,26 @@ char	*convert_arg(char *str, va_list args, int index)
 
 void	flags_managment(t_list **list)
 {
-	char	*result;
+	char	*copy;
 	char	*extention;
 
-	result = (*list)->print;
-	if ((*list)->convert == 's' && (*list)->length < ft_strlen((*list)->print))
+	copy = str_cpy((*list)->print);
+	if ((*list)->convert == 's' && (*list)->length < ft_strlen(copy))
 		(*list)->print = str_trim((*list)->print, (*list)->length);
-	else if ((*list)->convert != 's' && (*list)->length > ft_strlen((*list)->print))
+	else if ((*list)->convert != 's' && (*list)->length > ft_strlen(copy))
 	{
-		extention = make_extention('0', (*list)->length - ft_strlen((*list)->print));
+		extention = make_extention('0', (*list)->length - ft_strlen(copy));
 		(*list)->print = ft_strjoin(extention, (*list)->print);
 	}
 	if ((*list)->padding != 0)
 	{
 		(*list)->padding = calculate_padding((*list)->padding, (*list)->length);
-		(*list)->length = ft_strlen((*list)->print) + (*list)->padding;
+		(*list)->length = ft_strlen(copy) + (*list)->padding;
 		extention = make_extention((*list)->pad_char, (*list)->padding);
 		if ((*list)->neg_padding == 0)
 			(*list)->print = ft_strjoin(extention, (*list)->print);
 		else if ((*list)->neg_padding == 1)
 			(*list)->print = ft_strjoin((*list)->print, extention);
 	}
+	free(copy);
 }
