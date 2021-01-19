@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/13 15:41:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/19 17:18:21 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,24 @@ typedef	struct	s_list
 	char	convert;
 	char	*print;
 }				t_list;
-t_list			*init_struct(void);
 
-int				padding_register(char *str, int *i);
+void			padding_register(char *str, int *i, t_list **list);
 void			flags_register(t_list **list, char *str, va_list args, int *i);
 char			*convert_arg(char *str, va_list args, int index);
 void			flags_managment(t_list **list);
 
+t_list			*init_struct(void);
+void			ft_free_list(t_list **list);
 
 int				ft_strlen(char *str);
 char			*fill_str(char *str, char fill, int length);
 char			*str_cpy(char *content);
 char			*ft_strjoin(char *dst, char *src);
+int				return_to_percent(char *str, int *i, t_list **list);
 
 char			*str_trim(char *str, int length);
-char			*make_extention(char fill, int length);
+char			*make_extention(char fill, int length, char convertion);
+int				register_padding_flags(char *str, int *i, t_list **list);
 int				calculate_padding(int padding, int length);
 
 char			*char_to_string(char c);

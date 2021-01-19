@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/14 15:18:59 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/19 17:26:59 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ int	str_data_managment(char *str, int *i, va_list args)
 
 	result = 0;
 	list = init_struct();
-	list->padding = padding_register(str, i);
-	list->convert = str[(*i)];
+	padding_register(str, i, &list);
 	flags_register(&list, str, args, i);
+	if (list->length != 0 && list->neg_padding == 1)
+		return (return_to_percent(str, i, &list));
+	list->convert = str[(*i)];
 	list->print = convert_arg(str, args, *i);
-	if (list->length == 0)
+	if (list->print != NULL && list->length == 0)
 		list->length = ft_strlen(list->print);
 	if (list->padding <= 0)
 	{
@@ -72,26 +74,11 @@ int	str_data_managment(char *str, int *i, va_list args)
 		list->neg_padding = 1;
 	}
 	flags_managment(&list);
-	ft_putstr(list->print);
-	result = list->padding + list->length;
-	free(list->print);
-	free(list);
+	if (list->print)
+		ft_putstr(list->print);
+	else
+		return (return_to_percent(str, i, &list));
+	result = list->length;
+	ft_free_list(&list);
 	return (result);
-}
-
-t_list	*init_struct(void)
-{
-	t_list *list;
-
-	list = NULL;
-	list = (t_list *)malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->length = 0;
-	list->padding = 0;
-	list->neg_padding = 0;
-	list->pad_char = ' ';
-	list->convert = 'a';
-	list->print = NULL;
-	return (list);
 }

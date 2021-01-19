@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:20:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/14 15:42:38 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/14 16:40:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_itoa(int n)
 		n = n / 10;
 		nbr = ft_check_negative(n);
 	}
-	if (ncount <= 1)
+	if (ncount <= 1 && ncount >= 0)
 	{
 		result[ncount] = nbr + '0';
 		ncount--;

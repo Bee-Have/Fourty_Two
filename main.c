@@ -2,17 +2,11 @@
 
 int		main()
 {
-	int		res;
-	int		myres;
-	//void	*test;
-	//char	c = 'A';
-	//char	*str = "hello";
-	//int		nbr = 11;
+	int		res = 0;
+	int		myres = 0;
 
-	//printf("%1.s", str);
-	myres = ft_printf("mee=%.*X HAHA\n", 5, 99);
-	res = printf("dis=%.*X HAHA\n", 5, 99);
-
-	printf("me[%d]-[%d]dis\n", myres, res);
+	myres = ft_printf("me%.*c\n", 3, 'a');
+	res = printf("ye%.3c\n", 'a');
+	printf("16[%d]-[%d]\n", myres, res);
 	return (0);
 }

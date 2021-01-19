@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_str_managment.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/06 21:49:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/14 15:21:30 by amarini-         ###   ########.fr       */
+/*   Created: 2021/01/19 17:09:48 by amarini-          #+#    #+#             */
+/*   Updated: 2021/01/19 17:18:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,14 @@ char	*ft_strjoin(char *dst, char *src)
 	free(dst);
 	free(src);
 	return (result);
+}
+
+int		return_to_percent(char *str, int *i, t_list **list)
+{
+	while (str[(*i)] != '%')
+		(*i)--;
+	ft_write('%');
+	free((*list)->print);
+	free((*list));
+	return (1);
 }
