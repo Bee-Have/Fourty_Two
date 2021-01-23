@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/22 16:11:10 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/23 17:48:29 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			str_data_managment(char *str, int *i, va_list args);
 
 typedef	struct	s_list
 {
+	int		problem;
 	int		length;
 	int		len_flag;
 	int		padding;

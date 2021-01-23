@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:49:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/22 15:54:43 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/23 17:48:42 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_list	*init_struct(void)
 	list = (t_list *)malloc(sizeof(t_list));
 	if (!list)
 		return (NULL);
+	list->problem = 0;
 	list->length = 0;
 	list->len_flag = 0;
 	list->padding = 0;

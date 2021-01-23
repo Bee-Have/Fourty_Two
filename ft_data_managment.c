@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/23 14:46:33 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/23 18:10:02 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,11 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 	while (str[(*i)] != '\0')
 	{
 		if (str[(*i)] == '-')
-		{
 			(*list)->padding = padding_register(str, i, list, args);
-			(*i)--;
-		}
 		else if (str[(*i)] == '0')
 		{
+			if ((*list)->len_flag == 1)
+				(*list)->problem = 1;
 			(*list)->pad_char = '0';
 			(*list)->padding = padding_register(str, i, list, args);
 			(*i)--;
@@ -64,8 +63,11 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 			(*list)->len_flag = 1;
 			(*i)++;
 			(*list)->length = padding_register(str, i, list, args);
-			(*i)--;
+			if ((*list)->padding != 0)
+				(*i)--;
 		}
+		else if (str[(*i)] == '*')
+			(*list)->problem = 1;
 		else
 			return ;
 		(*i)++;

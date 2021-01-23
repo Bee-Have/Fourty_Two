@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/23 14:51:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/23 18:07:19 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,8 @@ int	str_data_managment(char *str, int *i, va_list args)
 	list->padding = padding_register(str, i, &list, args);
 	flags_register(&list, str, args, i);
 	list->convert = str[(*i)];
-	if (list->len_flag == 1 && list->neg_padding == 1)
+	if ((list->len_flag == 1 && list->neg_padding == 1) || list->problem == 1)
 		return (return_to_percent(str, i, &list));
-	printf("current[%c]\n", str[(*i)]);
 	list->print = convert_arg(str, args, *i);
 	if (list->print != NULL && list->length == 0)
 		list->length = ft_strlen(list->print);
