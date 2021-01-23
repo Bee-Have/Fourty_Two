@@ -6,37 +6,42 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/19 16:57:28 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:46:33 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	padding_register(char *str, int *i, t_list **list)
+int		padding_register(char *str, int *i, t_list **list, va_list args)
 {
 	int		result;
 
 	result = 0;
+	//(*i)++;
 	if (str[(*i)] == '-')
 	{
-		(*list)->neg_padding == 1;
+		(*list)->neg_padding = 1;
 		(*list)->pad_char = ' ';
 		(*i)++;
 	}
 	if (str[(*i)] == '0')
-		return ;
-	while (str[(*i)] != '\0')
 	{
-		if (str[(*i)] >= '0' && str[(*i)] <= '9')
-			result = (result * 10) + (str[(*i)] - '0');
-		else
-		{
-			(*list)->padding = result;
-			return ;
-		}
+		(*i)++;
+		if (str[(*i)] <= '0' && str[(*i)] >= '9')
+			return (0);
+	}
+	if (str[(*i)] == '*')
+	{
+		result = va_arg(args, int);
 		(*i)++;
 	}
-	(*list)->padding = result;
+	else
+		while (str[(*i)] != '\0' && str[(*i)] >= '0' && str[(*i)] <= '9')
+		{
+			result = (result * 10) + (str[(*i)] - '0');
+			(*i)++;
+		}
+	return (result);
 }
 
 void	flags_register(t_list **list, char *str, va_list args, int *i)
@@ -45,23 +50,21 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 	{
 		if (str[(*i)] == '-')
 		{
-			(*list)->neg_padding = 1;
-			(*list)->pad_char = ' ';
+			(*list)->padding = padding_register(str, i, list, args);
+			(*i)--;
 		}
-		else if (str[(*i)] == '*')
-			(*list)->padding = va_arg(args, int);
 		else if (str[(*i)] == '0')
 		{
 			(*list)->pad_char = '0';
-			(*list)->padding = register_padding_flags(str, i, list);
+			(*list)->padding = padding_register(str, i, list, args);
+			(*i)--;
 		}
 		else if (str[(*i)] == '.')
 		{
-			(*list)->length = register_padding_flags(str, i, list);
-			if (str[(*i)] == '*')
-				(*list)->length = va_arg(args, int);
-			if ((*list)->length < 0)
-				(*list)->length = 0;
+			(*list)->len_flag = 1;
+			(*i)++;
+			(*list)->length = padding_register(str, i, list, args);
+			(*i)--;
 		}
 		else
 			return ;

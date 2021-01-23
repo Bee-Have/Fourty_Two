@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/19 17:18:21 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/22 16:11:10 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int			str_data_managment(char *str, int *i, va_list args);
 typedef	struct	s_list
 {
 	int		length;
+	int		len_flag;
 	int		padding;
 	int		neg_padding;
 	char	pad_char;
@@ -31,7 +32,7 @@ typedef	struct	s_list
 	char	*print;
 }				t_list;
 
-void			padding_register(char *str, int *i, t_list **list);
+int				padding_register(char *str, int *i, t_list **list, va_list args);
 void			flags_register(t_list **list, char *str, va_list args, int *i);
 char			*convert_arg(char *str, va_list args, int index);
 void			flags_managment(t_list **list);
@@ -47,7 +48,7 @@ int				return_to_percent(char *str, int *i, t_list **list);
 
 char			*str_trim(char *str, int length);
 char			*make_extention(char fill, int length, char convertion);
-int				register_padding_flags(char *str, int *i, t_list **list);
+int				register_padding_flags(char *str, int *i, t_list **list, va_list args);
 int				calculate_padding(int padding, int length);
 
 char			*char_to_string(char c);
