@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/23 18:10:02 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:00:56 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,30 @@ int		padding_register(char *str, int *i, t_list **list, va_list args)
 	int		result;
 
 	result = 0;
-	//(*i)++;
-	if (str[(*i)] == '-')
-	{
-		(*list)->neg_padding = 1;
-		(*list)->pad_char = ' ';
-		(*i)++;
-	}
+	register_negative_padding(str, i, list, &result);
 	if (str[(*i)] == '0')
 	{
 		(*i)++;
-		if (str[(*i)] <= '0' && str[(*i)] >= '9')
+		if (str[(*i)] < '0' || str[(*i)] > '9')
+		{
+			(*i)--;
 			return (0);
+		}
 	}
 	if (str[(*i)] == '*')
 	{
 		result = va_arg(args, int);
 		(*i)++;
+		register_negative_padding(str, i, list, &result);
 	}
 	else
+	{
 		while (str[(*i)] != '\0' && str[(*i)] >= '0' && str[(*i)] <= '9')
 		{
 			result = (result * 10) + (str[(*i)] - '0');
 			(*i)++;
 		}
+	}
 	return (result);
 }
 
@@ -49,13 +49,22 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 	while (str[(*i)] != '\0')
 	{
 		if (str[(*i)] == '-')
-			(*list)->padding = padding_register(str, i, list, args);
-		else if (str[(*i)] == '0')
 		{
 			if ((*list)->len_flag == 1)
+			{
+				(*list)->neg_len == 1;
+				(*list)->problem = 1;
+			}
+			(*list)->padding = padding_register(str, i, list, args);
+		}
+		else if (str[(*i)] == '0')
+		{
+			if ((*list)->len_flag == 1 && (*list)->length != 0)
 				(*list)->problem = 1;
 			(*list)->pad_char = '0';
+			(*i)++;
 			(*list)->padding = padding_register(str, i, list, args);
+			register_negative_padding(str, i, list, &(*list)->padding);
 			(*i)--;
 		}
 		else if (str[(*i)] == '.')
@@ -63,11 +72,13 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 			(*list)->len_flag = 1;
 			(*i)++;
 			(*list)->length = padding_register(str, i, list, args);
-			if ((*list)->padding != 0)
+			if (ft_str_cmp(str[(*i)], "cspdiuxX%") == 1 || (*list)->length != 0)
 				(*i)--;
 		}
 		else if (str[(*i)] == '*')
+		{
 			(*list)->problem = 1;
+		}
 		else
 			return ;
 		(*i)++;
@@ -101,23 +112,23 @@ char	*convert_arg(char *str, va_list args, int index)
 
 void	flags_managment(t_list **list)
 {
-	char	*copy;
 	char	*extention;
 
 	if (!(*list)->print)
 		return ;
-	copy = str_cpy((*list)->print);
-	if ((*list)->convert == 's' && (*list)->length < ft_strlen(copy))
+	if ((*list)->convert == 's' && (*list)->length < ft_strlen((*list)->print) && (*list)->len_flag == 1 && (*list)->length >= 0)
 		(*list)->print = str_trim((*list)->print, (*list)->length);
-	else if ((*list)->convert != 's' && (*list)->convert != 'c' && (*list)->length > ft_strlen(copy))
+	else if (ft_str_cmp((*list)->convert, "sc") == 0 && (*list)->length > ft_strlen((*list)->print) && (*list)->neg_padding == 0 && (*list)->neg_len == 0)
 	{
-		extention = make_extention('0', (*list)->length - ft_strlen(copy), (*list)->convert);
+		extention = make_extention('0', (*list)->length - ft_strlen((*list)->print), (*list)->convert);
 		(*list)->print = ft_strjoin(extention, (*list)->print);
 	}
+	if ((*list)->convert == 'p')
+		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
 	if ((*list)->padding != 0)
 	{
-		(*list)->padding = calculate_padding((*list)->padding, (*list)->length);
-		(*list)->length = ft_strlen(copy) + (*list)->padding;
+		(*list)->padding = calculate_padding((*list)->padding, ft_strlen((*list)->print));
+		(*list)->length = ft_strlen((*list)->print) + (*list)->padding;
 		extention = make_extention((*list)->pad_char, (*list)->padding, (*list)->convert);
 		if ((*list)->neg_padding == 0)
 			(*list)->print = ft_strjoin(extention, (*list)->print);
@@ -125,5 +136,4 @@ void	flags_managment(t_list **list)
 			(*list)->print = ft_strjoin((*list)->print, extention);
 	}
 	(*list)->length = ft_strlen((*list)->print);
-	free(copy);
 }

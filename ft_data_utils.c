@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:07:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/22 16:11:57 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/29 15:45:04 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ char	*str_trim(char *str, int length)
 	int		i;
 
 	i = 0;
-	result = (char *)malloc((length + 1) * sizeof(char));
+	if (length == 0)
+		result = (char *)malloc(sizeof(char));
+	else
+		result = (char *)malloc((length + 1) * sizeof(char));
 	result[length] = '\0';
 	while (i < length)
 	{
@@ -42,30 +45,6 @@ char	*make_extention(char fill, int length, char convertion)
 	return (result);
 }
 
-int		register_padding_flags(char *str, int *i, t_list **list, va_list args)
-{
-	int		result;
-
-	result = 0;
-	(*i)++;
-	if (str[(*i)] == '-')
-	{
-		(*list)->neg_padding = 1;
-		(*list)->pad_char = ' ';
-		(*i)++;
-	}
-	if (str[(*i)] == '*')
-		result = va_arg(args, int);
-	else
-		while (str[(*i)] != '\0' && str[(*i)] >= '0' && str[(*i)] <= '9')
-		{
-			result = (result * 10) + (str[(*i)] - '0');
-			(*i)++;
-		}
-	(*i)--;
-	return (result);
-}
-
 int		calculate_padding(int padding, int length)
 {
 	int		result;
@@ -76,4 +55,59 @@ int		calculate_padding(int padding, int length)
 	else
 		result = 0;
 	return (result);
+}
+
+void	register_negative_padding(char *str, int *i, t_list **list, int *nbr)
+{
+	if (str[(*i)] == '-')
+	{
+		if ((*list)->len_flag == 0)
+		{
+			(*list)->neg_padding = 1;
+			(*list)->pad_char = ' ';
+		}
+		else
+		{
+			(*list)->neg_len = 1;
+			(*list)->problem = 1;
+		}
+		(*i)++;
+	}
+	else if ((*list)->padding < 0 || (*list)->length < 0)
+	{
+		if ((*list)->len_flag == 0)
+		{
+			(*list)->neg_padding = 1;
+			(*list)->pad_char = ' ';
+		}
+		else
+			(*list)->neg_len = 1;
+		(*list)->padding = (*list)->padding * -1;
+	}
+	else if ((*nbr) < 0)
+	{
+		if ((*list)->len_flag == 0)
+		{
+			(*list)->neg_padding = 1;
+			(*list)->pad_char = ' ';
+		}
+		else
+			(*list)->neg_len = 1;
+		(*nbr) = (*nbr) * -1;
+	}
+	return ;
+}
+
+int		ft_str_cmp(char c, char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }

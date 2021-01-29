@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 17:09:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/19 17:18:28 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:04:18 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ char	*ft_strjoin(char *dst, char *src)
 		i++;
 	}
 	free(dst);
+	dst = NULL;
 	free(src);
 	return (result);
 }
@@ -90,6 +91,7 @@ int		return_to_percent(char *str, int *i, t_list **list)
 	while (str[(*i)] != '%')
 		(*i)--;
 	ft_write('%');
+	free((*list)->prefix);
 	free((*list)->print);
 	free((*list));
 	return (1);
