@@ -6,15 +6,15 @@
 #    By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 15:24:04 by amarini-          #+#    #+#              #
-#    Updated: 2021/01/14 15:55:53 by amarini-         ###   ########.fr        #
+#    Updated: 2021/01/29 16:11:11 by amarini-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 NAME = libftprintf.a
-SRCS = ft_printf.c ft_printf_utils.c ft_data_managment.c ft_data_utils.c \
-		ft_print.c ft_conversions.c  ft_converts_utils.c
+SRCS = ft_printf.c ft_list_managment.c ft_str_managment.c ft_data_managment.c \
+		ft_data_utils.c ft_print.c ft_conversions.c  ft_converts_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
