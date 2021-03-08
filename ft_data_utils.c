@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:07:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/29 15:45:04 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/02/18 18:55:06 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*str_trim(char *str, int length)
+char	*str_trim(char *str, int length, int start)
 {
 	char	*result;
 	int		i;
@@ -25,8 +25,9 @@ char	*str_trim(char *str, int length)
 	result[length] = '\0';
 	while (i < length)
 	{
-		result[i] = str[i];
+		result[i] = str[start];
 		i++;
+		start++;
 	}
 	free(str);
 	return (result);
@@ -98,16 +99,31 @@ void	register_negative_padding(char *str, int *i, t_list **list, int *nbr)
 	return ;
 }
 
-int		ft_str_cmp(char c, char *str)
+int		ft_str_cmp(char c, char *str, char *cmp)
 {
 	int		i;
 
+	if (!c && !str)
+		return (1);
 	i = 0;
-	while (str[i] != '\0')
+	if (c && !str)
 	{
-		if (str[i] == c)
-			return (1);
-		i++;
+		while (cmp[i] != '\0')
+		{
+			if (cmp[i] == c)
+				return (1);
+			i++;
+		}
+	}
+	else
+	{
+		while (str[i] != '\0' && cmp[i] != '\0')
+		{
+			if (str[i] != cmp[i])
+				return (1);
+			i++;
+		}
+		
 	}
 	return (0);
 }

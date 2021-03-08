@@ -121,7 +121,6 @@ int		main()
 	printf("37[%d]-[%d]\n", myres, res);
 	myres = ft_printf("me%.*05p\n", 5, (void *)test);
 	res = printf("ye%.*05p\n", 5, (void *)test);
-
 	printf("38[%d]-[%d]\n", myres, res);
 	return (0);
 }

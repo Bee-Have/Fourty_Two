@@ -6,18 +6,18 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:20:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/14 16:40:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/02/19 16:10:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char				*ft_itoa_base(unsigned int n, int base)
+char				*ft_itoa_base(unsigned long long int n, int base)
 {
 	char				*base_info;
 	int					ncount;
-	unsigned int		n_copy;
-	unsigned int		nbr;
+	unsigned long long int		n_copy;
+	unsigned long long int		nbr;
 	char				*result;
 
 	base_info = "0123456789abcdef";
@@ -29,7 +29,7 @@ char				*ft_itoa_base(unsigned int n, int base)
 		return (NULL);
 	result[ncount] = '\0';
 	ncount--;
-	while (ncount > 0 && nbr >= (unsigned int)base)
+	while (ncount > 0 && nbr >= (unsigned long long int)base)
 	{
 		nbr = n_copy % base;
 		result[ncount] = base_info[nbr];
@@ -42,13 +42,13 @@ char				*ft_itoa_base(unsigned int n, int base)
 	return (result);
 }
 
-char	*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
-	int		ncount;
-	int		nbr;
-	char	*result;
+	int			ncount;
+	long int	nbr;
+	char		*result;
 
-	nbr = ft_check_negative(n);
+	nbr = (long int)ft_check_negative((long int)n);
 	ncount = ft_countnbr(n, 10);
 	result = (char *)malloc((ncount + 1) * sizeof(char));
 	if (!result)
@@ -63,7 +63,7 @@ char	*ft_itoa(int n)
 		n = n / 10;
 		nbr = ft_check_negative(n);
 	}
-	if (ncount <= 1 && ncount >= 0)
+	if (ncount == 0 || ncount == 1)
 	{
 		result[ncount] = nbr + '0';
 		ncount--;
@@ -89,14 +89,14 @@ int					ft_countnbr(long int nbr, int base)
 	return (count);
 }
 
-unsigned int		ft_check_negative(long int n)
+unsigned long long int	ft_check_negative(long int n)
 {
 	if (n < 0)
-		return (n * -1);
+		n = n * -1;
 	return (n);
 }
 
-char	*ft_toupper(char *str)
+char					*ft_toupper(char *str)
 {
 	int		i;
 	

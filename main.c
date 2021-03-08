@@ -2,12 +2,15 @@
 
 int		main()
 {
-	int		res = 0;
-	int		myres = 0;
-	int		test = 5;
+	int		ret = 0;
+	int		ret2 = 0;
+	int		nb = 4294967295;
 
-	myres = ft_printf("me%-5%\n");
-	res = printf("ye%-5%\n");
-	printf("3[%d]-[%d]\n", myres, res);
+	ret = ft_printf("%03d\n",		nb);
+	ret2 = printf("%03d\n",		nb);
+	printf("14[%d]=[%d]\n", ret, ret2);
+	ret = ft_printf("%010d\n",		nb);
+	ret2 = printf("%010d\n",		nb);
+	printf("15[%d]=[%d]\n", ret, ret2);
 	return (0);
 }

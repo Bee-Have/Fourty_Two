@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:13:13 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/29 16:12:19 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/02/17 16:05:16 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,17 @@ char	*char_to_string(char c)
 	return (result);
 }
 
-char	*address_to_string(unsigned int nbr)
+char	*address_to_string(void *address)
 {
-	char	*result;
+	char						*result;
+	unsigned long long int		nbr;
 
+	if (!address)
+	{
+		result = str_cpy("0");
+		return (result);
+	}
+	nbr = (unsigned long long int)address;
 	result = ft_itoa_base(nbr, 16);
 	return (result);
 }

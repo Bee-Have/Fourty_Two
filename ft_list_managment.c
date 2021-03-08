@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:49:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/01/29 15:46:15 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/05 16:01:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_list	*init_struct(void)
 
 void	ft_free_list(t_list **list)
 {
-	if ((*list)->convert != 'p')
-		free((*list)->prefix);
 	free((*list)->print);
 	free((*list));
 }
