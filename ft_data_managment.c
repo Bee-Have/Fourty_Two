@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/08 14:56:30 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/16 16:39:45 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int		padding_register(char *str, int *i, t_list **list, va_list args)
 			(*i)--;
 			return (0);
 		}
-		(*list)->pad_char = '0';
+		else if ((*list)->neg_padding == 0)
+			(*list)->pad_char = '0';
 	}
 	if (str[(*i)] == '*')
 	{
@@ -75,6 +76,8 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 			(*list)->length = padding_register(str, i, list, args);
 			if (ft_str_cmp(str[(*i)], NULL, "cspdiuxX%") == 1 || (*list)->length != 0)
 				(*i)--;
+			if ((*list)->pad_char == '0')
+				(*list)->pad_char = ' ';
 		}
 		else if (str[(*i)] == '*')
 		{
@@ -99,10 +102,10 @@ char	*convert_arg(char *str, va_list args, int index)
 	else if (str[index] == 'd' || str[index] == 'i')
 		result = int_to_string(va_arg(args, int));
 	else if (str[index] == 'u')
-		result = int_to_string(va_arg(args, unsigned int));
+		result = hexa_to_string(va_arg(args, unsigned int), 10);
 	else if (str[index] == 'x' || str[index] == 'X')
 	{
-		result = hexa_to_string(va_arg(args, unsigned int));
+		result = hexa_to_string(va_arg(args, unsigned int), 16);
 		if (str[index] == 'X')
 			result = ft_toupper(result);
 	}
@@ -120,7 +123,7 @@ void	flags_managment(t_list **list)
 	prefix_used = 0;
 	if (!(*list)->print)
 		return ;
-	if ((*list)->convert == 'd' && (*list)->print[0] == '-')
+	if (ft_str_cmp((*list)->convert, NULL, "di") == 1 && (*list)->print[0] == '-')
 	{
 		free((*list)->prefix);
 		(*list)->prefix = str_cpy("-");
@@ -129,14 +132,20 @@ void	flags_managment(t_list **list)
 	extention_char = (*list)->pad_char;
 	if ((*list)->convert == 's' && (*list)->length < ft_strlen((*list)->print) && (*list)->len_flag == 1 && (*list)->length >= 0)
 		(*list)->print = str_trim((*list)->print, (*list)->length, 0);
-	else if ((*list)->convert != 'c' && (*list)->len_flag == 1 && (*list)->neg_len == 0 && (*list)->length > ft_strlen((*list)->print))
+	else if ((*list)->convert != 'c' && (*list)->convert != 's' && (*list)->len_flag == 1 && (*list)->neg_len == 0)
 	{
-		if ((*list)->pad_char == ' ')
-			extention_char = '0';
-		extention = make_extention(extention_char, (*list)->length - ft_strlen((*list)->print), (*list)->convert);
-		(*list)->print = ft_strjoin(extention, (*list)->print);
+		if ((*list)->length == 0 && ft_strlen((*list)->print) <= 1 && (*list)->print[0] == '0')
+			(*list)->print = str_trim((*list)->print, 0, 0);
+		else if ((*list)->length > ft_strlen((*list)->print))
+		{
+			if ((*list)->pad_char == ' ')
+				extention_char = '0';
+			extention = make_extention(extention_char, (*list)->length - ft_strlen((*list)->print), (*list)->convert);
+			(*list)->print = ft_strjoin(extention, (*list)->print);
+		}
 	}
-	else if (ft_str_cmp((*list)->convert, NULL, "pdi") == 1 && (*list)->prefix[0] == '-' && ((*list)->pad_char == ' ' || (*list)->len_flag == 0))
+	if ((*list)->convert == 'p' || (ft_str_cmp((*list)->convert, NULL, "di") == 1 && ((*list)->prefix[0] == '-')
+			&& (*list)->pad_char == ' ' /*&& (*list)->len_flag == 0)*/))
 	{
 		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
 		prefix_used = 1;
@@ -154,7 +163,8 @@ void	flags_managment(t_list **list)
 		else if ((*list)->neg_padding == 1)
 			(*list)->print = ft_strjoin((*list)->print, extention);
 	}
-	if (prefix_used == 0 && ft_str_cmp((*list)->convert, NULL, "pdi") == 1 && (*list)->prefix[0] == '-')
+	if (prefix_used == 0 && ((*list)->convert == 'p' ||
+		(ft_str_cmp((*list)->convert, NULL, "di") == 1 && (*list)->prefix[0] == '-')))
 	{
 		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
 		prefix_used = 1;

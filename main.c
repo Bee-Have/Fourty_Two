@@ -4,13 +4,11 @@ int		main()
 {
 	int		ret = 0;
 	int		ret2 = 0;
-	int		nb = 4294967295;
+	char	var = "abc";
+	unsigned int		nb = 4294967295 + 589;
 
-	ret = ft_printf("%03d\n",		nb);
-	ret2 = printf("%03d\n",		nb);
-	printf("14[%d]=[%d]\n", ret, ret2);
-	ret = ft_printf("%010d\n",		nb);
-	ret2 = printf("%010d\n",		nb);
-	printf("15[%d]=[%d]\n", ret, ret2);
+	ret = ft_printf("%%p::[%010.1d]\n", -8473);
+	ret2 = printf("%%p::[%010.1d]\n", -8473);
+	printf("68[%d]=[%d]\n", ret, ret2);
 	return (0);
 }

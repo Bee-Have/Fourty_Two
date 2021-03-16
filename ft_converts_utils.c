@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:20:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/02/19 16:10:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/15 16:12:45 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char				*ft_itoa_base(unsigned long long int n, int base)
 	char				*result;
 
 	base_info = "0123456789abcdef";
-	n_copy = ft_check_negative(n);
-	ncount = ft_countnbr(n, base);
+	n_copy = ft_check_negative((long int)n);
+	ncount = ft_countnbr((long int)n, base);
 	nbr = ft_check_negative(n_copy);
 	result = (char *)malloc((ncount + 1) * sizeof(char));
 	if (!result)
@@ -37,7 +37,7 @@ char				*ft_itoa_base(unsigned long long int n, int base)
 		n_copy = n_copy / base;
 		nbr = n_copy;
 	}
-	if (n > 0 && ncount >= 0)
+	if (ncount == 0 || ncount == 1)
 		result[ncount] = base_info[nbr];
 	return (result);
 }
@@ -86,6 +86,8 @@ int					ft_countnbr(long int nbr, int base)
 		nbr = nbr / base;
 		count++;
 	}
+	if (count == 0)
+		count++;
 	return (count);
 }
 
