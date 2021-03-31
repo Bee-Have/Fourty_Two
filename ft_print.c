@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:45:17 by amarini-          #+#    #+#             */
-/*   Updated: 2021/02/02 17:22:46 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/25 20:11:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	ft_putstr(char *str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return ;
 	while (str[i] != '\0')
 	{
 		ft_write(str[i]);

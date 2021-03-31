@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/15 16:06:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:25:31 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 #include <stdarg.h>
 
 int						ft_printf(const char *str, ...);
-int						str_data_managment(char *str, int *i, va_list args);
+int						data_managment(char *str, int *i, va_list args);
+int						end_rest(char *rest);
 
 typedef	struct			s_list
 {
 	int		problem;
 	int		length;
-	int		neg_len;
 	int		len_flag;
 	int		padding;
 	int		neg_padding;
@@ -50,10 +50,13 @@ char					*ft_strjoin(char *dst, char *src);
 int						return_to_percent(char *str, int *i, t_list **list);
 
 char					*str_trim(char *str, int length, int start);
-char					*make_extention(char fill, int length, char convertion);
-int						calculate_padding(int padding, int length);
+int						calc_pad(int padding, int length);
 void					register_negative_padding(char *str, int *i, t_list **list, int *nbr);
-int						ft_str_cmp(char c, char *str, char *cmp);
+int						str_cmp(char c, char *str, char *cmp);
+
+char					*make_extent(char fill, int length, char convertion);
+void					length_managment(t_list **list, char extra);
+void					apply_padding(t_list **list, int *prefix_used);
 
 char					*char_to_string(char c);
 char					*address_to_string(void *address);

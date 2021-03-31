@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:49:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/05 16:01:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/25 20:00:22 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_list	*init_struct(void)
+t_list		*init_struct(void)
 {
 	t_list *list;
 
@@ -22,7 +22,6 @@ t_list	*init_struct(void)
 		return (NULL);
 	list->problem = 0;
 	list->length = 0;
-	list->neg_len = 0;
 	list->len_flag = 0;
 	list->padding = 0;
 	list->neg_padding = 0;

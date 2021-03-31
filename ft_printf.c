@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/16 16:04:12 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:25:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,68 @@ int		ft_printf(const char *str, ...)
 	char	*rest;
 	int		result;
 	int		i;
-	int		j;
-	
+
 	va_start(args, str);
 	result = 0;
-	rest = (char *)malloc((ft_strlen((char *)str) + 1) * sizeof(char));
-	if (!rest)
-		return (0);
 	i = 0;
-	j = 0;
+	rest = str_cpy((char *)str);
+	rest = fill_str(rest, '\0', ft_strlen(str));
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
 		{
-			rest[j++] = '\0';
 			ft_putstr(rest);
+			result += data_managment((char*)str, &i, args) + ft_strlen(rest);
 			rest = fill_str(rest, '\0', ft_strlen((char *)str));
-			j = 0;
-			i++;
-			result += str_data_managment((char *)str, &i, args);
 		}
 		else
-		{
-			rest[j] = str[i];
-			j++;
-			result++;
-		}
+			rest[ft_strlen(rest)] = str[i];
 		i++;
 	}
-	rest[j] = '\0';
-	if (rest[0] != '\0')
-		ft_putstr(rest);
-	free(rest);
+	result += end_rest(rest);
 	va_end(args);
 	return (result);
 }
 
-int		str_data_managment(char *str, int *i, va_list args)
+int		data_managment(char *str, int *i, va_list args)
 {
 	t_list	*list;
 	int		result;
 
+	(*i)++;
 	result = 0;
 	list = init_struct();
 	list->padding = padding_register(str, i, &list, args);
 	flags_register(&list, str, args, i);
 	list->convert = str[(*i)];
-	if (list->problem == 1 && list->convert == 'c')
-		list->problem = 0;
-	if (list->problem == 1 || ft_str_cmp(list->convert, NULL, "cspdiuxX%") == 0 || list->convert == '%')
+	if (list->problem == 1 || str_cmp(list->convert, NULL, "cspdiuxX") == 0
+		|| list->convert == '%')
 		return (return_to_percent(str, i, &list));
 	list->print = convert_arg(str, args, *i);
-	if (ft_str_cmp(0, list->print, "(null)") == 0 && list->len_flag == 1 && list->length < ft_strlen(list->print))
+	if (str_cmp(0, list->print, "(null)") == 0 && list->len_flag == 1 
+		&& list->length < ft_strlen(list->print))
 		list->print = str_trim(list->print, 0, 0);
-	if (list->print != NULL && list->length != ft_strlen(list->print) && list->len_flag == 0)
+	else if (list->print && list->length != ft_strlen(list->print))
 		list->length = ft_strlen(list->print);
 	flags_managment(&list);
 	if (list->print[0] == '\0' && list->convert != 'c')
-	{
-		list->print == NULL;
 		list->length = 0;
-	}
-	else if (list->print)
-		ft_putstr(list->print);
+	ft_putstr(list->print);
 	result = list->length;
 	ft_free_list(&list);
+	return (result);
+}
+
+int		end_rest(char *rest)
+{
+	int		result;
+	
+	result = 0;
+	if (rest[0] != '\0')
+	{
+		result = ft_strlen(rest);
+		ft_putstr(rest);
+	}
+	free(rest);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:07:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/02/18 18:55:06 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/29 15:24:59 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,8 @@ char	*str_trim(char *str, int length, int start)
 	return (result);
 }
 
-char	*make_extention(char fill, int length, char convertion)
-{
-	char	*result;
-	
-	if (fill == '0' && (convertion == 'c' || convertion == 's'))
-		fill = ' ';
-	result = (char *)malloc((length + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	result = fill_str(result, fill, length);
-	return (result);
-}
 
-int		calculate_padding(int padding, int length)
+int		calc_pad(int padding, int length)
 {
 	int		result;
 
@@ -60,46 +48,25 @@ int		calculate_padding(int padding, int length)
 
 void	register_negative_padding(char *str, int *i, t_list **list, int *nbr)
 {
-	if (str[(*i)] == '-')
+	if (str[(*i)] == '-' || (*nbr) < 0 || (*list)->padding < 0 
+		|| (*list)->length < 0)
 	{
 		if ((*list)->len_flag == 0)
 		{
 			(*list)->neg_padding = 1;
 			(*list)->pad_char = ' ';
 		}
-		else
-		{
-			(*list)->neg_len = 1;
+		else if (str[(*i)] == '-')
 			(*list)->problem = 1;
-		}
-		(*i)++;
-	}
-	else if ((*list)->padding < 0 || (*list)->length < 0)
-	{
-		if ((*list)->len_flag == 0)
-		{
-			(*list)->neg_padding = 1;
-			(*list)->pad_char = ' ';
-		}
-		else
-			(*list)->neg_len = 1;
-		(*list)->padding = (*list)->padding * -1;
-	}
-	else if ((*nbr) < 0)
-	{
-		if ((*list)->len_flag == 0)
-		{
-			(*list)->neg_padding = 1;
-			(*list)->pad_char = ' ';
-		}
-		else
-			(*list)->neg_len = 1;
-		(*nbr) = (*nbr) * -1;
+		if ((*list)->padding < 0 || (*list)->length < 0)
+			(*list)->padding = (*list)->padding * -1;
+		else if ((*nbr) < 0)
+			(*nbr) = (*nbr) * -1;
 	}
 	return ;
 }
 
-int		ft_str_cmp(char c, char *str, char *cmp)
+int		str_cmp(char c, char *str, char *cmp)
 {
 	int		i;
 

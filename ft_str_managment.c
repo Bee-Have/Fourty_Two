@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 17:09:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/05 16:23:10 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/26 18:13:06 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,12 @@ char	*ft_strjoin(char *dst, char *src)
 	if (!result)
 		return (NULL);
 	result[len] = '\0';
-	while (dst[i] != '\0')
-	{
-		result[i] = dst[i];
-		i++;
-	}
 	while (i < len)
 	{
-		result[i] = src[i - ft_strlen(dst)];
+		if (i < ft_strlen(dst))
+			result[i] = dst[i];
+		else
+			result[i] = src[i - ft_strlen(dst)];
 		i++;
 	}
 	free(dst);

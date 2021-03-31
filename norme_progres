@@ -1,0 +1,81 @@
+ft_conversions.c
+OK	-char_to_string()				8
+		OK
+OK	-address_to_string()			11
+		OK
+OK	-int_to_string()				4
+		OK
+OK	-hexa_to_string()				4
+		OK
+
+ftconverts_utils.c
+OK	-ft_itoa_base()					24
+		OK
+OK	-ft_itoa()						23
+		OK
+OK	-ft_countnbr()					14
+		OK
+OK	-ft_check_negative()			3
+		OK
+OK	-ft_toupper();					10
+		OK
+
+ft_data_managment.c
+OK	-padding_register()				24
+		OK
+OK	-flags_register()				25
+		OK
+OK	-convert_arg()					21
+		OK
+OK	-flags_managment()				25
+		OK
+
+ft_data_utils.c
+OK	-str_trim()						17
+		OK
+OK	-calculate_padding()			8
+		OK
+OK	-register_negative_padding()	16
+		OK
+OK	-ft_str_cmp()					25
+		OK
+
+ft_flags_utils.c
+OK	-make_extention()				9
+	OK
+OK	length_managment()				22
+	OK
+OK	apply_padding					18
+	OK
+
+ft_list_managment.c
+OK	-init_struct()					22
+		OK
+OK	-ft_free_list()					2
+		OK
+
+ft_print.c
+OK	-ft_write()						2
+		OK
+OK	-ft_putstr()					9
+		OK
+
+ft_printf.c
+OK	-ft_printf()					25
+		OK
+OK	-data_managment()				25
+		OK
+OK	-end_rest()						10
+		OK
+
+ft_str_managment.c
+OK	-ft_strlen()					6
+		OK
+OK	-fill_str()						12
+		OK
+OK	-str_cpy()						21
+		OK
+OK	-ft_strjoin()					24
+		OK
+OK	-return_to_percent()			7
+		OK

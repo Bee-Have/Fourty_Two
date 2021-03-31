@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:20:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/15 16:12:45 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:18:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ char				*ft_itoa_base(unsigned long long int n, int base)
 {
 	char				*base_info;
 	int					ncount;
-	unsigned long long int		n_copy;
 	unsigned long long int		nbr;
 	char				*result;
 
-	base_info = "0123456789abcdef";
-	n_copy = ft_check_negative((long int)n);
+	base_info = str_cpy("0123456789abcdef");
 	ncount = ft_countnbr((long int)n, base);
-	nbr = ft_check_negative(n_copy);
+	nbr = ft_check_negative((long int)n);
 	result = (char *)malloc((ncount + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
@@ -31,14 +29,15 @@ char				*ft_itoa_base(unsigned long long int n, int base)
 	ncount--;
 	while (ncount > 0 && nbr >= (unsigned long long int)base)
 	{
-		nbr = n_copy % base;
+		nbr = ft_check_negative(n) % base;
 		result[ncount] = base_info[nbr];
 		ncount--;
-		n_copy = n_copy / base;
-		nbr = n_copy;
+		n = n / base;
+		nbr = ft_check_negative(n);
 	}
 	if (ncount == 0 || ncount == 1)
 		result[ncount] = base_info[nbr];
+	free(base_info);
 	return (result);
 }
 
@@ -64,12 +63,9 @@ char				*ft_itoa(int n)
 		nbr = ft_check_negative(n);
 	}
 	if (ncount == 0 || ncount == 1)
-	{
 		result[ncount] = nbr + '0';
-		ncount--;
-	}
 	if (n < 0)
-		result[ncount] = '-';
+		result[ncount - 1] = '-';
 	return (result);
 }
 
