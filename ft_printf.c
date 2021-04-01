@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 17:10:29 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:35:55 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		data_managment(char *str, int *i, va_list args)
 		|| list->convert == '%')
 		return (return_to_percent(str, i, &list));
 	list->print = convert_arg(str, args, *i);
-	if (str_cmp(0, list->print, "(null)") == 0 && list->len_flag == 1 
+	if (str_cmp(0, list->print, "(null)") == 0 && list->len_flag == 1
 		&& list->length < ft_strlen(list->print))
 		list->print = str_trim(list->print, 0, 0);
 	if (list->length != ft_strlen(list->print) && list->len_flag == 0)
@@ -73,7 +73,7 @@ int		data_managment(char *str, int *i, va_list args)
 int		end_rest(char *rest)
 {
 	int		result;
-	
+
 	result = 0;
 	if (rest[0] != '\0')
 	{

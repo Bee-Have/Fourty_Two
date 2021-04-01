@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:13:13 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/15 16:07:09 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:32:20 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*int_to_string(unsigned int nbr)
 	char	*result;
 
 	result = ft_itoa(nbr);
-	return(result);
+	return (result);
 }
 
 char	*hexa_to_string(unsigned int nbr, int base)

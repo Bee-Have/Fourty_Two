@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:07:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 16:55:05 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:37:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*str_trim(char *str, int length, int start)
 	return (result);
 }
 
-
 int		calc_pad(int padding, int length)
 {
 	int		result;
@@ -48,7 +47,7 @@ int		calc_pad(int padding, int length)
 
 void	register_negative_padding(char *str, int *i, t_list **list, int *nbr)
 {
-	if (str[(*i)] == '-' || (*nbr) < 0 || (*list)->padding < 0 
+	if (str[(*i)] == '-' || (*nbr) < 0 || (*list)->padding < 0
 		|| (*list)->length < 0)
 	{
 		if ((*list)->len_flag == 0)
@@ -85,14 +84,11 @@ int		str_cmp(char c, char *str, char *cmp)
 		}
 	}
 	else
-	{
 		while (str[i] != '\0' && cmp[i] != '\0')
 		{
 			if (str[i] != cmp[i])
 				return (1);
 			i++;
 		}
-		
-	}
 	return (0);
 }

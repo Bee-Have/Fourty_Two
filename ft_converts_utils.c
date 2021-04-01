@@ -6,18 +6,18 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:20:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/18 16:18:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:35:14 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char				*ft_itoa_base(unsigned long long int n, int base)
+char					*ft_itoa_base(unsigned long long int n, int base)
 {
-	char				*base_info;
-	int					ncount;
+	char						*base_info;
+	int							ncount;
 	unsigned long long int		nbr;
-	char				*result;
+	char						*result;
 
 	base_info = str_cpy("0123456789abcdef");
 	ncount = ft_countnbr((long int)n, base);
@@ -41,7 +41,7 @@ char				*ft_itoa_base(unsigned long long int n, int base)
 	return (result);
 }
 
-char				*ft_itoa(int n)
+char					*ft_itoa(int n)
 {
 	int			ncount;
 	long int	nbr;
@@ -69,7 +69,7 @@ char				*ft_itoa(int n)
 	return (result);
 }
 
-int					ft_countnbr(long int nbr, int base)
+int						ft_countnbr(long int nbr, int base)
 {
 	int		count;
 
@@ -97,7 +97,7 @@ unsigned long long int	ft_check_negative(long int n)
 char					*ft_toupper(char *str)
 {
 	int		i;
-	
+
 	i = 0;
 	while (str[i] != '\0')
 	{

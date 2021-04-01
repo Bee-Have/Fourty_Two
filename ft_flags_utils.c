@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 16:54:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 17:10:53 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:43:48 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*make_extent(char fill, int length, char convertion)
 {
 	char	*result;
-	
+
 	if (fill == '0' && (convertion == 'c' || convertion == 's'))
 		fill = ' ';
 	result = (char *)malloc((length + 1) * sizeof(char));
@@ -52,19 +52,19 @@ void	length_managment(t_list **list, char extra)
 
 void	apply_padding(t_list **list, int *prefix_used)
 {
-	char	*extend;
+	char	*extra;
 
 	if ((*prefix_used) == 0 && (*list)->prefix[0] == '-')
-			(*list)->padding = (*list)->padding - 1;
+		(*list)->padding = (*list)->padding - 1;
 	(*list)->padding = calc_pad((*list)->padding, ft_strlen((*list)->print));
 	(*list)->length = ft_strlen((*list)->print) + (*list)->padding;
-	extend =make_extent((*list)->pad_char, (*list)->padding, (*list)->convert);
+	extra = make_extent((*list)->pad_char, (*list)->padding, (*list)->convert);
 	if ((*list)->neg_padding == 0)
-		(*list)->print = ft_strjoin(extend, (*list)->print);
+		(*list)->print = ft_strjoin(extra, (*list)->print);
 	else if ((*list)->neg_padding == 1)
-		(*list)->print = ft_strjoin((*list)->print, extend);
+		(*list)->print = ft_strjoin((*list)->print, extra);
 	if ((*prefix_used) == 0 && ((*list)->convert == 'p' ||
-		(str_cmp((*list)->convert, NULL, "di") == 1 
+		(str_cmp((*list)->convert, NULL, "di") == 1
 		&& (*list)->prefix[0] == '-')))
 	{
 		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);

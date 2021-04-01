@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:49:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/25 20:00:22 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:31:32 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_list		*init_struct(void)
 	return (list);
 }
 
-void	ft_free_list(t_list **list)
+void		ft_free_list(t_list **list)
 {
 	free((*list)->print);
 	free((*list));
