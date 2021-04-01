@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/31 16:15:16 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/01 17:06:30 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	flags_managment(t_list **list)
 		prefix_used = 1;
 	}
 	if ((*list)->padding > 0)
-		apply_padding(&list, &prefix_used);
+		apply_padding(list, &prefix_used);
 	if (prefix_used == 0)
 		free((*list)->prefix);
 	(*list)->length = ft_strlen((*list)->print);
