@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 12:37:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:08:36 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ int		ft_printf(const char *str, ...)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
-		{
-			ft_putstr(rest);
-			result += data_managment((char*)str, &i, args) + ft_len(rest);
-			rest = fill_str(rest, '\0', ft_len((char *)str));
-		}
+			result += analyse_behavior((char *)str, &rest, &i, args);
 		else
 			rest[ft_len(rest)] = str[i];
 		i++;
@@ -46,7 +42,6 @@ int		data_managment(char *str, int *i, va_list args)
 	t_list	*list;
 	int		result;
 
-	(*i)++;
 	result = 0;
 	list = init_struct();
 	list->padding = padding_register(str, i, &list, args);
@@ -78,5 +73,20 @@ int		end_rest(char *rest)
 		ft_putstr(rest);
 	}
 	free(rest);
+	return (result);
+}
+
+int		analyse_behavior(char *str, char **rest, int *i, va_list args)
+{
+	int		result;
+
+	result = 0;
+	ft_putstr((*rest));
+	(*i)++;
+	if (str_cmp(str[(*i)], NULL, "cspdiuxX%-0.*123456789") == 1)
+		result += data_managment(str, i, args) + ft_len((*rest));
+	else
+		(*i)--;
+	(*rest) = fill_str((*rest), '\0', ft_len((char *)str));
 	return (result);
 }

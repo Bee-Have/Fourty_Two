@@ -2791,10 +2791,6 @@ void	activita_test_5(void)
 	ret2 = printf("%010BLABLABLABLA\n");
 	if (ret != ret2)
 		printf("43[%d]=[%d]\n", ret, ret2);
-	ret = ft_printf("% #-+010BLABLABLABLA\n");
-	ret2 = printf("% #-+010BLABLABLABLA\n");
-	if (ret != ret2)
-		printf("44[%d]=[%d]\n", ret, ret2);
 }
 
 // test of https://github.com/AntoineBourin/printf-tester

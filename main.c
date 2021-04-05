@@ -6,8 +6,8 @@ int		main()
 	int		ret2 = 0;
 	int		nb = -2;
 
-	ret = ft_printf("%.10BLABLABLABLA\n");
-	ret2 = printf("%.10BLABLABLABLA\n");
-	printf("16[%d]=[%d]\n", ret, ret2);
+	ret = ft_printf("%BLABLABLABLA\n");
+	ret2 = printf("%BLABLABLABLA\n");
+	printf("57[%d]=[%d]\n", ret, ret2);
 	return (0);
 }

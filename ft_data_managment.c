@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 12:38:01 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 15:31:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	flags_managment(t_list **list)
 		(*list)->print = strtrim((*list)->print, ft_len((*list)->print) - 1, 1);
 	}
 	length_managment(list, (*list)->pad_char);
-	if (((*list)->convert == 'p'|| (str_cmp((*list)->convert, NULL, "di") == 1
+	if (((*list)->convert == 'p' || (str_cmp((*list)->convert, NULL, "di") == 1
 		&& ((*list)->prefix[0] == '-'))) && (*list)->pad_char == ' ')
 	{
 		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);

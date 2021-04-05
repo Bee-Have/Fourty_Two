@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 16:54:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 12:42:04 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 15:31:10 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	length_managment(t_list **list, char extra)
 	if ((*list)->convert == 's' && (*list)->length < ft_len((*list)->print)
 		&& (*list)->len_flag == 1 && (*list)->length >= 0)
 		(*list)->print = strtrim((*list)->print, (*list)->length, 0);
-	else if (str_cmp((*list)->convert, NULL, "cs%" == 0)
-			 && (*list)->len_flag == 1)
+	else if (str_cmp((*list)->convert, NULL, "cs%") == 0
+			&& (*list)->len_flag == 1)
 	{
 		if ((*list)->length == 0 && ft_len((*list)->print) <= 1
 			&& (*list)->print[0] == '0')
@@ -56,6 +56,9 @@ void	apply_padding(t_list **list, int *prefix_used)
 	if ((*prefix_used) == 0 && (*list)->prefix[0] == '-')
 		(*list)->padding = (*list)->padding - 1;
 	(*list)->padding = calc_pad((*list)->padding, ft_len((*list)->print));
+	if (((*list)->convert == 's' || (*list)->convert == 'c')
+		&& ft_len((*list)->print) == 0)
+		(*list)->padding += 1;
 	if ((*list)->convert == 'p' && (*prefix_used) == 0
 		&& (*list)->padding >= ft_len((*list)->prefix))
 		(*list)->padding = (*list)->padding - ft_len((*list)->prefix);
