@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:20:38 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 17:35:14 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 17:56:12 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,24 @@ char					*ft_itoa_base(unsigned long long int n, int base)
 {
 	char						*base_info;
 	int							ncount;
-	unsigned long long int		nbr;
 	char						*result;
 
+	n = ft_check_negative(n);
 	base_info = str_cpy("0123456789abcdef");
-	ncount = ft_countnbr((long int)n, base);
-	nbr = ft_check_negative((long int)n);
+	ncount = ft_countnbr((unsigned long int)n, base);
 	result = (char *)malloc((ncount + 1) * sizeof(char));
 	if (!result)
-		return (NULL);
+		return (str_cpy(""));
 	result[ncount] = '\0';
 	ncount--;
-	while (ncount > 0 && nbr >= (unsigned long long int)base)
+	while (ncount > 0 && n >= (unsigned long long int)base)
 	{
-		nbr = ft_check_negative(n) % base;
-		result[ncount] = base_info[nbr];
+		result[ncount] = base_info[n % base];
 		ncount--;
 		n = n / base;
-		nbr = ft_check_negative(n);
 	}
 	if (ncount == 0 || ncount == 1)
-		result[ncount] = base_info[nbr];
+		result[ncount] = base_info[n];
 	free(base_info);
 	return (result);
 }
@@ -47,7 +44,7 @@ char					*ft_itoa(int n)
 	long int	nbr;
 	char		*result;
 
-	nbr = (long int)ft_check_negative((long int)n);
+	nbr = (long int)ft_check_negative((long long int)n);
 	ncount = ft_countnbr(n, 10);
 	result = (char *)malloc((ncount + 1) * sizeof(char));
 	if (!result)
@@ -69,7 +66,7 @@ char					*ft_itoa(int n)
 	return (result);
 }
 
-int						ft_countnbr(long int nbr, int base)
+int						ft_countnbr(unsigned long int nbr, int base)
 {
 	int		count;
 
@@ -87,7 +84,7 @@ int						ft_countnbr(long int nbr, int base)
 	return (count);
 }
 
-unsigned long long int	ft_check_negative(long int n)
+unsigned long long int	ft_check_negative(long long int n)
 {
 	if (n < 0)
 		n = n * -1;

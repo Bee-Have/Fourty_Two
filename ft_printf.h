@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 16:08:52 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 17:32:47 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int						analyse_behavior(char *str, char **rest, int *i, va_list args);
 
 typedef	struct			s_list
 {
-	int		problem;
 	int		length;
 	int		len_flag;
 	int		padding;
@@ -55,7 +54,7 @@ int						calc_pad(int padding, int length);
 void					register_negative_padding(char *str, int *i, t_list **list, int *nbr);
 int						str_cmp(char c, char *str, char *cmp);
 
-char					*make_extent(char fill, int length, char convertion);
+char					*make_extent(char fill, int length);
 void					length_managment(t_list **list, char extra);
 void					apply_padding(t_list **list, int *prefix_used);
 
@@ -67,8 +66,8 @@ char					*percent_to_string(void);
 
 char					*ft_itoa_base(unsigned long long int n, int base);
 char					*ft_itoa(int n);
-int						ft_countnbr(long int nbr, int base);
-unsigned long long int	ft_check_negative(long int n);
+int						ft_countnbr(unsigned long int nbr, int base);
+unsigned long long int	ft_check_negative(long long int n);
 char					*ft_toupper(char *str);
 
 void					ft_write(char c);

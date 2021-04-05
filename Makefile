@@ -6,12 +6,12 @@
 #    By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 15:24:04 by amarini-          #+#    #+#              #
-#    Updated: 2021/03/25 19:26:34 by amarini-         ###   ########.fr        #
+#    Updated: 2021/04/05 16:21:46 by amarini-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 SRCS = ft_printf.c ft_list_managment.c ft_str_managment.c ft_data_managment.c \
 		ft_data_utils.c ft_print.c ft_conversions.c  ft_converts_utils.c \

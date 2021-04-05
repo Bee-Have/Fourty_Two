@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 16:54:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 15:31:10 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:13:00 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*make_extent(char fill, int length, char convertion)
+char	*make_extent(char fill, int length)
 {
 	char	*result;
 
@@ -43,7 +43,7 @@ void	length_managment(t_list **list, char extra)
 			if ((*list)->pad_char == ' ')
 				extra = '0';
 			length = (*list)->length - ft_len((*list)->print);
-			extention = make_extent(extra, length, (*list)->convert);
+			extention = make_extent(extra, length);
 			(*list)->print = ft_strjoin(extention, (*list)->print);
 		}
 	}
@@ -63,7 +63,7 @@ void	apply_padding(t_list **list, int *prefix_used)
 		&& (*list)->padding >= ft_len((*list)->prefix))
 		(*list)->padding = (*list)->padding - ft_len((*list)->prefix);
 	(*list)->length = ft_len((*list)->print) + (*list)->padding;
-	extra = make_extent((*list)->pad_char, (*list)->padding, (*list)->convert);
+	extra = make_extent((*list)->pad_char, (*list)->padding);
 	if ((*list)->neg_padding == 0)
 		(*list)->print = ft_strjoin(extra, (*list)->print);
 	else if ((*list)->neg_padding == 1)

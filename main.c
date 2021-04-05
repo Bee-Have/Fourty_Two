@@ -4,10 +4,11 @@ int		main()
 {
 	int		ret = 0;
 	int		ret2 = 0;
-	int		nb = -2;
+	long int		nb = 2147483647;
+	long int		nb1 = -21474836;
 
-	ret = ft_printf("%BLABLABLABLA\n");
-	ret2 = printf("%BLABLABLABLA\n");
+	ret2 = printf("%5\n");
+	ret = ft_printf("%5\n");
 	printf("57[%d]=[%d]\n", ret, ret2);
 	return (0);
 }

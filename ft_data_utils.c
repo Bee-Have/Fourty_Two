@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:07:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 15:10:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:11:54 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void	register_negative_padding(char *str, int *i, t_list **list, int *nbr)
 			(*list)->neg_padding = 1;
 			(*list)->pad_char = ' ';
 		}
-		else if (str[(*i)] == '-')
-			(*list)->problem = 1;
 		if ((*list)->padding < 0 || (*list)->length < 0)
 			(*list)->padding = (*list)->padding * -1;
 		else if ((*nbr) < 0)
