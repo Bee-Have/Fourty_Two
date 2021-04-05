@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/03/31 16:25:31 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 10:17:10 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void					flags_managment(t_list **list);
 t_list					*init_struct(void);
 void					ft_free_list(t_list **list);
 
-int						ft_strlen(char *str);
+int						ft_len(char *str);
 char					*fill_str(char *str, char fill, int length);
 char					*str_cpy(char *content);
 char					*ft_strjoin(char *dst, char *src);
 int						return_to_percent(char *str, int *i, t_list **list);
 
-char					*str_trim(char *str, int length, int start);
+char					*strtrim(char *str, int length, int start);
 int						calc_pad(int padding, int length);
 void					register_negative_padding(char *str, int *i, t_list **list, int *nbr);
 int						str_cmp(char c, char *str, char *cmp);

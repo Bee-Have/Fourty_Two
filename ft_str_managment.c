@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 17:09:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 17:37:55 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 10:17:21 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_strlen(char *str)
+int		ft_len(char *str)
 {
 	int		i;
 
@@ -49,7 +49,7 @@ char	*str_cpy(char *content)
 		result = str_cpy("(null)");
 		return (result);
 	}
-	length = ft_strlen(content);
+	length = ft_len(content);
 	i = 0;
 	result = (char *)malloc((length + 1) * sizeof(char));
 	if (!result)

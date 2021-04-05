@@ -6,13 +6,13 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:07:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 17:37:28 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 10:12:38 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*str_trim(char *str, int length, int start)
+char	*strtrim(char *str, int length, int start)
 {
 	char	*result;
 	int		i;
