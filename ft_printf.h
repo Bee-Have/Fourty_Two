@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 10:17:10 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 11:58:14 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char					*char_to_string(char c);
 char					*address_to_string(void *address);
 char					*int_to_string(unsigned int nbr);
 char					*hexa_to_string(unsigned int nbr, int base);
+char					*percent_to_string(void);
 
 char					*ft_itoa_base(unsigned long long int n, int base);
 char					*ft_itoa(int n);

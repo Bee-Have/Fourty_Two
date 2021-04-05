@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 16:54:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 10:16:16 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:42:04 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ char	*make_extent(char fill, int length, char convertion)
 {
 	char	*result;
 
-	if (fill == '0' && (convertion == 'c' || convertion == 's'))
-		fill = ' ';
 	result = (char *)malloc((length + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
@@ -33,13 +31,14 @@ void	length_managment(t_list **list, char extra)
 	if ((*list)->convert == 's' && (*list)->length < ft_len((*list)->print)
 		&& (*list)->len_flag == 1 && (*list)->length >= 0)
 		(*list)->print = strtrim((*list)->print, (*list)->length, 0);
-	else if ((*list)->convert != 'c' && (*list)->convert != 's'
-			&& (*list)->len_flag == 1)
+	else if (str_cmp((*list)->convert, NULL, "cs%" == 0)
+			 && (*list)->len_flag == 1)
 	{
 		if ((*list)->length == 0 && ft_len((*list)->print) <= 1
 			&& (*list)->print[0] == '0')
 			(*list)->print = strtrim((*list)->print, 0, 0);
-		else if ((*list)->length > ft_len((*list)->print))
+		else if ((*list)->length > ft_len((*list)->print)
+				&& str_cmp((*list)->convert, NULL, "pdiuxX") == 1)
 		{
 			if ((*list)->pad_char == ' ')
 				extra = '0';
@@ -57,6 +56,9 @@ void	apply_padding(t_list **list, int *prefix_used)
 	if ((*prefix_used) == 0 && (*list)->prefix[0] == '-')
 		(*list)->padding = (*list)->padding - 1;
 	(*list)->padding = calc_pad((*list)->padding, ft_len((*list)->print));
+	if ((*list)->convert == 'p' && (*prefix_used) == 0
+		&& (*list)->padding >= ft_len((*list)->prefix))
+		(*list)->padding = (*list)->padding - ft_len((*list)->prefix);
 	(*list)->length = ft_len((*list)->print) + (*list)->padding;
 	extra = make_extent((*list)->pad_char, (*list)->padding, (*list)->convert);
 	if ((*list)->neg_padding == 0)

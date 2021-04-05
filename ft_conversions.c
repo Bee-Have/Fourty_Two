@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:13:13 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 17:32:20 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:11:49 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,17 @@ char	*hexa_to_string(unsigned int nbr, int base)
 	char	*result;
 
 	result = ft_itoa_base(nbr, base);
+	return (result);
+}
+
+char	*percent_to_string(void)
+{
+	char	*result;
+
+	result = (char *)malloc(2 * sizeof(char));
+	if (!result)
+		return (NULL);
+	result[1] = '\0';
+	result[0] = '%';
 	return (result);
 }

@@ -12,154 +12,6 @@ extern int		debug;
 char			*str;
 char			*str2;
 
-int		main(int ac, char **av)
-{
-	if (ac <= 0)
-		return (0);
-	//%c
-	if (av[1][0] == 'c')
-	{
-		printf("test[0]\n");
-		test_c(0);
-		printf("test[*]\n");
-		test_c('*');
-		printf("test[!]\n");
-		test_c('!');
-		printf("test[-55]\n");
-		test_c(-55);
-	}
-	//%s
-	if (av[1][0] == 's')
-	{
-		printf("test[abc\0efg]\n");
-		test_s("abc\0efg");
-		printf("test[abc]\n");
-		test_s("abc");
-		printf("test[]\n");
-		test_s("");
-		printf("test[NULL]\n");
-		test_s(NULL);
-		printf("test[0]\n");
-		test_s(0);
-	}
-	//%p
-	if (av[1][0] == 'p')
-	{
-		void *p = strdup("abc");
-		printf("test[abc]\n");
-		test_p(p);
-		free(p);
-		printf("test[NULL]\n");
-		test_p(NULL);
-		printf("test[0]\n");
-		test_p(0);
-	}
-	//%di
-	if (av[1][0] == 'd')
-	{
-		printf("test[-2147483648]\n");
-		test_d(-2147483648);
-		printf("test[2147483647]\n");
-		test_d(2147483647);
-		printf("test[4294967295]\n");
-		test_d(4294967295);
-		printf("test[4294967295 + 589]\n");
-		test_d(4294967295 + 589);
-		printf("test[-2147483648 - 1]\n");
-		test_d(-2147483648 - 1);
-		printf("test[-2147483648 - 15]\n");
-		test_d(-2147483648 - 15);
-		printf("test[1232]\n");
-		test_d(1232);
-		printf("test[-100]\n");
-		test_d(-100);
-		printf("test[-2]\n");
-		test_d(-2);
-	}
-	//%u
-	if (av[1][0] == 'u')
-	{
-		printf("test[0]\n");
-		test_u(0);
-		printf("test[42]\n");
-		test_u(42);
-		printf("test[-1526]\n");
-		test_u(-1526);
-		printf("test[4294967295]\n");
-		test_u(4294967295);
-		printf("test[4294967295 + 589]\n");
-		test_u(4294967295 + 589);
-		printf("test[1232]\n");
-		test_u(1232);
-		printf("test[-100]\n");
-		test_u(-100);
-		printf("test[-2]\n");
-		test_u(-2);
-	}
-	//%x
-	if (av[1][0] == 'x')
-	{
-		printf("test[0]\n");
-		test_x(0);
-		printf("test[-1526]\n");
-		test_x(-1526);
-		printf("test[4294967295]\n");
-		test_x(4294967295);
-		printf("test[4294967295 + 589]\n");
-		test_x(4294967295 + 589);
-		printf("test[42]\n");
-		test_x(42);
-	}
-	//other
-	if (av[1][0] == 'o')
-	{
-		if (av[1][1] == '1')
-		{
-			printf("other_tests\n");
-			other_test();
-		}
-		else if (av[1][1] == '2')
-		{
-			printf("activia_tests\n");
-			if (av[1][2] == '0')
-				activita_test_0();
-			if (av[1][2] == '1')
-				activita_test_1();
-			if (av[1][2] == '2')
-				activita_test_2();
-			if (av[1][2] == '3')
-				activita_test_3();
-			if (av[1][2] == '4')
-				activita_test_4();
-			if (av[1][2] == '5')
-				activita_test_5();
-		}
-		else if (av[1][1] == '3')
-		{
-			printf("antoineb_tests\n");
-			antoineb_test();
-		}
-	}
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*cp;
-
-	i = 0;
-	cp = (char *)malloc(sizeof(char) * (ft_len(s1) + 1));
-	if (!cp)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		cp[i] = s1[i];
-		i++;
-	}
-	cp[i] = '\0';
-	return (cp);
-}
-
 void	test_c(char c){
 	int		ret;
 	int		ret2;
@@ -3749,4 +3601,153 @@ void	antoineb_test(void)
 	ret2 = printf("taaa %100s\n", "hello");
 	if (ret != ret2)
 		printf("199[%d]=[%d]\n", ret, ret2);
+}
+
+
+int		main(int ac, char **av)
+{
+	if (ac <= 0)
+		return (0);
+	//%c
+	if (av[1][0] == 'c')
+	{
+		printf("test[0]\n");
+		test_c(0);
+		printf("test[*]\n");
+		test_c('*');
+		printf("test[!]\n");
+		test_c('!');
+		printf("test[-55]\n");
+		test_c(-55);
+	}
+	//%s
+	if (av[1][0] == 's')
+	{
+		printf("test[abc\0efg]\n");
+		test_s("abc\0efg");
+		printf("test[abc]\n");
+		test_s("abc");
+		printf("test[]\n");
+		test_s("");
+		printf("test[NULL]\n");
+		test_s(NULL);
+		printf("test[0]\n");
+		test_s(0);
+	}
+	//%p
+	if (av[1][0] == 'p')
+	{
+		void *p = strdup("abc");
+		printf("test[abc]\n");
+		test_p(p);
+		free(p);
+		printf("test[NULL]\n");
+		test_p(NULL);
+		printf("test[0]\n");
+		test_p(0);
+	}
+	//%di
+	if (av[1][0] == 'd')
+	{
+		printf("test[-2147483648]\n");
+		test_d(-2147483648);
+		printf("test[2147483647]\n");
+		test_d(2147483647);
+		printf("test[4294967295]\n");
+		test_d(4294967295);
+		printf("test[4294967295 + 589]\n");
+		test_d(4294967295 + 589);
+		printf("test[-2147483648 - 1]\n");
+		test_d(-2147483648 - 1);
+		printf("test[-2147483648 - 15]\n");
+		test_d(-2147483648 - 15);
+		printf("test[1232]\n");
+		test_d(1232);
+		printf("test[-100]\n");
+		test_d(-100);
+		printf("test[-2]\n");
+		test_d(-2);
+	}
+	//%u
+	if (av[1][0] == 'u')
+	{
+		printf("test[0]\n");
+		test_u(0);
+		printf("test[42]\n");
+		test_u(42);
+		printf("test[-1526]\n");
+		test_u(-1526);
+		printf("test[4294967295]\n");
+		test_u(4294967295);
+		printf("test[4294967295 + 589]\n");
+		test_u(4294967295 + 589);
+		printf("test[1232]\n");
+		test_u(1232);
+		printf("test[-100]\n");
+		test_u(-100);
+		printf("test[-2]\n");
+		test_u(-2);
+	}
+	//%x
+	if (av[1][0] == 'x')
+	{
+		printf("test[0]\n");
+		test_x(0);
+		printf("test[-1526]\n");
+		test_x(-1526);
+		printf("test[4294967295]\n");
+		test_x(4294967295);
+		printf("test[4294967295 + 589]\n");
+		test_x(4294967295 + 589);
+		printf("test[42]\n");
+		test_x(42);
+	}
+	//other
+	if (av[1][0] == 'o')
+	{
+		if (av[1][1] == '1')
+		{
+			printf("other_tests\n");
+			other_test();
+		}
+		else if (av[1][1] == '2')
+		{
+			printf("activia_tests\n");
+			if (av[1][2] == '0')
+				activita_test_0();
+			if (av[1][2] == '1')
+				activita_test_1();
+			if (av[1][2] == '2')
+				activita_test_2();
+			if (av[1][2] == '3')
+				activita_test_3();
+			if (av[1][2] == '4')
+				activita_test_4();
+			if (av[1][2] == '5')
+				activita_test_5();
+		}
+		else if (av[1][1] == '3')
+		{
+			printf("antoineb_tests\n");
+			antoineb_test();
+		}
+	}
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	char	*cp;
+
+	i = 0;
+	cp = (char *)malloc(sizeof(char) * (ft_len(s1) + 1));
+	if (!cp)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		cp[i] = s1[i];
+		i++;
+	}
+	cp[i] = '\0';
+	return (cp);
 }

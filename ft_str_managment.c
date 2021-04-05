@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 17:09:48 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 10:17:21 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:23:28 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ char	*ft_strjoin(char *dst, char *src)
 	if (!dst)
 		return (src);
 	i = 0;
-	len = ft_strlen(dst) + ft_strlen(src);
+	len = ft_len(dst) + ft_len(src);
 	result = (char *)malloc((len + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	result[len] = '\0';
 	while (i < len)
 	{
-		if (i < ft_strlen(dst))
+		if (i < ft_len(dst))
 			result[i] = dst[i];
 		else
-			result[i] = src[i - ft_strlen(dst)];
+			result[i] = src[i - ft_len(dst)];
 		i++;
 	}
 	free(dst);
@@ -93,7 +93,7 @@ char	*ft_strjoin(char *dst, char *src)
 
 int		return_to_percent(char *str, int *i, t_list **list)
 {
-	while (str[(*i)] != '%')
+	while (str_cmp(str[(*i)], NULL, "%-0.*") == 1)
 		(*i)--;
 	ft_write('%');
 	free((*list)->prefix);

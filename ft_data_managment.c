@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 10:17:49 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:38:01 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*convert_arg(char *str, va_list args, int index)
 {
 	char	*result;
 
-	if (str[index] == 'c' || str[index] == '%')
+	if (str[index] == 'c')
 		result = char_to_string(va_arg(args, int));
 	else if (str[index] == 's')
 		result = str_cpy(va_arg(args, char *));
@@ -89,8 +89,10 @@ char	*convert_arg(char *str, va_list args, int index)
 		if (str[index] == 'X')
 			result = ft_toupper(result);
 	}
+	else if (str[index] == '%')
+		result = percent_to_string();
 	else
-		return (NULL);
+		return (str_cpy(""));
 	return (result);
 }
 
@@ -108,8 +110,8 @@ void	flags_managment(t_list **list)
 		(*list)->print = strtrim((*list)->print, ft_len((*list)->print) - 1, 1);
 	}
 	length_managment(list, (*list)->pad_char);
-	if ((*list)->convert == 'p' || (str_cmp((*list)->convert, NULL, "di") == 1
-		&& ((*list)->prefix[0] == '-') && (*list)->pad_char == ' '))
+	if (((*list)->convert == 'p'|| (str_cmp((*list)->convert, NULL, "di") == 1
+		&& ((*list)->prefix[0] == '-'))) && (*list)->pad_char == ' ')
 	{
 		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
 		prefix_used = 1;

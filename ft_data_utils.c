@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:07:24 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 10:12:38 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:32:23 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int		calc_pad(int padding, int length)
 	int		result;
 
 	result = 0;
+	if (length == 0)
+		length = 1;
 	if (padding > length)
 		result = padding - length;
 	else
