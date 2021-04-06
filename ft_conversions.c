@@ -6,20 +6,22 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:13:13 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 17:34:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/06 17:07:44 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*char_to_string(char c)
+char	*char_to_string(int c)
 {
 	char	*result;
+	int		len;
 
-	result = (char *)malloc(2 * sizeof(char));
+	len = 1;
+	result = (char *)malloc((len + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
-	result[1] = '\0';
+	result[len] = '\0';
 	result[0] = c;
 	return (result);
 }

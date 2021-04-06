@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 21:45:17 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/01 17:30:59 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/06 17:27:35 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_write(char c)
 {
-	write(0, &c, 1);
+	write(1, &c, 1);
 	return ;
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str, int *null_char)
 {
 	int		i;
 
@@ -27,7 +27,12 @@ void	ft_putstr(char *str)
 		return ;
 	while (str[i] != '\0')
 	{
-		ft_write(str[i]);
+		if (null_char && null_char[0] == 1 && i == null_char[1])
+		{
+			ft_write(0);
+		}
+		else
+			ft_write(str[i]);
 		i++;
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 17:32:47 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/06 17:49:39 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@
 int						ft_printf(const char *str, ...);
 int						data_managment(char *str, int *i, va_list args);
 int						end_rest(char *rest);
+int						find_null_char(char *str);
 int						analyse_behavior(char *str, char **rest, int *i, va_list args);
 
 typedef	struct			s_list
 {
 	int		length;
+	int		neg_len;
 	int		len_flag;
 	int		padding;
 	int		neg_padding;
+	int		null_char[2];
 	char	pad_char;
 	char	convert;
 	char	*prefix;
@@ -58,7 +61,7 @@ char					*make_extent(char fill, int length);
 void					length_managment(t_list **list, char extra);
 void					apply_padding(t_list **list, int *prefix_used);
 
-char					*char_to_string(char c);
+char					*char_to_string(int c);
 char					*address_to_string(void *address);
 char					*int_to_string(unsigned int nbr);
 char					*hexa_to_string(unsigned int nbr, int base);
@@ -66,11 +69,11 @@ char					*percent_to_string(void);
 
 char					*ft_itoa_base(unsigned long long int n, int base);
 char					*ft_itoa(int n);
-int						ft_countnbr(unsigned long int nbr, int base);
+int						ft_countnbr(long long int nbr, int base);
 unsigned long long int	ft_check_negative(long long int n);
 char					*ft_toupper(char *str);
 
 void					ft_write(char c);
-void					ft_putstr(char *str);
+void					ft_putstr(char *str, int *null_char);
 
 #endif

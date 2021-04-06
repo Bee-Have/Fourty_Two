@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/05 16:12:07 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/06 17:44:05 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ int		padding_register(char *str, int *i, t_list **list, va_list args)
 	register_negative_padding(str, i, list, &result);
 	if (str[(*i)] == '0')
 	{
-		if (str[(*i) + 1] < '0' || str[(*i) + 1] > '9')
+		(*i)++;
+		if ((str[(*i)] < '0' || str[(*i)] > '9') && str[(*i)] != '*')
+		{
+			(*i)--;
 			return (0);
+		}
 		else if ((*list)->neg_padding == 0)
 			(*list)->pad_char = '0';
 	}
@@ -45,7 +49,11 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 	while (str[(*i)] != '\0')
 	{
 		if (str[(*i)] == '-' || str[(*i)] == '0')
+		{
 			(*list)->padding = padding_register(str, i, list, args);
+			if (str_cmp(str[(*i)], NULL, "-0*123456789") == 0)
+				(*i)--;
+		}
 		else if (str[(*i)] == '.')
 		{
 			(*list)->len_flag = 1;
@@ -67,7 +75,7 @@ char	*convert_arg(char *str, va_list args, int index)
 	char	*result;
 
 	if (str[index] == 'c')
-		result = char_to_string(va_arg(args, int));
+		result = char_to_string((char)va_arg(args, int));
 	else if (str[index] == 's')
 		result = str_cpy(va_arg(args, char *));
 	else if (str[index] == 'p')
