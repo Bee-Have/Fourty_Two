@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 16:54:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/06 17:52:24 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:49:08 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,4 @@ void	apply_padding(t_list **list, int *prefix_used)
 		(*list)->print = ft_strjoin(extra, (*list)->print);
 	else if ((*list)->neg_padding == 1)
 		(*list)->print = ft_strjoin((*list)->print, extra);
-	if ((*prefix_used) == 0 && ((*list)->convert == 'p' ||
-		(str_cmp((*list)->convert, NULL, "di") == 1
-		&& (*list)->prefix[0] == '-')))
-	{
-		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
-		(*prefix_used) = 1;
-	}
 }

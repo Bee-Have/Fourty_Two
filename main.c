@@ -8,9 +8,9 @@ int		main()
 	ret = 0;
 	ret2 = 0;
 
-	ret = ft_printf("%.*s", -3, "hello");
+	ret = ft_printf("7 Oi%0*d", 0, -2147483647);
 	printf("\n");
-	ret2 = printf("%.*s", -3, "hello");
+	ret2 = printf("7 Oi%0*d", 0, -2147483647);
 	printf("\n");
 	printf("[%d]=[%d]\n", ret, ret2);
 	return (0);

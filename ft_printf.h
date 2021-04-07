@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/06 17:49:39 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/07 18:21:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 
 int						ft_printf(const char *str, ...);
 int						data_managment(char *str, int *i, va_list args);
-int						end_rest(char *rest);
-int						find_null_char(char *str);
 int						analyse_behavior(char *str, char **rest, int *i, va_list args);
+
+int						end_rest(char *rest);
+void					find_null_char(t_list **list);
 
 typedef	struct			s_list
 {
