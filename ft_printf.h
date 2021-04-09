@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 19:12:52 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/07 18:21:58 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/09 16:03:07 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ int						ft_printf(const char *str, ...);
 int						data_managment(char *str, int *i, va_list args);
 int						analyse_behavior(char *str, char **rest, int *i, va_list args);
 
-int						end_rest(char *rest);
-void					find_null_char(t_list **list);
-
 typedef	struct			s_list
 {
 	int		length;
@@ -33,11 +30,16 @@ typedef	struct			s_list
 	int		padding;
 	int		neg_padding;
 	int		null_char[2];
+	char	flag;
 	char	pad_char;
 	char	convert;
 	char	*prefix;
 	char	*print;
 }						t_list;
+
+int						end_rest(char *rest);
+void					find_null_char(t_list **list);
+
 
 int						padding_register(char *str, int *i, t_list **list, va_list args);
 void					flags_register(t_list **list, char *str, va_list args, int *i);
@@ -61,6 +63,7 @@ int						str_cmp(char c, char *str, char *cmp);
 char					*make_extent(char fill, int length);
 void					length_managment(t_list **list, char extra);
 void					apply_padding(t_list **list, int *prefix_used);
+void					check_for_prefix(t_list **list, int *prefix_used, int first);
 
 char					*char_to_string(int c);
 char					*address_to_string(void *address);

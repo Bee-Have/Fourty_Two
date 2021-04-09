@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 14:51:49 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/07 18:21:44 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/09 16:18:25 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,30 @@ void	flags_register(t_list **list, char *str, va_list args, int *i)
 {
 	while (str[(*i)] != '\0')
 	{
-		if (str[(*i)] == '-' || str[(*i)] == '0')
+		//printf("flag[%c]\n", (*list)->flag);
+		if ((*list)->flag != str[(*i)])
 		{
-			(*list)->padding = padding_register(str, i, list, args);
-			if (str_cmp(str[(*i)], NULL, "-0*123456789") == 0)
+			if (str[(*i)] == '-' || str[(*i)] == '0')
+			{
+				(*list)->padding = padding_register(str, i, list, args);
+				if (str_cmp(str[(*i)], NULL, "-0*123456789") == 0)
+					(*i)--;
+			}
+			else if (str[(*i)] == '.')
+			{
+				(*list)->len_flag = 1;
+				(*i)++;
+				(*list)->length = padding_register(str, i, list, args);
+				if ((*list)->pad_char == '0' && (*list)->padding > (*list)->length
+					&& (*list)->neg_len == 0)
+					(*list)->pad_char = ' ';
+			}
+			else
+				return ;
+			if (str_cmp(str[(*i)], NULL, "cspdiuxX%") == 1)
 				(*i)--;
 		}
-		else if (str[(*i)] == '.')
-		{
-			(*list)->len_flag = 1;
-			(*i)++;
-			(*list)->length = padding_register(str, i, list, args);
-			if ((*list)->pad_char == '0' && (*list)->padding > (*list)->length
-				&& (*list)->neg_len == 0)
-				(*list)->pad_char = ' ';
-		}
-		else
-			return ;
-		if (str_cmp(str[(*i)], NULL, "cspdiuxX%") == 1)
-			(*i)--;
+		(*list)->flag = str[(*i)];
 		(*i)++;
 	}
 }
@@ -109,21 +114,10 @@ void	flags_managment(t_list **list)
 		(*list)->print = strtrim((*list)->print, ft_len((*list)->print) - 1, 1);
 	}
 	length_managment(list, (*list)->pad_char);
-	if (((*list)->convert == 'p' || (str_cmp((*list)->convert, NULL, "di") == 1
-		&& ((*list)->prefix[0] == '-'))) && (*list)->pad_char == ' ')
-	{
-		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
-		prefix_used = 1;
-	}
+	check_for_prefix(list, &prefix_used, 1);
 	if ((*list)->padding > 0)
 		apply_padding(list, &prefix_used);
-	if (prefix_used == 0 && ((*list)->convert == 'p' ||
-		(str_cmp((*list)->convert, NULL, "di") == 1
-		&& (*list)->prefix[0] == '-')))
-	{
-		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
-		prefix_used = 1;
-	}
+	check_for_prefix(list, &prefix_used, 0);
 	if (prefix_used == 0)
 		free((*list)->prefix);
 	(*list)->length = ft_len((*list)->print);

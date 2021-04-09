@@ -6,11 +6,11 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 18:02:45 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/07 18:13:05 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/09 15:54:58 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "ft_printf.h"
 
 int		analyse_behavior(char *str, char **rest, int *i, va_list args)
 {
@@ -21,7 +21,7 @@ int		analyse_behavior(char *str, char **rest, int *i, va_list args)
 	ft_putstr((*rest), NULL);
 	if (str_cmp(str[(*i)], NULL, "cspdiuxX%-0.*123456789") == 1)
 		result += data_managment(str, i, args) + ft_len((*rest));
-	else if ((*i) > 1)
+	else if ((*i) >= 1)
 		(*i)--;
 	else
 		(*rest)[ft_len((*rest))] = str[(*i)];

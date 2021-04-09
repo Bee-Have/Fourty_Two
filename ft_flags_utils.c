@@ -6,7 +6,7 @@
 /*   By: amarini- <amarini-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 16:54:35 by amarini-          #+#    #+#             */
-/*   Updated: 2021/04/07 17:49:08 by amarini-         ###   ########.fr       */
+/*   Updated: 2021/04/09 16:18:31 by amarini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	apply_padding(t_list **list, int *prefix_used)
 	if ((*prefix_used) == 0 && (*list)->prefix[0] == '-')
 		(*list)->padding = (*list)->padding - 1;
 	(*list)->padding = calc_pad((*list)->padding, ft_len((*list)->print));
-	if (ft_len((*list)->print) == 0)
+	if (ft_len((*list)->print) == 0 && str_cmp((*list)->convert, NULL, "cspdiuxX%") == 1)
 		(*list)->padding += 1;
 	if ((*list)->convert == 'p' && (*prefix_used) == 0
 		&& (*list)->padding >= ft_len((*list)->prefix))
@@ -68,4 +68,18 @@ void	apply_padding(t_list **list, int *prefix_used)
 		(*list)->print = ft_strjoin(extra, (*list)->print);
 	else if ((*list)->neg_padding == 1)
 		(*list)->print = ft_strjoin((*list)->print, extra);
+}
+
+void	check_for_prefix(t_list **list, int *prefix_used, int first)
+{
+	if (first == 1 && (*list)->pad_char != ' ')
+		return ;
+	if ((*prefix_used) == 0 && ((*list)->convert == 'p'
+		|| (str_cmp((*list)->convert, NULL, "di") == 1
+		&& ((*list)->prefix[0] == '-'))))
+	{
+		(*list)->print = ft_strjoin((*list)->prefix, (*list)->print);
+		(*prefix_used) = 1;
+	}
+	return ;
 }
